@@ -2,6 +2,9 @@ package com.android;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.View;
 
 public class AndroidUygulamasiActivity extends Activity {
     /** Called when the activity is first created. */
