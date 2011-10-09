@@ -18,25 +18,7 @@ public class ImageAdapter extends BaseAdapter {
 	int galary_background;
 	private Context mcontext;
 
-	/*
-	 * public Integer[] mimages = { 
-	 * com.odev2.R.drawable.sample_1,
-	 * com.odev2.R.drawable.sample_2, 
-	 * com.odev2.R.drawable.sample_3,
-	 * com.odev2.R.drawable.sample_4, 
-	 * com.odev2.R.drawable.sample_5,
-	 * com.odev2.R.drawable.sample_6, 
-	 * com.odev2.R.drawable.sample_7,
-	 * com.odev2.R.drawable.sample_8, 
-	 * com.odev2.R.drawable.sample_9,
-	 * com.odev2.R.drawable.sample_10,
-	 *  com.odev2.R.drawable.sample_11,
-	 * com.odev2.R.drawable.sample_12,
-	 *  com.odev2.R.drawable.sample_13,
-	 * com.odev2.R.drawable.sample_14,
-	 * 
-	 * };
-	 */
+
 
 	int[] allDrawableIDs = getAllResourceIDs(R.drawable.class);
 
