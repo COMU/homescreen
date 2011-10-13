@@ -26,13 +26,11 @@ public class AndroidUygulamasiActivity extends Activity {
 			// TODO Auto-generated method stub
 			
 			
-	//		ImageView imageview=(ImageView) findViewById(R.id.imageView);
-	//		ImageView imageView;
-	//		imageView = new ImageView(AndroidUygulamasiActivity.this);
-		//	gridview.setAdapter(new imageAdapter2());			
-	//		imageview.setImageResource(galeri1[position]);
-	//		imageview.setBackgroundResource(position);
-			
+			ImageView imageview=(ImageView) findViewById(R.id.imageView);
+			ImageView imageView;
+			imageView = new ImageView(AndroidUygulamasiActivity.this);		
+			imageview.setImageResource(galeri1[position]);
+			imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 			
 		}
     });
