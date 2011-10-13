@@ -1,12 +1,24 @@
 package com.example.galery;
 
+//import org.comu.HomeScreen.ImageAdapter;
+//import org.comu.HomeScreen.R;
+
+//import org.comu.HomeScreen.R;
+
+//import org.comu.HomeScreen.R;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.AdapterView.OnItemClickListener;
 
-public class GaleryDenemeActivity extends Activity implements OnClickListener {
+public class GaleryDenemeActivity extends Activity {
     /** Called when the activity is first created. */
    
     ImageView display;
@@ -14,63 +26,24 @@ public class GaleryDenemeActivity extends Activity implements OnClickListener {
        public void onCreate(Bundle savedInstanceState) {
            super.onCreate(savedInstanceState);
            setContentView(R.layout.main);
+      
+           final Animation scale = AnimationUtils.loadAnimation(this,
+   				R.anim.scalee);
            
-           display = (ImageView) findViewById(R.id.IVDisplay);
-           ImageView image1 = (ImageView) findViewById(R.id.IVimage1);
-           ImageView image2 = (ImageView) findViewById(R.id.IVimage2);
-           ImageView image3 = (ImageView) findViewById(R.id.IVimage3);
-           ImageView image4 = (ImageView) findViewById(R.id.IVimage4);
-           ImageView image5 = (ImageView) findViewById(R.id.IVimage5);
-           ImageView image6 = (ImageView) findViewById(R.id.IVimage6);
-           ImageView image7 = (ImageView) findViewById(R.id.IVimage7);
-           ImageView image8 = (ImageView) findViewById(R.id.IVimage8);
-           ImageView image9 = (ImageView) findViewById(R.id.IVimage9);
+           Gallery gallery = (Gallery) findViewById(R.id.galery);
+           final ImageAdapter ia = new ImageAdapter(this);
            
-           image1.setOnClickListener(this);
-           image2.setOnClickListener(this);
-           image3.setOnClickListener(this);
-           image4.setOnClickListener(this);
-           image5.setOnClickListener(this);
-           image6.setOnClickListener(this);
-           image7.setOnClickListener(this);
-           image8.setOnClickListener(this);
-           image9.setOnClickListener(this);
-       }
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		switch (v.getId()){
-		
-		case R.id.IVimage1:
-			display.setImageResource(R.drawable.golden0);
-			break;
-		case R.id.IVimage2:
-			display.setImageResource(R.drawable.golden1);
-			break;
-		case R.id.IVimage3:
-			display.setImageResource(R.drawable.golden2);
-			break;
-		case R.id.IVimage4:
-			display.setImageResource(R.drawable.golden3);
-			break;
-		case R.id.IVimage5:
-			display.setImageResource(R.drawable.golden4);
-			break;
-		case R.id.IVimage6:
-			display.setImageResource(R.drawable.golden5);
-			break;
-		case R.id.IVimage7:
-			display.setImageResource(R.drawable.golden6);
-			break;
-		case R.id.IVimage8:
-			display.setImageResource(R.drawable.golden7);
-			break;
-		case R.id.IVimage9:
-			display.setImageResource(R.drawable.golden8);
-			break;
-		
-			
-		}
+           gallery.setAdapter(ia);
+           
+           gallery.setOnItemClickListener(new OnItemClickListener() {
+           	public void onItemClick(AdapterView parent, View v, int position, long id){
+           		//Toast.makeText(Galery1Activity.this, ""+ position, Toast.LENGTH_SHORT).show();
+           		ImageView resim = (ImageView) findViewById(R.id.IVDisplay);
+           		resim.setImageResource(ia.mImageIds[position]);
+           		resim.startAnimation(scale);
+           	}
+   		});
+ 
 		
 	}
 }

@@ -8,6 +8,9 @@
 package com.example.galery;
 
 public final class R {
+    public static final class anim {
+        public static final int scalee=0x7f040000;
+    }
     public static final class attr {
     }
     public static final class drawable {
@@ -24,22 +27,35 @@ public final class R {
         public static final int icon=0x7f02000a;
     }
     public static final class id {
-        public static final int IVDisplay=0x7f050000;
-        public static final int IVimage1=0x7f050001;
-        public static final int IVimage2=0x7f050002;
-        public static final int IVimage3=0x7f050003;
-        public static final int IVimage4=0x7f050004;
-        public static final int IVimage5=0x7f050005;
-        public static final int IVimage6=0x7f050006;
-        public static final int IVimage7=0x7f050007;
-        public static final int IVimage8=0x7f050008;
-        public static final int IVimage9=0x7f050009;
+        public static final int IVDisplay=0x7f060000;
+        public static final int galery=0x7f060001;
     }
     public static final class layout {
         public static final int main=0x7f030000;
     }
     public static final class string {
-        public static final int app_name=0x7f040001;
-        public static final int hello=0x7f040000;
+        public static final int app_name=0x7f050001;
+        public static final int hello=0x7f050000;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a GaleryDenemeActivity.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #GaleryDenemeActivity_android_galleryItemBackground com.example.galery:android_galleryItemBackground}</code></td><td></td></tr>
+           </table>
+           @see #GaleryDenemeActivity_android_galleryItemBackground
+         */
+        public static final int[] GaleryDenemeActivity = {
+            0x0101004c
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.example.galery.R.attr#android_galleryItemBackground}
+          attribute's value can be found in the {@link #GaleryDenemeActivity} array.
+          @attr name android:android_galleryItemBackground
+        */
+        public static final int GaleryDenemeActivity_android_galleryItemBackground = 0;
+    };
 }
