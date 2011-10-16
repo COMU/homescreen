@@ -15,8 +15,9 @@ import android.widget.Toast;
 
 
 public class TwitterActivity extends Activity {
-    
+    Twitter myTwit;
 
+	
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,8 +30,7 @@ public class TwitterActivity extends Activity {
         String Pwd=pwd.getText().toString();
       Button submit =(Button)findViewById(com.comu.homescreen.R.id.submit);
       
-        
-     final Twitter myTwit = new Twitter(Name,Pwd);
+      myTwit = new Twitter(Name,Pwd);
    
 submit.setOnClickListener(new OnClickListener() {
 	

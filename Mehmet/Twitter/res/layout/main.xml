@@ -10,7 +10,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 android:id="@+id/Twitter_icon"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:layout_gravity="center_horizontal"
 android:src="@drawable/image"
 >
 </ImageView>
@@ -35,9 +34,9 @@ android:text="User Name"
 </TextView>
 <EditText
 android:id="@+id/UserName"
-android:layout_width="wrap_content"
+android:layout_width="210px"
 android:layout_height="wrap_content"
-android:text="            "
+android:text=""
 android:textSize="18sp"
 >
 </EditText>
@@ -57,9 +56,9 @@ android:text="PassWord"
 </TextView>
 <EditText
 android:id="@+id/passwd"
-android:layout_width="wrap_content"
+android:layout_width="210px"
 android:layout_height="wrap_content"
-android:text="             "
+android:text=""
 android:textSize="18sp"
 android:password="true"
 >
