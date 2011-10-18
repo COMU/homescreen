@@ -25,8 +25,16 @@ public class PrepareRequestTokenActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-	this.consumer= new CommonsHttpOAuthConsumer(Constants.CONSUMER_KEY, Constants.CONSUMER_SECRET);
-	this.provider= new CommonsHttpOAuthProvider(Constants.REQUEST_URL, Constants.ACCESS_URL, Constants.AUTHORIZE_URL);
+	try {
+		this.consumer= new CommonsHttpOAuthConsumer(Constants.CONSUMER_KEY, Constants.CONSUMER_SECRET);
+		this.provider= new CommonsHttpOAuthProvider(Constants.REQUEST_URL, Constants.ACCESS_URL, Constants.AUTHORIZE_URL);
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+		Log.e(TAG,"Error creating consumer / provider",e);
+	}
+		
+		Log.i(TAG,"Starting task to retrieve request token.	");
 	new OAuthRequestTokenTask(this,provider,consumer).execute();
 	
 	}
