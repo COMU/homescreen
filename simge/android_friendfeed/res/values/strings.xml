@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android FriendFeed Client</string>
+    <string name="label_copy_remotekey">Copia tu Remote Key del navegador</string>
+    <string name="label_login">Autenticación</string>
+    <string name="label_username">Nombre de usuario</string>
+    <string name="label_remotekey">Remote Key</string>
+    <string name="label_see_remotekey">Averigua tu Remote Key</string>
+</resources>
