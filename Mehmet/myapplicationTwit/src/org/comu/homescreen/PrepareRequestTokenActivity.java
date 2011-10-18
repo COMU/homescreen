@@ -1,6 +1,7 @@
 package org.comu.homescreen;
 
 
+
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
@@ -12,6 +13,8 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 public class PrepareRequestTokenActivity extends Activity {
 
@@ -30,10 +33,17 @@ public class PrepareRequestTokenActivity extends Activity {
 	@Override
 	protected void onNewIntent(Intent intent) {
 		// TODO Auto-generated method stub
-		
-	
 		super.onNewIntent(intent);
 		
+		SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this);
+		final Uri uri=intent.getData();
+		if(uri !=null && uri.getScheme().equals(Constants.OAUTH_CALLBACK_SCHEME)){
+			
+			Log.i(TAG, "Callback received : " + uri);
+			Log.i(TAG, "Retrieving Access Token");
+			new RetrieveAccessTokenTask(this,consumer,provider,prefs).execute(uri);
+			finish();
+		}
 		
 		
 	}
