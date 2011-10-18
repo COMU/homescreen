@@ -6,7 +6,11 @@ import oauth.signpost.OAuthProvider;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 public class PrepareRequestTokenActivity extends Activity {
@@ -27,13 +31,12 @@ public class PrepareRequestTokenActivity extends Activity {
 	protected void onNewIntent(Intent intent) {
 		// TODO Auto-generated method stub
 		
-		
-		
+	
 		super.onNewIntent(intent);
+		
+		
+		
 	}
 	
-	
-	
-	
-	
 }
+
