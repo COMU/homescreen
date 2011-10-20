@@ -13,7 +13,7 @@ public class FoursquareActivity extends Activity {
     }
   public  EditText kullaniciAdi = new EditText(FoursquareActivity.this);
   public  EditText parola = new EditText(FoursquareActivity.this);
-  
+ 
   
     
 }
