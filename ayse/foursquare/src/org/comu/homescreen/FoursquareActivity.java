@@ -10,12 +10,15 @@ public class FoursquareActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-    }
-  public  EditText kullaniciAdi = new EditText(FoursquareActivity.this);
-  public  EditText parola = new EditText(FoursquareActivity.this);
- 
-  
     
+    EditText kullaniciAdi = (EditText) findViewById(R.id.editText2);		  
+	kullaniciAdi = new EditText(FoursquareActivity.this);
+  
+    EditText parola = (EditText) findViewById(R.id.editText1);
+    parola = new EditText(FoursquareActivity.this);
+ 
+ 
+    
+   }
+
 }
-
-
