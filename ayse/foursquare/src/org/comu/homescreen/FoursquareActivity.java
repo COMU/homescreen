@@ -2,6 +2,9 @@ package org.comu.homescreen;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class FoursquareActivity extends Activity {
@@ -16,9 +19,22 @@ public class FoursquareActivity extends Activity {
   
     EditText parola = (EditText) findViewById(R.id.editText1);
     parola = new EditText(FoursquareActivity.this);
- 
- 
+    Button onayla = new Button(FoursquareActivity.this);
     
+    onayla.setOnClickListener(new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			
+			
+			
+			
+		}
+	});
+    	
+    		
+     
    }
 
 }
