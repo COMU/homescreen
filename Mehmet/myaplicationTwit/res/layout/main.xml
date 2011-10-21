@@ -1,40 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
     <ImageView
         android:id="@+id/image"
         android:layout_width="fill_parent"
         android:layout_height="75dp"
         android:src="@drawable/header" />
-    	<Button
-		android:id="@+id/login_button"
-		android:onClick="buttonLogin"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:text="Login" />
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="buttonLogin"
+        android:text="Login" />
+
     <EditText
         android:id="@+id/tweetText"
         android:layout_width="fill_parent"
         android:layout_height="100dp" />
-		<Button
-		android:id="@+id/tweet_button"
-		android:onClick="buttonTweet"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:text="Tweet" />
-	<Button
-	    android:id="@+id/show_twet"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text="ShowTweets"
-	    />
-	<TextView
-	    android:id="@+id/tweetler"
+
+    <Button
+        android:id="@+id/tweet_button"
         android:layout_width="fill_parent"
-        android:layout_height="20dp"
-	  
-	    />
+        android:layout_height="wrap_content"
+        android:onClick="buttonTweet"
+        android:text="Tweet" />
+
+    <Button
+        android:id="@+id/show_twet"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="ShowTweets" />
+
+<TextView
+    android:layout_width="fill_parent"
+    android:id="@+id/tweet_goster"
+    android:layout_height="25dp"
+    />
+
 </LinearLayout>

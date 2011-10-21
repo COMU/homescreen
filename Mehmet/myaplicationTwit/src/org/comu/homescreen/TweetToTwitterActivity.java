@@ -18,8 +18,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +43,8 @@ public class TweetToTwitterActivity extends Activity {
 	private EditText tweet;
 	private Button show_twet;
 	private TextView t;
+	
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -62,19 +66,22 @@ public class TweetToTwitterActivity extends Activity {
 		mLoginButton = (Button) findViewById(R.id.login_button);
 		mTweetButton = (Button) findViewById(R.id.tweet_button);
 		tweet=(EditText)findViewById(R.id.tweetText);
+t=(TextView)findViewById(R.id.tweet_goster);
 		show_twet=(Button)findViewById(R.id.show_twet);
-		t=(TextView)findViewById(R.id.tweetler);
 	show_twet.setOnClickListener(new OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
 		
 	try {
-		List <Status> st= mTwitter.getUserTimeline();
-		for(Status s : st){
-			t.setText(s.getUser().getName()+" : "+ s.getText());
-			
+		List <Status> st= mTwitter.getHomeTimeline();
+		
+		for(Status s:st){
+			t.setText(s.getUser().getName()+"  :  "+s.getText()+"\n");
+	
 		}
+		
+
 	} catch (TwitterException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
