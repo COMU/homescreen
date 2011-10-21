@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/image"
         android:layout_width="fill_parent"
-        android:layout_height="200dp"
+        android:layout_height="75dp"
         android:src="@drawable/header" />
     	<Button
 		android:id="@+id/login_button"
@@ -25,4 +25,16 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:text="Tweet" />
+	<Button
+	    android:id="@+id/show_twet"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="ShowTweets"
+	    />
+	<TextView
+	    android:id="@+id/tweetler"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+	  
+	    />
 </LinearLayout>
