@@ -4,27 +4,24 @@
 	android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-	<ImageView
-	    android:layout_width="fill_parent"
-	    android:layout_height="200dp"
-	    android:id="@+id/image"
-	    android:src="@drawable/header"
-	    />
-    
-	<Button
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/header" />
+    	<Button
 		android:id="@+id/login_button"
-	
+		android:onClick="buttonLogin"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:text="Login" />
-	<EditText
-	    android:id="@+id/tweetText"
-	    android:layout_width="fill_parent"
-	    android:layout_height="100dp"
-	    />
-	<Button
+    <EditText
+        android:id="@+id/tweetText"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp" />
+		<Button
 		android:id="@+id/tweet_button"
-
+		android:onClick="buttonTweet"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:text="Tweet" />
