@@ -1,7 +1,9 @@
 package org.comu.homescreen;
 
+import java.util.Date;
 import java.util.List;
 
+import twitter4j.Paging;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -12,15 +14,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.database.DataSetObserver;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,12 +43,12 @@ public class TweetToTwitterActivity extends Activity {
 	private Twitter mTwitter;
 	private RequestToken mReqToken;
 
+
 	private Button mLoginButton;
 	private Button mTweetButton;
 	private EditText tweet;
 	private Button show_twet;
-	private TextView t;
-	
+private TextView t;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -62,7 +67,7 @@ public class TweetToTwitterActivity extends Activity {
 
 		mTwitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
 		Log.i(TAG, "Inflated Twitter4j");
-		
+	
 		mLoginButton = (Button) findViewById(R.id.login_button);
 		mTweetButton = (Button) findViewById(R.id.tweet_button);
 		tweet=(EditText)findViewById(R.id.tweetText);
@@ -74,13 +79,28 @@ t=(TextView)findViewById(R.id.tweet_goster);
 		public void onClick(View v) {
 		
 	try {
-		List <Status> st= mTwitter.getHomeTimeline();
 		
-		for(Status s:st){
-			t.setText(s.getUser().getName()+"  :  "+s.getText()+"\n");
 	
+
+		List <Status> st= mTwitter.getHomeTimeline();
+
+		 String dizi[]=new String[st.size()];
+int i=0;
+		for(Status s:st){
+
+			dizi[i]=s.getUser().getName()+"  : "+s.getText();
+			i++;
+			
 		}
+		t.setText(dizi[0]);
 		
+	/*	
+	 * ArrayList<String> someItems = new ArrayList<String>();
+		for(String element : itemsarray) // add the first 5 elements
+		    someItems.add(element);
+		setListAdapter(new ArrayAdapter<String>(this, R.layout.row, R.id.label, someItems));
+
+		*/
 
 	} catch (TwitterException e) {
 		// TODO Auto-generated catch block
