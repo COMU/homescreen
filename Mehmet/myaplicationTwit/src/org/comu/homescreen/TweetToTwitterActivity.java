@@ -42,13 +42,12 @@ public class TweetToTwitterActivity extends Activity {
 	private SharedPreferences mPrefs;
 	private Twitter mTwitter;
 	private RequestToken mReqToken;
-
+	private ListView l;
 
 	private Button mLoginButton;
 	private Button mTweetButton;
 	private EditText tweet;
 	private Button show_twet;
-private TextView t;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -67,11 +66,10 @@ private TextView t;
 
 		mTwitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
 		Log.i(TAG, "Inflated Twitter4j");
-	
+		l=(ListView)findViewById(R.id.liste);
 		mLoginButton = (Button) findViewById(R.id.login_button);
 		mTweetButton = (Button) findViewById(R.id.tweet_button);
 		tweet=(EditText)findViewById(R.id.tweetText);
-t=(TextView)findViewById(R.id.tweet_goster);
 		show_twet=(Button)findViewById(R.id.show_twet);
 	show_twet.setOnClickListener(new OnClickListener() {
 		
@@ -92,16 +90,10 @@ int i=0;
 			i++;
 			
 		}
-		t.setText(dizi[0]);
+	
 		
-	/*	
-	 * ArrayList<String> someItems = new ArrayList<String>();
-		for(String element : itemsarray) // add the first 5 elements
-		    someItems.add(element);
-		setListAdapter(new ArrayAdapter<String>(this, R.layout.row, R.id.label, someItems));
-
-		*/
-
+	l.setAdapter(new ArrayAdapter<String>(l.getContext(), android.R.layout.simple_list_item_1, dizi));
+		
 	} catch (TwitterException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -216,7 +208,6 @@ int i=0;
 			
 			String word=tweet.getText().toString();
 			mTwitter.updateStatus(word);
-
 			Toast.makeText(this, "Tweet Successful!", Toast.LENGTH_SHORT).show();
 		} catch (TwitterException e) {
 			Toast.makeText(this, "Tweet error, try again later", Toast.LENGTH_SHORT).show();

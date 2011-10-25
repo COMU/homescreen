@@ -3,50 +3,88 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
-    <ImageView
+<TableLayout
+android:id="@+id/table"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+>
+<TableRow
+android:id="@+id/row"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+>
+  <ImageView
         android:id="@+id/image"
-        android:layout_width="fill_parent"
-        android:layout_height="75dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/header" />
-
+  </TableRow>
+  <TableRow
+android:id="@+id/row"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+>
     <Button
         android:id="@+id/login_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="buttonLogin"
         android:text="Login" />
+    </TableRow>
+  
+<TableRow
+android:id="@+id/row1"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+>
+  
+<LinearLayout
+android:id="@+id/grup"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+>
+  
 
     <EditText
         android:id="@+id/tweetText"
-        android:layout_width="fill_parent"
-        android:layout_height="100dp" />
+        android:layout_width="100dp"
+        android:layout_height="50dp" />
 
     <Button
         android:id="@+id/tweet_button"
-        android:layout_width="fill_parent"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:onClick="buttonTweet"
         android:text="Tweet" />
 
-    <Button
+    
+    
+    </LinearLayout>
+    </TableRow>
+<TableRow
+android:id="@+id/row1"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+>
+<Button
         android:id="@+id/show_twet"
-        android:layout_width="fill_parent"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:text="ShowTweets" />
 
-<TextView
-    android:layout_width="fill_parent"
-    android:id="@+id/tweet_goster"
-    android:layout_height="50dp"
-    android:background="@drawable/tweet"
-    />
-
-<ListView
+    </TableRow>
+    <ListView
 android:id="@+id/liste"
 android:layout_width="wrap_content"
-android:layout_height="75dp"
+android:layout_height="wrap_content"
+android:background="@drawable/tweet"
 >
 </ListView>
-
+    </TableLayout>
 </LinearLayout>
