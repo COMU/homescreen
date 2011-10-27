@@ -4,11 +4,4 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Kullanici Adi:" android:id="@+id/textView1"></TextView>
-    <EditText android:layout_height="wrap_content" android:id="@+id/editText2" android:inputType="textEmailAddress" android:layout_width="150dp"></EditText>
-    <TextView android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Parola:"></TextView>
-    <EditText android:layout_height="wrap_content" android:id="@+id/editText1" android:inputType="textPassword" android:layout_width="150dp">
-        <requestFocus></requestFocus>
-    </EditText>
-    <Button android:layout_height="wrap_content" android:text="Button" android:id="@+id/button1" android:layout_width="wrap_content"></Button>
 </LinearLayout>
