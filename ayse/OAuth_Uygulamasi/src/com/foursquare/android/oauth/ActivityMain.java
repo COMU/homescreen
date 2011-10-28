@@ -1,4 +1,4 @@
-package comu.android;
+package com.foursquare.android.oauth;
 
 import android.app.Activity;
 import android.content.Intent;
