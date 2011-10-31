@@ -43,25 +43,46 @@ public class SettingsDialog extends Dialog implements  android.view.View.OnClick
         XMPPConnection connection = new XMPPConnection(connConfig);
 
         try {
-            connection.connect();
-            SASLAuthentication.supportSASLMechanism("PLAIN", 0);
-            connection.login(username, password);
-            }
-        catch(XMPPException e1) {
-        	e1.printStackTrace();
-        	xmppClient.setConnection(null);
-        	}
-        try{
-        	connection.login(username, password);
-        }
-        catch(XMPPException ex){
-        	ex.printStackTrace();
-        	xmppClient.setConnection(null);
-        }
-       // dismiss();
-       
-    }
+        
+        	            connection.connect();
+        	
+        	            Log.i("XMPPClient", "[SettingsDialog] Connected to " + connection.getHost());
+        	
+        	        } catch (XMPPException ex) {
+        	
+        	            Log.e("XMPPClient", "[SettingsDialog] Failed to connect to " + connection.getHost());
+        	
+        	            xmppClient.setConnection(null);
+        	
+        	       }
+        	
+        	        try {
+        	
+        	            connection.login(username, password);
+        	
+        	            Log.i("XMPPClient", "Logged in as " + connection.getUser());
+        	
+        	 
+        	
+        	            // Set the status to available
+        	
+        	            Presence presence = new Presence(Presence.Type.available);
+        	
+        	            connection.sendPacket(presence);
+        	
+        	            xmppClient.setConnection(connection);
+        	
+        	        } catch (XMPPException ex) {
+        	
+        	            Log.e("XMPPClient", "[SettingsDialog] Failed to log in as " + username);
+        	
+        	            xmppClient.setConnection(null);
+        	
+        	        }
+           dismiss();
 
+    }
+    
     private String getText(int id) {
         EditText widget = (EditText) this.findViewById(id);
         return widget.getText().toString();
