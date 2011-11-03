@@ -18,12 +18,7 @@ public class FoursquareSession {
 		editor 		  = sharedPref.edit();
 	}
 
-	/**
-	 * Save access token and user name
-	 * 
-	 * @param accessToken Access token
-	 * @param username User name
-	 */
+	
 	public void storeAccessToken(String accessToken, String username) {
 		editor.putString(FSQ_ACCESS_TOKEN, accessToken);
 		editor.putString(FSQ_USERNAME, username);
@@ -41,20 +36,12 @@ public class FoursquareSession {
 		editor.commit();
 	}
 
-	/**
-	 * Get user name
-	 * 
-	 * @return User name
-	 */
+
 	public String getUsername() {
 		return sharedPref.getString(FSQ_USERNAME, null);
 	}
 
-	/**
-	 * Get access token
-	 * 
-	 * @return Access token
-	 */
+
 	public String getAccessToken() {
 		return sharedPref.getString(FSQ_ACCESS_TOKEN, null);
 	}
