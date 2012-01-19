@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">NotificationBar</string>
-    <string name="start">Start Notification</string>
-    <string name="stop">Stop Notification</string>
-</resources>
