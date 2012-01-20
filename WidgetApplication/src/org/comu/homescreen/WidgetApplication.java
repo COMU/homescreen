@@ -1,9 +1,10 @@
 package org.comu.homescreen;
 
 
+
 import java.util.Random;
 
-import android.R;
+import org.comu.homescreen.R;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
