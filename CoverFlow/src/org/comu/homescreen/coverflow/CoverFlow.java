@@ -9,7 +9,7 @@ import android.view.animation.Transformation;
 import android.widget.Gallery;
 import android.widget.ImageView;
 
-public class CoverFlow extends Gallery {
+public class CoverFlow extends Gallery{
 
 	/**
 	 * Graphics Camera used for transforming the matrix of ImageViews
@@ -184,4 +184,7 @@ public class CoverFlow extends Gallery {
 		imageMatrix.postTranslate((imageWidth / 2), (imageHeight / 2));
 		mCamera.restore();
 	}
+	
+//	OnItemSelectedListener mOnItemSelectedListener;
+//	OnItemClickListener mOnItemClickListener;
 }

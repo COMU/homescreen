@@ -4,7 +4,7 @@ android:orientation="vertical"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 >
-<com.example.coverflow.CoverFlow
+<org.comu.homescreen.coverflow.CoverFlow
 android:id="@+id/coverflow"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
