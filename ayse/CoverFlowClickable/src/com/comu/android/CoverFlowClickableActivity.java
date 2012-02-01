@@ -151,7 +151,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			return position;
 		}
 
-		public long getItemId(int position) {
+		public final long getItemId(int position) {
 			return position;
 		}
 
@@ -181,13 +181,17 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 					.max(0, 1.0f / (float) Math.pow(1 / 2, Math.abs(offset)));
 		}
 	
+	
+	
 	}
 
 
 	@Override
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// TODO Auto-generated method stub
-		Toast.makeText(	CoverFlowClickableActivity.this , "resime tiklandi", position).show();
-		
+		Toast.makeText(	CoverFlowClickableActivity.this , "resime tiklandi "+ ++position +".resim", position).show();
+	//	int id=CoverFlow.FIND_VIEWS_WITH_TEXT;
+	   
+
 	}
 }
