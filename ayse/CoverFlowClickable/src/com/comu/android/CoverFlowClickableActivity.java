@@ -2,6 +2,8 @@ package com.comu.android;
 
 import java.lang.reflect.Field;
 import com.comu.android.R;
+import com.comu.android.R.layout;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -28,27 +30,25 @@ import android.widget.Toast;
 public class CoverFlowClickableActivity extends Activity implements OnItemClickListener{
 	/** Called when the activity is first created. */
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-
+		setContentView(R.layout.main);
+		//final CoverFlow coverFlow =(CoverFlow) findViewById(R.id.coverflow);
 		final CoverFlow coverFlow;
-		coverFlow = new CoverFlow(this);
-		coverFlow.setOnItemClickListener(this);
+		coverFlow=new CoverFlow(this);
 		coverFlow.setAdapter(new ImageAdapter(this));
-
 		ImageAdapter coverImageAdapter = new ImageAdapter(this);
-        
+		coverFlow.setOnItemClickListener(this);
 		coverFlow.setAdapter(coverImageAdapter);
-
+        
 		coverFlow.setSpacing(-30);
 		coverFlow.setSelection(4, true);
 		coverFlow.setAnimationDuration(1000);
-
-		setContentView(coverFlow);
 		
+		//setContentView(coverFlow);
+	
 	}
 	
-
 	public class ImageAdapter extends BaseAdapter {
 		int mGalleryItemBackground;
 		private Context mContext;
@@ -181,8 +181,6 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 					.max(0, 1.0f / (float) Math.pow(1 / 2, Math.abs(offset)));
 		}
 	
-	
-	
 	}
 
 
@@ -191,7 +189,10 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		// TODO Auto-generated method stub
 		Toast.makeText(	CoverFlowClickableActivity.this , "resime tiklandi "+ ++position +".resim", position).show();
 	//	int id=CoverFlow.FIND_VIEWS_WITH_TEXT;
-	   
+	//		if(position == 3) {
+	//			Intent intent = new Intent(getApplicationContext(), Activity2.class);
+	//			startActivity(intent);
+	//        } 
 
 	}
 }
