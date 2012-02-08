@@ -32,8 +32,6 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-		//final CoverFlow coverFlow =(CoverFlow) findViewById(R.id.coverflow);
 		final CoverFlow coverFlow;
 		coverFlow=new CoverFlow(this);
 		coverFlow.setAdapter(new ImageAdapter(this));
@@ -43,9 +41,8 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
         
 		coverFlow.setSpacing(-30);
 		coverFlow.setSelection(4, true);
-		coverFlow.setAnimationDuration(1000);
-		
-		//setContentView(coverFlow);
+		coverFlow.setAnimationDuration(1000);		
+		setContentView(R.layout.coverflow);
 	
 	}
 	

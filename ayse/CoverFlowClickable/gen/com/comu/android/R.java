@@ -22,10 +22,9 @@ public final class R {
     }
     public static final class id {
         public static final int analogClock1=0x7f050000;
-        public static final int coverflow=0x7f050001;
     }
     public static final class layout {
-        public static final int browser=0x7f030000;
+        public static final int coverflow=0x7f030000;
         public static final int main=0x7f030001;
     }
     public static final class string {

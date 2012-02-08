@@ -15,14 +15,11 @@
         android:layout_height="wrap_content" />
    
 </LinearLayout>  
-<LinearLayout 
+<LinearLayout     
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    <com.comu.android.CoverFlow
-        android:id="@+id/coverflow"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"/>
-    
+    android:orientation="vertical" 
+    android:gravity="bottom"
+    >   
 </LinearLayout>  
 </LinearLayout>
