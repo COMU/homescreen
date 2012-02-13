@@ -15,4 +15,17 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:text="veri gönder"/>
+	
+	<Button 
+	    android:id = "@+id/ikincibuton"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Tema Degistir"/>
+	<TextView
+	    android:id = "@+id/text"
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+			    
+	    
+	    />
 </LinearLayout>

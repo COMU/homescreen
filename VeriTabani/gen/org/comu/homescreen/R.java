@@ -15,7 +15,9 @@ public final class R {
     }
     public static final class id {
         public static final int buton=0x7f050001;
+        public static final int ikincibuton=0x7f050002;
         public static final int imagepath=0x7f050000;
+        public static final int text=0x7f050003;
     }
     public static final class layout {
         public static final int main=0x7f030000;
