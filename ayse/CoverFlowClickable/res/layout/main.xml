@@ -3,23 +3,11 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal" >
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:orientation="vertical" >
-
-    <AnalogClock
-        android:id="@+id/analogClock1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-   
-</LinearLayout>  
-<LinearLayout     
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:gravity="bottom"
-    >   
-</LinearLayout>  
+    
+      <com.comu.android.CoverFlow
+	  android:id="@+id/coverflow"
+	  android:layout_width="fill_parent"
+	  android:layout_height="wrap_content"
+    />   
+    
 </LinearLayout>

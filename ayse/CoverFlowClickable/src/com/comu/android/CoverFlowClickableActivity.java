@@ -2,10 +2,9 @@ package com.comu.android;
 
 import java.lang.reflect.Field;
 import com.comu.android.R;
-import com.comu.android.R.layout;
-
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -17,6 +16,7 @@ import android.graphics.Bitmap.Config;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,12 +37,11 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		coverFlow.setAdapter(new ImageAdapter(this));
 		ImageAdapter coverImageAdapter = new ImageAdapter(this);
 		coverFlow.setOnItemClickListener(this);
-		coverFlow.setAdapter(coverImageAdapter);
-        
+		coverFlow.setAdapter(coverImageAdapter);       
 		coverFlow.setSpacing(-30);
 		coverFlow.setSelection(4, true);
 		coverFlow.setAnimationDuration(1000);		
-		setContentView(R.layout.coverflow);
+		setContentView(coverFlow);
 	
 	}
 	
@@ -184,12 +183,15 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	@Override
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// TODO Auto-generated method stub
-		Toast.makeText(	CoverFlowClickableActivity.this , "resime tiklandi "+ ++position +".resim", position).show();
+		    position++;
 	//	int id=CoverFlow.FIND_VIEWS_WITH_TEXT;
-	//		if(position == 3) {
+			if(position == 7) {
 	//			Intent intent = new Intent(getApplicationContext(), Activity2.class);
 	//			startActivity(intent);
-	//        } 
-
+				Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));  
+				startActivity(viewIntent);
+    
+	       } 
+			else Toast.makeText(	CoverFlowClickableActivity.this ,+ position + ". icona tiklandi ", position).show();
 	}
 }
