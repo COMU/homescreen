@@ -23,6 +23,7 @@
          xmlns:coverflow="http://schemas.android.com/apk/res/com.comu.android"
          android:id="@+id/coverflow"
          android:layout_width="match_parent"
-         android:layout_height="436dp" />
+         android:layout_height="200dp"
+         android:layout_weight="1.09" />
           
 </LinearLayout>

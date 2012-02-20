@@ -1,7 +1,6 @@
 package com.comu.android;
 
 import java.lang.reflect.Field;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -188,19 +187,36 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	
 	}
 
-
+	public static int gelenposition;
 	@Override
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// TODO Auto-generated method stub
 		    position++;
-	//	int id=CoverFlow.FIND_VIEWS_WITH_TEXT;
-			if(position == 7) {
-	//			Intent intent = new Intent(getApplicationContext(), Activity2.class);
-	//			startActivity(intent);
-				Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));  
-				startActivity(viewIntent);
-    
-	       } 
-			else Toast.makeText(	CoverFlowClickableActivity.this ,+ position + ". icona tiklandi ", position).show();
+		    gelenposition=position;
+			switch (position){
+			
+				case 1:Intent viewIntent1 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent1);break;
+				
+				case 2:Intent viewIntent2 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent2);break;
+				
+				case 3:Intent viewIntent3 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent3);break;
+				
+				case 4:Intent viewIntent4 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent4);break;
+				
+				case 5:Intent viewIntent5 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent5);break;
+	
+				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent6);break;
+
+				case 7:Intent viewIntent7 = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));				
+				startActivity(viewIntent7);break;
+			}
+		     
+//			else Toast.makeText(	CoverFlowClickableActivity.this ,+ position + ". icona tiklandi ", position).show();
 	}
 }
