@@ -28,7 +28,8 @@ public class CoverFlow extends Gallery{
 
 	/**
 	 * The Centre of the Coverflow
-	 */
+	 * 
+	 */		
 	private int mCoveflowCenter;
 
 	public CoverFlow(Context context) {
@@ -184,5 +185,7 @@ public class CoverFlow extends Gallery{
 		imageMatrix.postTranslate((imageWidth / 2), (imageHeight / 2));
 		mCamera.restore();
 	}
+
+
 	
 }
