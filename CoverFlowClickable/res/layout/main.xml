@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal" >
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal" >
+
+        <DigitalClock
+            android:id="@+id/digitalClock1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/DigitalClock" />
         
-    <com.comu.android.CoverFlow xmlns:coverflow="http://schemas.android.com/apk/res/com.comu.android"
-	  android:id="@+id/coverflow"
-	  android:layout_width="fill_parent"
-	  android:layout_height="wrap_content"
-    />
-           
+    </LinearLayout>
+
+     <com.comu.android.CoverFlow
+         xmlns:coverflow="http://schemas.android.com/apk/res/com.comu.android"
+         android:id="@+id/coverflow"
+         android:layout_width="match_parent"
+         android:layout_height="436dp" />
+          
 </LinearLayout>
