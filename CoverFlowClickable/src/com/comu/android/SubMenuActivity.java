@@ -32,7 +32,7 @@ import android.widget.ImageView.ScaleType;
 
 public class SubMenuActivity extends Activity implements OnItemClickListener {
 
-	public static int gelenposition=CoverFlowClickableActivity.gelenposition;
+	public static int alinanposition=CoverFlowClickableActivity.gelenposition;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +55,11 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		coverFlow.setOnItemClickListener(this);
 		coverFlow.setAdapter(coverImageAdapter);       
 		coverFlow.setSpacing(-30);
-		coverFlow.setSelection(CoverFlowClickableActivity.gelenposition-1, true);
-		System.out.print(CoverFlowClickableActivity.gelenposition-1);
+		coverFlow.setSelection(alinanposition-1, true);
 		coverFlow.setAnimationDuration(1000);
 		
 	}
+	public static int  iconCounter;
 	
 	public class ImageAdapter2 extends BaseAdapter {
 		 private Context mContext=null;
@@ -69,7 +69,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		    }
 
 		    public int getCount() {//dizinin uzunluğunu fazla döndürdüğümüzde tıklamalarda hata veriyor
-		        return browsers.length;
+		        return 2;
 		    }
 
 		 
@@ -83,13 +83,17 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 //		        case 1:imageView.setImageResource(galeri1[position]);break;
 //		        case 2:imageView.setImageResource(galeri[position]);break;
 //		        }
-		        if(gelenposition==1){
-		        	imageView.setImageResource(socialNetwork[position]);
+		       
+		        if(alinanposition==1){
+		        	imageView.setImageResource(browsers[position]);
+		        	iconCounter=browsers.length;
 		        	return imageView;
 		        }
-		        if(gelenposition==2){
-		        	imageView.setImageResource(browsers[position]);
+		        if(alinanposition==2){
+		        	imageView.setImageResource(socialNetwork[position]);
+		        	iconCounter= socialNetwork.length;
 		        	return imageView;
+		        	
 		        }
 		        else return imageView;
 		    }
@@ -256,7 +260,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// TODO Auto-generated method stub
 		    position++;
-		    gelenposition=position;
+		    CoverFlowClickableActivity.gelenposition=position;
 			switch (position){
 			
 				case 1:Intent viewIntent1 = new Intent(getApplicationContext(), SubMenuActivity.class);				
@@ -265,7 +269,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 				case 2:Intent viewIntent2 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent2);break;
 				
-				case 3:Intent viewIntent3 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				case 3:Intent viewIntent3 = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));				
 				startActivity(viewIntent3);break;
 				
 				case 4:Intent viewIntent4 = new Intent(getApplicationContext(), SubMenuActivity.class);				
@@ -276,10 +280,19 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 	
 				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent6);break;
-
-				case 7:Intent viewIntent7 = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));				
+				
+				case 7:Intent viewIntent7 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent7);break;
+				
+				case 8:Intent viewIntent8 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent8);break;
+				
+				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent9);break;
+
+				
 			}
+		     
 		     
 //			else Toast.makeText(	CoverFlowClickableActivity.this ,+ position + ". icona tiklandi ", position).show();
 	}

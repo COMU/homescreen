@@ -24,6 +24,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class CoverFlowClickableActivity extends Activity implements OnItemClickListener{
@@ -78,6 +79,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		}
 
 		private ImageView[] mImages;
+		
 
 		public ImageAdapter(Context c) {
 			mContext = c;
@@ -142,6 +144,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				imageView.setLayoutParams(new CoverFlow.LayoutParams(240, 360));
 				imageView.setScaleType(ScaleType.MATRIX);
 				mImages[index++] = imageView;
+				
 
 			}
 			return true;
@@ -201,7 +204,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				case 2:Intent viewIntent2 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent2);break;
 				
-				case 3:Intent viewIntent3 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				case 3:Intent viewIntent3 = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));				
 				startActivity(viewIntent3);break;
 				
 				case 4:Intent viewIntent4 = new Intent(getApplicationContext(), SubMenuActivity.class);				
@@ -212,9 +215,17 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	
 				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent6);break;
-
-				case 7:Intent viewIntent7 = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));				
+				
+				case 7:Intent viewIntent7 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent7);break;
+				
+				case 8:Intent viewIntent8 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent8);break;
+				
+				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent9);break;
+
+				
 			}
 		     
 //			else Toast.makeText(	CoverFlowClickableActivity.this ,+ position + ". icona tiklandi ", position).show();
