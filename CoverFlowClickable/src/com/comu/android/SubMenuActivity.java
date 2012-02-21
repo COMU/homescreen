@@ -23,14 +23,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
 
-public class SubMenuActivity extends Activity {
+public class SubMenuActivity extends Activity implements OnItemClickListener {
 
+	public static int gelenposition=CoverFlowClickableActivity.gelenposition;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -49,7 +52,7 @@ public class SubMenuActivity extends Activity {
 		
 		coverFlow.setAdapter(new ImageAdapter(this));
 		ImageAdapter coverImageAdapter = new ImageAdapter(this);
-//		coverFlow.setOnItemClickListener(this);
+		coverFlow.setOnItemClickListener(this);
 		coverFlow.setAdapter(coverImageAdapter);       
 		coverFlow.setSpacing(-30);
 		coverFlow.setSelection(CoverFlowClickableActivity.gelenposition-1, true);
@@ -57,31 +60,50 @@ public class SubMenuActivity extends Activity {
 		coverFlow.setAnimationDuration(1000);
 		
 	}
+	
 	public class ImageAdapter2 extends BaseAdapter {
-		 private Context mContext;
+		 private Context mContext=null;
 
 		    public ImageAdapter2(Context c) {
 		        mContext = c;
 		    }
 
-		    public int getCount() {
-		        return galeri.length;
+		    public int getCount() {//dizinin uzunluğunu fazla döndürdüğümüzde tıklamalarda hata veriyor
+		        return browsers.length;
 		    }
 
 		 
 		    public View getView(int position, View convertView, ViewGroup parent) {
 		        ImageView imageView;
 		        imageView = new ImageView(mContext);
-		        imageView.setLayoutParams(new GridView.LayoutParams(95, 95));
-		        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);	     
-		        imageView.setImageResource(galeri[position]);
-		        return imageView;
+		        imageView.setLayoutParams(new GridView.LayoutParams(90, 90));
+		        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);	
+		        imageView.setImageResource(browsers[position]);
+//		        switch(position1){
+//		        case 1:imageView.setImageResource(galeri1[position]);break;
+//		        case 2:imageView.setImageResource(galeri[position]);break;
+//		        }
+		        if(gelenposition==1){
+		        	imageView.setImageResource(socialNetwork[position]);
+		        	return imageView;
+		        }
+		        if(gelenposition==2){
+		        	imageView.setImageResource(browsers[position]);
+		        	return imageView;
+		        }
+		        else return imageView;
 		    }
 
-		 
-		    private Integer[] galeri = {
+		    private Integer[] socialNetwork = {		    		
+		    		R.raw.delicious,
+		    		R.raw.facebook,
+		    		R.raw.twitter
+		    };
+//		        return imageView;
+//		    }
+		    private Integer[] browsers = {		    		
 		    		R.raw.chrome,
-		    		R.raw.firefox	    			    		
+		    		R.raw.firefox
 		    };
 
 			@Override
@@ -231,7 +253,36 @@ public class SubMenuActivity extends Activity {
 		}
 	
 	}
+	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
+		// TODO Auto-generated method stub
+		    position++;
+		    gelenposition=position;
+			switch (position){
+			
+				case 1:Intent viewIntent1 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent1);break;
+				
+				case 2:Intent viewIntent2 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent2);break;
+				
+				case 3:Intent viewIntent3 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent3);break;
+				
+				case 4:Intent viewIntent4 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent4);break;
+				
+				case 5:Intent viewIntent5 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent5);break;
+	
+				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent6);break;
 
+				case 7:Intent viewIntent7 = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));				
+				startActivity(viewIntent7);break;
+			}
+		     
+//			else Toast.makeText(	CoverFlowClickableActivity.this ,+ position + ". icona tiklandi ", position).show();
+	}
 
 	
 }
