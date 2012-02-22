@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class VeriTabani extends SQLiteOpenHelper {
 	
-	private static final String VERITABANI = "temalar";
+	private static final String VERITABANI = "tema";
 	private static final int SURUM = 1;
 
 	public VeriTabani(Context con){
