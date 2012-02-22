@@ -223,8 +223,9 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				case 8:Intent viewIntent8 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent8);break;
 				
-				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), SubMenuActivity.class);				
-				startActivity(viewIntent9);break;
+				case 9:
+                startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
+                    break;
 
 				
 			}
