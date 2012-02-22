@@ -42,7 +42,8 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
 	               "coverflow", "id", "com.comu.android"));
-			setupCoverFlow(coverFlow);
+		coverFlow.setBackgroundDrawable(getWallpaper());	
+        setupCoverFlow(coverFlow);
 			final GridView gridview = (GridView) findViewById(R.id.gridView);
 		    gridview.setAdapter(new ImageAdapter2(this));
 	}
@@ -286,8 +287,9 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 				case 8:Intent viewIntent8 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent8);break;
 				
-				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), SubMenuActivity.class);				
-				startActivity(viewIntent9);break;
+				    case 9:
+                    startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
+                    break;
 
 				
 			}
