@@ -78,7 +78,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		        imageView = new ImageView(mContext);
 		        imageView.setLayoutParams(new GridView.LayoutParams(90, 90));
 		        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);	
-		        imageView.setImageResource(browsers[position]);
+//		        imageView.setImageResource(browsers[position]);
 //		        switch(position1){
 //		        case 1:imageView.setImageResource(galeri1[position]);break;
 //		        case 2:imageView.setImageResource(galeri[position]);break;
@@ -98,13 +98,11 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		        else return imageView;
 		    }
 
-		    private Integer[] socialNetwork = {		    		
-		    		R.raw.delicious,
+		    private Integer[] socialNetwork = {		    				    		
 		    		R.raw.facebook,
 		    		R.raw.twitter
 		    };
-//		        return imageView;
-//		    }
+
 		    private Integer[] browsers = {		    		
 		    		R.raw.chrome,
 		    		R.raw.firefox
@@ -261,6 +259,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		// TODO Auto-generated method stub
 		    position++;
 		    CoverFlowClickableActivity.gelenposition=position;
+		    alinanposition=position;
 			switch (position){
 			
 				case 1:Intent viewIntent1 = new Intent(getApplicationContext(), SubMenuActivity.class);				

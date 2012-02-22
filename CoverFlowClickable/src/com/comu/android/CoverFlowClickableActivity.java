@@ -33,12 +33,14 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		//this.setWallpaper();
 
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
                "coverflow", "id", "com.comu.android"));
 		setupCoverFlow(coverFlow);
-	
+ 
 	}
+	
 	
 	private void setupCoverFlow(CoverFlow coverFlow) {
 		// CoverFlow is assigned to the settings
@@ -169,7 +171,6 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			i.setImageResource(mImageIds[position]);
 			i.setLayoutParams(new CoverFlow.LayoutParams(200, 300));
 			i.setScaleType(ImageView.ScaleType.FIT_XY);
-
 			// Make sure we set anti-aliasing otherwise we get jaggies
 			BitmapDrawable drawable = (BitmapDrawable) i.getDrawable();
 			drawable.setAntiAlias(true);

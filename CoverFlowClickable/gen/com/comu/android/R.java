@@ -36,7 +36,8 @@ public final class R {
         public static final int delicious=0x7f050001;
         public static final int facebook=0x7f050002;
         public static final int firefox=0x7f050003;
-        public static final int twitter=0x7f050004;
+        public static final int network=0x7f050004;
+        public static final int twitter=0x7f050005;
     }
     public static final class string {
         public static final int DigitalClock=0x7f060002;
