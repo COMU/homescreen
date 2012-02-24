@@ -42,8 +42,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
 	               "coverflow", "id", "com.comu.android"));
-		coverFlow.setBackgroundDrawable(getWallpaper());	
-        setupCoverFlow(coverFlow);
+			setupCoverFlow(coverFlow);
 			final GridView gridview = (GridView) findViewById(R.id.gridView);
 		    gridview.setAdapter(new ImageAdapter2(this));
 	}
@@ -70,6 +69,9 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		    }
 
 		    public int getCount() {//dizinin uzunluğunu fazla döndürdüğümüzde tıklamalarda hata veriyor
+		        if (alinanposition==1) return browsers.length;
+		        else if(alinanposition==2) return socialNetwork.length;
+		        else if (alinanposition==6) return folder.length;
 		        return 2;
 		    }
 
@@ -96,19 +98,29 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		        	return imageView;
 		        	
 		        }
+		        if(alinanposition==6){
+		        	imageView.setImageResource(folder[position]);
+		        	return imageView;
+		        }
 		        else return imageView;
 		    }
 
 		    private Integer[] socialNetwork = {		    				    		
 		    		R.raw.facebook,
-		    		R.raw.twitter
+		    		R.raw.twitter,
+		    		R.raw.delicious
 		    };
 
 		    private Integer[] browsers = {		    		
 		    		R.raw.chrome,
 		    		R.raw.firefox
 		    };
-
+		    private Integer[] folder = {		    		
+		    		R.raw.music,
+		    		R.raw.pictures,
+		    		R.raw.video
+		    };
+		    
 			@Override
 			public Object getItem(int position) {
 				// TODO Auto-generated method stub		
@@ -287,9 +299,8 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 				case 8:Intent viewIntent8 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent8);break;
 				
-				    case 9:
-                    startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
-                    break;
+				case 9:Intent viewIntent9 = new Intent(new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));				
+				startActivity(viewIntent9);break;
 
 				
 			}

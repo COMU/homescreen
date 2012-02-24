@@ -37,8 +37,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
                "coverflow", "id", "com.comu.android"));
-		coverFlow.setBackgroundDrawable(getWallpaper());
-        setupCoverFlow(coverFlow);
+		setupCoverFlow(coverFlow);
  
 	}
 	
