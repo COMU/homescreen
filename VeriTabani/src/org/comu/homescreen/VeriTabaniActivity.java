@@ -18,9 +18,6 @@ import android.widget.TextView;
 
 public class VeriTabaniActivity extends Activity{	
 	private VeriTabani imagepath;
-//	private String yol = "/home/ssezgin/workspace/VeriTabani/res/drawable-hdpi";
-	
-	
 	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -37,7 +34,7 @@ public class VeriTabaniActivity extends Activity{
 				
 			try{
 				ArrayList todoItems = new ArrayList();
-		    	todoItems.add("sample_1.png");
+		    	todoItems.add("0x7f020001");
 	
 		    	for(int i=0; i< todoItems.size();i++){
 		    		KayitEkle(todoItems.get(i).toString());	
@@ -85,19 +82,15 @@ public class VeriTabaniActivity extends Activity{
 			}
 			
 			private void KayitGoster(Cursor cursor){
-				while(cursor.moveToNext()){
-					String yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+				while(cursor.moveToNext()){			
+					String yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));	
 					ImageView img = (ImageView)findViewById(R.id.img);
-//					Drawable d = Drawable.createFromPath(getFilesDir().getAbsolutePath() + yol_adi); 
-					Bitmap bm = BitmapFactory.decodeFile(yol_adi);
+					Bitmap bm = BitmapFactory.decodeResource(getResources(), Integer.parseInt(yol_adi));
 					img.setImageBitmap(bm);
-					
-					
 				}
-				
-				
 			}
-		});
+		});       
+      } 
 	}
-}
+
 
