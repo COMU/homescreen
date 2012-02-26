@@ -194,7 +194,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	public static int gelenposition;
 	@Override
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
-		// TODO Auto-generated method stub
+		// Icons in the menu is clicked
 		    position++;
 		    gelenposition=position;
 			switch (position){

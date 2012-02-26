@@ -269,7 +269,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 	
 	}
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
-		// Icons in the menu is clicked
+		// TODO Auto-generated method stub
 		    position++;
 		    CoverFlowClickableActivity.gelenposition=position;
 		    alinanposition=position;
