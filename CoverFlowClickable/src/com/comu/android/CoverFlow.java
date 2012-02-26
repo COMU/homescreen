@@ -1,4 +1,4 @@
-package org.comu.homescreen.coverflow;
+package com.comu.android;
 
 import android.content.Context;
 import android.graphics.Camera;
@@ -19,7 +19,7 @@ public class CoverFlow extends Gallery{
 	/**
 	 * The maximum angle the Child ImageView will be rotated by
 	 */
-	private int mMaxRotationAngle = 75;
+	private int mMaxRotationAngle = 65;
 
 	/**
 	 * The maximum zoom on the centre Child
@@ -28,7 +28,8 @@ public class CoverFlow extends Gallery{
 
 	/**
 	 * The Centre of the Coverflow
-	 */
+	 * 
+	 */		
 	private int mCoveflowCenter;
 
 	public CoverFlow(Context context) {
@@ -184,7 +185,7 @@ public class CoverFlow extends Gallery{
 		imageMatrix.postTranslate((imageWidth / 2), (imageHeight / 2));
 		mCamera.restore();
 	}
+
+
 	
-//	OnItemSelectedListener mOnItemSelectedListener;
-//	OnItemClickListener mOnItemClickListener;
 }

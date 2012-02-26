@@ -192,7 +192,6 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	}
 
 	public static int gelenposition;
-	@Override
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
 		    position++;

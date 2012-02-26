@@ -121,15 +121,13 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		    		R.raw.video
 		    };
 		    
-			@Override
 			public Object getItem(int position) {
-				// not used		
+				// not used 	
 				return null;
 			}
 
-			@Override
 			public long getItemId(int position) {
-				// not used
+				// not used 
 				return 0;
 			}
 
