@@ -1,10 +1,15 @@
 package com.comu.android;
 
 import java.lang.reflect.Field;
+
+
+
 import android.app.Activity;
-import android.app.WallpaperManager;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -16,7 +21,6 @@ import android.graphics.Bitmap.Config;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -24,31 +28,116 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 public class CoverFlowClickableActivity extends Activity implements OnItemClickListener{
+	private VeriTabani imagepath;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-//		final WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
-//		final Drawable wallpaperDrawable = wallpaperManager.getDrawable();
-//		final ImageView imageView = (ImageView) findViewById(R.id.imageview);
-//	    imageView.setDrawingCacheEnabled(true);
-//	    imageView.setImageDrawable(wallpaperDrawable);
-//		this.setWallpaper();
+		//this.setWallpaper();
 
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
                "coverflow", "id", "com.comu.android"));
 		setupCoverFlow(coverFlow);
+		
+		imagepath = new VeriTabani(this);
+		
+		
+		Integer[]  resimler= { 
+				R.drawable.sample_1,
+				R.drawable.sample_2,
+				R.drawable.sample_3,
+				R.drawable.sample_4,
+				R.drawable.sample_5,
+				R.drawable.sample_6,
+				R.drawable.sample_7,
+				R.drawable.sample_8,
+				R.drawable.sample_9
+				
+		
+		};
+		
+
+			try {
+
+				KayitEkle(resimler[0].toString(), "Browser");
+				KayitEkle(resimler[1].toString(), "Sosyal Aglar");
+				KayitEkle(resimler[2].toString(), "Youtube");
+				KayitEkle(resimler[3].toString(), "Gtalk");
+				KayitEkle(resimler[4].toString(), "Oyunlar");
+				KayitEkle(resimler[5].toString(), "Galeri");
+				KayitEkle(resimler[6].toString(), "Wikipedia");
+				KayitEkle(resimler[7].toString(), "Downloads");
+				KayitEkle(resimler[8].toString(), "Ayarlar");
+
+
+			} finally {
+				imagepath.close();
+			}
+		
+		
+		
+		
  
 	}
 	
 	
+	private void KayitEkle(String yol, String etiket) {
+		// TODO Auto-generated method stub
+
+		SQLiteDatabase db = imagepath.getWritableDatabase();
+		ContentValues veriler = new ContentValues();
+		veriler.put("imagepath", yol);
+		veriler.put("etiket", etiket.toString());
+
+		db.insertOrThrow("temacesitleri", null, veriler);
+
+
+
+
+
+
+		try {
+			Cursor cursor = KayitGetir();
+		KayitGoster(cursor);
+		} finally {
+			imagepath.close();
+
+		}
+	}
+
+	private String[] SELECT = { "imagepath","etiket" };
+
+	private Cursor KayitGetir() {
+		SQLiteDatabase db = imagepath.getReadableDatabase();
+		Cursor cursor = db.query("temacesitleri", SELECT, null, null,
+				null, null, null);
+		startManagingCursor(cursor);
+		return cursor;
+	}
+
+	private void KayitGoster(Cursor cursor) {
+		while (cursor.moveToNext()) {
+			String yol_adi = cursor.getString(cursor
+					.getColumnIndex("imagepath"));
+			
+			String etiket=cursor.getString(cursor.getColumnIndex("etiket"));		
+		}
+	}
+	
+	
+	
+
+
+
+
 	private void setupCoverFlow(CoverFlow coverFlow) {
 		// CoverFlow is assigned to the settings
 		
@@ -56,11 +145,9 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		ImageAdapter coverImageAdapter = new ImageAdapter(this);
 		coverFlow.setOnItemClickListener(this);
 		coverFlow.setAdapter(coverImageAdapter);       
-		coverFlow.setSpacing(-10);
-		coverFlow.setSelection(3, true);
+		coverFlow.setSpacing(-30);
+		coverFlow.setSelection(4, true);
 		coverFlow.setAnimationDuration(1000);
-		coverFlow.setCallbackDuringFling(true);
-
 		
 	}
 
@@ -69,7 +156,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		int mGalleryItemBackground;
 		private Context mContext;
 
-		int[] mImageIds = getAllResourceIDs(R.drawable.class);
+	/*	int[] mImageIds = getAllResourceIDs(R.drawable.class);
 
 		private int[] getAllResourceIDs(Class<?> aClass)
 				throws IllegalArgumentException {
@@ -88,7 +175,25 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			}
 			return IDs;
 		}
+*/
+		
+		Integer[] mImageIds = { 
+				R.drawable.sample_1,
+				R.drawable.sample_2,
+				R.drawable.sample_3,
+				R.drawable.sample_4,
+				R.drawable.sample_5,
+				R.drawable.sample_6,
+				R.drawable.sample_7,
+				R.drawable.sample_8,
+				R.drawable.sample_9
+				
+		
+		};
+	
 
+		
+		
 		private ImageView[] mImages;
 		
 
@@ -107,7 +212,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 						getResources(), imageId);
 				int width = originalImage.getWidth();
 				int height = originalImage.getHeight();
-                
+
 				// This will not scale but will flip on the Y axis
 				Matrix matrix = new Matrix();
 				matrix.preScale(1, -1);
@@ -175,12 +280,10 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 
 		public View getView(int position, View convertView, ViewGroup parent) {
 
-			// Use this code if you want to load from resources
 			ImageView i = new ImageView(mContext);
 			i.setImageResource(mImageIds[position]);
 			i.setLayoutParams(new CoverFlow.LayoutParams(200, 300));
 			i.setScaleType(ImageView.ScaleType.FIT_XY);
-
 			// Make sure we set anti-aliasing otherwise we get jaggies
 			BitmapDrawable drawable = (BitmapDrawable) i.getDrawable();
 			drawable.setAntiAlias(true);

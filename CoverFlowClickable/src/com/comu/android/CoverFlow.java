@@ -187,5 +187,6 @@ public class CoverFlow extends Gallery{
 	}
 
 
+
 	
 }
