@@ -4,13 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-	
-	<Button 
-	    android:id = "@+id/buton"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="veri gönder"/>
-	
+
 	<Button 
 	    android:id = "@+id/ikincibuton"
 	    android:layout_width="wrap_content"

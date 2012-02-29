@@ -26,15 +26,7 @@ public class VeriTabaniActivity extends Activity {
 		setContentView(R.layout.main);
 
 		imagepath = new VeriTabani(this);
-
-		Button verigonder = (Button) findViewById(R.id.buton);
-		verigonder.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
-				Integer[] images = { 
+			Integer[] images = { 
 						R.drawable.sample_1,
 						R.drawable.sample_2
 						};
@@ -42,7 +34,7 @@ public class VeriTabaniActivity extends Activity {
 				try {
 
 					KayitEkle(images[0].toString(), "browser");
-					KayitEkle(images[1].toString(), "gtalk");
+
 
 				} finally {
 					imagepath.close();
@@ -59,9 +51,7 @@ public class VeriTabaniActivity extends Activity {
 
 				db.insertOrThrow("temacesitleri", null, veriler);
 
-			}
 
-		});
 
 		Button temadegistir = (Button) findViewById(R.id.ikincibuton);
 		temadegistir.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +71,6 @@ public class VeriTabaniActivity extends Activity {
 			private String[] SELECT = { "imagepath","etiket" };
 
 			private Cursor KayitGetir() {
-				// TODO Auto-generated method stub
 				SQLiteDatabase db = imagepath.getReadableDatabase();
 				Cursor cursor = db.query("temacesitleri", SELECT, null, null,
 						null, null, null);
