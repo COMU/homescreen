@@ -2,6 +2,7 @@ package com.comu.android;
 
 import java.lang.reflect.Field;
 import android.app.Activity;
+import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,6 +16,7 @@ import android.graphics.Bitmap.Config;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +27,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class CoverFlowClickableActivity extends Activity implements OnItemClickListener{
 	/** Called when the activity is first created. */
@@ -33,7 +35,12 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		//this.setWallpaper();
+//		final WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
+//		final Drawable wallpaperDrawable = wallpaperManager.getDrawable();
+//		final ImageView imageView = (ImageView) findViewById(R.id.imageview);
+//	    imageView.setDrawingCacheEnabled(true);
+//	    imageView.setImageDrawable(wallpaperDrawable);
+//		this.setWallpaper();
 
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
                "coverflow", "id", "com.comu.android"));
@@ -49,9 +56,11 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		ImageAdapter coverImageAdapter = new ImageAdapter(this);
 		coverFlow.setOnItemClickListener(this);
 		coverFlow.setAdapter(coverImageAdapter);       
-		coverFlow.setSpacing(-30);
-		coverFlow.setSelection(4, true);
+		coverFlow.setSpacing(-10);
+		coverFlow.setSelection(3, true);
 		coverFlow.setAnimationDuration(1000);
+		coverFlow.setCallbackDuringFling(true);
+
 		
 	}
 
@@ -98,7 +107,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 						getResources(), imageId);
 				int width = originalImage.getWidth();
 				int height = originalImage.getHeight();
-
+                
 				// This will not scale but will flip on the Y axis
 				Matrix matrix = new Matrix();
 				matrix.preScale(1, -1);
@@ -171,6 +180,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			i.setImageResource(mImageIds[position]);
 			i.setLayoutParams(new CoverFlow.LayoutParams(200, 300));
 			i.setScaleType(ImageView.ScaleType.FIT_XY);
+
 			// Make sure we set anti-aliasing otherwise we get jaggies
 			BitmapDrawable drawable = (BitmapDrawable) i.getDrawable();
 			drawable.setAntiAlias(true);
