@@ -10,6 +10,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.MediaStore.Images;
+import android.text.style.ImageSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,24 +34,37 @@ public class VeriTabaniActivity extends Activity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-			try{
+		  Integer[]  images = {
+					        R.drawable.sample_1,
+					        R.drawable.sample_1
+					    
+					        		};
+				
+		try{
 				ArrayList todoItems = new ArrayList();
 		    	todoItems.add("0x7f020001");
 	
-		    	for(int i=0; i< todoItems.size();i++){
-		    		KayitEkle(todoItems.get(i).toString());	
-				}
+		    //	for(int i=0; i< todoItems.size();i++){
+		    	KayitEkle(images[0].toString(),"browser");
+		  //  	KayitEkle(images[1].toString(),"resim_2");
+		    		//KayitEkle(todoItems.get(i).toString());	
+			//	}
 				}
 			finally{
 				imagepath.close();
 			}
 			}
 
-			private void KayitEkle(String yol) {
+			private void KayitEkle(String yol, String etiket) {
 				// TODO Auto-generated method stub
+		
+				
+				
 				SQLiteDatabase db = imagepath.getWritableDatabase();
 				ContentValues veriler = new ContentValues();
 				veriler.put("imagepath", yol);
+				veriler.put("etiket", etiket.toString());
+				
 				db.insertOrThrow("temacesitleri", null, veriler);
 				
 			}
@@ -85,7 +100,7 @@ public class VeriTabaniActivity extends Activity{
 				while(cursor.moveToNext()){			
 					String yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));	
 					ImageView img = (ImageView)findViewById(R.id.img);
-					Bitmap bm = BitmapFactory.decodeResource(getResources(), Integer.parseInt(yol_adi));
+			Bitmap bm = BitmapFactory.decodeResource(getResources(), Integer.parseInt(yol_adi));
 					img.setImageBitmap(bm);
 				}
 			}

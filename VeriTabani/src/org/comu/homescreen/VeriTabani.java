@@ -16,7 +16,7 @@ public class VeriTabani extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		db.execSQL("CREATE TABLE temacesitleri(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT)");
+		db.execSQL("CREATE TABLE temacesitleri(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
 		
 	}
 
