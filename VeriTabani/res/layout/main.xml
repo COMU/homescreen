@@ -17,20 +17,19 @@
 	    android:layout_height="wrap_content"
 	    android:text="Tema Degistir"/>
 	
-	<TextView 
-	    android:id= "@+id/text"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	 />
+
 	<ImageView 
+	    android:layout_gravity="center"
 	    android:id = "@+id/img"
 	    android:layout_height="wrap_content"
 	    android:layout_width="wrap_content"
 
 	    />
-	<ImageView 
-	    android:id = "@+id/image"
+		<TextView 
+	    android:layout_gravity="center"
+	    android:id= "@+id/text"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    />
+	 />
+	
 </LinearLayout>
