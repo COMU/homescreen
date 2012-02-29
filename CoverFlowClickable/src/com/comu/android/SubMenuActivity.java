@@ -27,13 +27,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
 
 public class SubMenuActivity extends Activity implements OnItemClickListener {
 
 	public static int alinanposition=CoverFlowClickableActivity.gelenposition;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// Called when the activity is first created
@@ -44,7 +42,8 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 	               "coverflow", "id", "com.comu.android"));
 			setupCoverFlow(coverFlow);
 			final GridView gridview = (GridView) findViewById(R.id.gridView);
-		    gridview.setAdapter(new ImageAdapter2(this));
+		    gridview.setAdapter(new GridImageAdapter(this));
+		    
 	}
 	
 	private void setupCoverFlow(CoverFlow coverFlow) {
@@ -54,21 +53,21 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		ImageAdapter coverImageAdapter = new ImageAdapter(this);
 		coverFlow.setOnItemClickListener(this);
 		coverFlow.setAdapter(coverImageAdapter);       
-		coverFlow.setSpacing(-30);
+		coverFlow.setSpacing(-10);
 		coverFlow.setSelection(alinanposition-1, true);
 		coverFlow.setAnimationDuration(1000);
 		
 	}
 	public static int  iconCounter;
 	
-	public class ImageAdapter2 extends BaseAdapter {
+	public class GridImageAdapter extends BaseAdapter {
 		 private Context mContext=null;
 
-		    public ImageAdapter2(Context c) {
+		    public GridImageAdapter(Context c) {
 		        mContext = c;
 		    }
 
-		    public int getCount() {//dizinin uzunluğunu fazla döndürdüğümüzde tıklamalarda hata veriyor
+		    public int getCount() {
 		        if (alinanposition==1) return browsers.length;
 		        else if(alinanposition==2) return socialNetwork.length;
 		        else if (alinanposition==6) return folder.length;
@@ -80,12 +79,10 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		        ImageView imageView;
 		        imageView = new ImageView(mContext);
 		        imageView.setLayoutParams(new GridView.LayoutParams(90, 90));
-		        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);	
-//		        imageView.setImageResource(browsers[position]);
-//		        switch(position1){
-//		        case 1:imageView.setImageResource(galeri1[position]);break;
-//		        case 2:imageView.setImageResource(galeri[position]);break;
-//		        }
+		        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+		        
+		     // imageView.setPadding(8, 8, 8, 8);
+		    //  imageView.setImageResource(browsers[position]);
 		       
 		        if(alinanposition==1){
 		        	imageView.setImageResource(browsers[position]);
@@ -269,7 +266,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
 		    position++;
-		    CoverFlowClickableActivity.gelenposition=position;
+		//  CoverFlowClickableActivity.gelenposition=position-1;
 		    alinanposition=position;
 			switch (position){
 			
