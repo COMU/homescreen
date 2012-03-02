@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -23,6 +24,7 @@ import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -62,7 +64,8 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				R.drawable.sample_9
 		};
 		
-		/*	try {
+		if(!checkDataBase()){	
+			try {
 					KayitEkle(resimler[0].toString(), "Browser");
 					KayitEkle(resimler[1].toString(), "Sosyal Aglar");
 					KayitEkle(resimler[2].toString(), "Youtube");
@@ -76,10 +79,29 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			}
 			finally {
 				imagepath.close();
-			}*/
+			}
 	}
+	};
 	
+	private boolean checkDataBase() {
+		SQLiteDatabase checkDB = null;
+	    try {
+	        checkDB = SQLiteDatabase.openDatabase("/data/data/com.comu.android/databases/tema", null,
+	                SQLiteDatabase.OPEN_READONLY);
+	        checkDB.close();
+	    } catch (SQLiteException e) {
+	        // database doesn't exist yet.
+	    }
+	    return checkDB != null ? true : false;
+	}
+
+		
+		
+		
+		
 	
+
+
 	private void KayitEkle(String yol, String etiket) {
 		// TODO Auto-generated method stub
 
