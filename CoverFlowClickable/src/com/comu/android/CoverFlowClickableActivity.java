@@ -1,8 +1,5 @@
 package com.comu.android;
 
-import java.lang.reflect.Field;
-
-
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -43,7 +40,6 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		//this.setWallpaper();
 
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
                "coverflow", "id", "com.comu.android"));
@@ -69,7 +65,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 					KayitEkle(resimler[0].toString(), "Browser");
 					KayitEkle(resimler[1].toString(), "Sosyal Aglar");
 					KayitEkle(resimler[2].toString(), "Youtube");
-					KayitEkle(resimler[3].toString(), "Gtalk");
+					KayitEkle(resimler[3].toString(), "GMail");
 					KayitEkle(resimler[4].toString(), "Oyunlar");
 					KayitEkle(resimler[5].toString(), "Galeri");
 					KayitEkle(resimler[6].toString(), "Wikipedia");
@@ -176,7 +172,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		ImageAdapter coverImageAdapter = new ImageAdapter(this);
 		coverFlow.setOnItemClickListener(this);
 		coverFlow.setAdapter(coverImageAdapter);       
-		coverFlow.setSpacing(-30);
+		coverFlow.setSpacing(-10);
 		coverFlow.setSelection(4, true);
 		coverFlow.setAnimationDuration(1000);
 		

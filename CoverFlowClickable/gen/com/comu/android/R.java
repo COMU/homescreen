@@ -35,14 +35,15 @@ public final class R {
     }
     public static final class raw {
         public static final int chrome=0x7f050000;
-        public static final int delicious=0x7f050001;
-        public static final int facebook=0x7f050002;
-        public static final int firefox=0x7f050003;
-        public static final int music=0x7f050004;
-        public static final int network=0x7f050005;
-        public static final int pictures=0x7f050006;
-        public static final int twitter=0x7f050007;
-        public static final int video=0x7f050008;
+        public static final int facebook=0x7f050001;
+        public static final int firefox=0x7f050002;
+        public static final int gplus=0x7f050003;
+        public static final int gtalk=0x7f050004;
+        public static final int music=0x7f050005;
+        public static final int network=0x7f050006;
+        public static final int pictures=0x7f050007;
+        public static final int twitter=0x7f050008;
+        public static final int video=0x7f050009;
     }
     public static final class string {
         public static final int DigitalClock=0x7f060002;

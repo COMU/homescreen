@@ -54,7 +54,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		ImageAdapter coverImageAdapter = new ImageAdapter(this);
 		coverFlow.setOnItemClickListener(this);
 		coverFlow.setAdapter(coverImageAdapter);       
-		coverFlow.setSpacing(-30);
+		coverFlow.setSpacing(-10);
 		coverFlow.setSelection(alinanposition-1, true);
 		coverFlow.setAnimationDuration(1000);
 		
@@ -108,7 +108,8 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		    private Integer[] socialNetwork = {		    				    		
 		    		R.raw.facebook,
 		    		R.raw.twitter,
-		    		R.raw.delicious
+		    		R.raw.gplus,
+		    		R.raw.gtalk
 		    };
 
 		    private Integer[] browsers = {		    		
