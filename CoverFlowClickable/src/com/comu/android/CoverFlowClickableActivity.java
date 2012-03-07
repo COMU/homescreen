@@ -2,8 +2,9 @@ package com.comu.android;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -23,6 +24,7 @@ import android.graphics.Bitmap.Config;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,43 +49,112 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		setContentView(R.layout.main);
 		//this.setWallpaper();
 
+		
+		 
+		//*******************************************          son ekleme       
+		imagepath = new VeriTabani(this);
+		
+		        setTitle("Cover Flow  Ekran Gorunumu");
+		    try {
+
+
+		        Class RClass = Class.forName("com.comu.android.R");
+
+		        Class[] subclasses = RClass.getDeclaredClasses();
+
+		        Class RDrawable = null;
+
+		        for(Class subclass : subclasses) {
+		            if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
+		                RDrawable = subclass;
+		                break;
+		            }
+		        }
+
+		        List<Map<String, Object>> drinfo = new ArrayList<Map<String, Object>>();
+
+		        java.lang.reflect.Field[] drawables = RDrawable.getFields();
+		        for(java.lang.reflect.Field dr : drawables) {
+		            Map<String, Object> map = new HashMap<String, Object>();
+		            Drawable img = getResources().getDrawable(dr.getInt(null));
+
+		            map.put("drimg", dr.getInt(null));
+		            map.put("drname", dr.getName());
+
+		            drinfo.add(map);
+		            TextView text = (TextView)findViewById(R.id.text);
+		            text.setText(dr.getName());   
+		            
+		            
+		    		
+					
+		    		if(!checkDataBase()){	
+		    			try {
+		    				 for(java.lang.reflect.Field ids : drawables){
+		    					 Drawable resim = getResources().getDrawable(ids.getInt(null));
+		    		
+		    						KayitEkle(ids.getInt(resim), ids.getName());	    				 
+					
+		    					}
+		    				 }
+	    			
+		    			finally {
+		    				imagepath.close();
+		    			}
+		    	}
+		    		
+          
+		        }
+		    } catch (Exception e) {
+		        // TODO: handle exception
+		    }
+		  
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		       
+		//*******************************************          son ekleme
+		       
+		    
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
                "coverflow", "id", "com.comu.android"));
 		setupCoverFlow(coverFlow);
 		
-		imagepath = new VeriTabani(this);
-			
-		if(!checkDataBase()){	
-			try {
-				
-				Integer[]  resimler= { 
-						R.drawable.browser,
-						R.drawable.sosyalag,
-						R.drawable.youtube,
-						R.drawable.gmail,
-						R.drawable.oyunlar,
-						R.drawable.galeri,
-						R.drawable.wikipedia,
-						R.drawable.setup,
-						R.drawable.settings
-				};
-				
-					KayitEkle(resimler[0].toString(), "Browser");
-					KayitEkle(resimler[1].toString(), "Sosyal Aglar");
-					KayitEkle(resimler[2].toString(), "Youtube");
-					KayitEkle(resimler[3].toString(), "Gtalk");
-					KayitEkle(resimler[4].toString(), "Oyunlar");
-					KayitEkle(resimler[5].toString(), "Galeri");
-					KayitEkle(resimler[6].toString(), "Wikipedia");
-					KayitEkle(resimler[7].toString(), "Downloads");
-					KayitEkle(resimler[8].toString(), "Ayarlar");
-				
-			}
-			finally {
-				imagepath.close();
-			}
-	}
-		
+
 		Button temabutonu = (Button)findViewById(R.id.buton);
 		temabutonu.setOnClickListener(new View.OnClickListener() {
 			
@@ -101,7 +172,9 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 //						throw new IllegalArgumentException();
 //					}					
 //					text.setText(IDs[0]);
-					
+			
+	
+				
 			}
 		});
 		
@@ -125,12 +198,12 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	    return checkDB != null ? true : false;
 	}
 
-	private void KayitEkle(String yol, String etiket) {
+	private void KayitEkle(int i, String etiket) {
 		// TODO Auto-generated method stub
 
 		SQLiteDatabase db = imagepath.getWritableDatabase();
 		ContentValues veriler = new ContentValues();
-		veriler.put("imagepath", yol);
+		veriler.put("imagepath", i);
 		veriler.put("etiket", etiket.toString());
 
 		db.insertOrThrow("temacesitleri", null, veriler);
@@ -249,13 +322,16 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 /*******************/
 		private Integer[] upgradeImageIds() {
 			// TODO Auto-generated method stub
+			
 			Cursor cursor = PathGetir();
 			ArrayList<Integer> strings = new ArrayList<Integer>();
+			Integer[] mImageIds = new Integer[strings.size()];
 			for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
 				Integer paths = Integer.parseInt(cursor.getString(cursor.getColumnIndex("imagepath")));
+				
 				strings.add(paths);	
 			}
-			Integer[] mImageIds = new Integer[strings.size()];
+			
 			mImageIds = (Integer[]) strings.toArray();
 			
 			return mImageIds;
