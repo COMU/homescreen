@@ -1,5 +1,9 @@
 package com.comu.android;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+
+
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -35,11 +39,13 @@ import android.widget.Toast;
 
 public class CoverFlowClickableActivity extends Activity implements OnItemClickListener{
 	private VeriTabani imagepath;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		//this.setWallpaper();
 
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
                "coverflow", "id", "com.comu.android"));
@@ -51,21 +57,21 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			try {
 				
 				Integer[]  resimler= { 
-						R.drawable.sample_1,
-						R.drawable.sample_2,
-						R.drawable.sample_3,
-						R.drawable.sample_4,
-						R.drawable.sample_5,
-						R.drawable.sample_6,
-						R.drawable.sample_7,
-						R.drawable.sample_8,
-						R.drawable.sample_9
+						R.drawable.browser,
+						R.drawable.sosyalag,
+						R.drawable.youtube,
+						R.drawable.gmail,
+						R.drawable.oyunlar,
+						R.drawable.galeri,
+						R.drawable.wikipedia,
+						R.drawable.setup,
+						R.drawable.settings
 				};
 				
 					KayitEkle(resimler[0].toString(), "Browser");
 					KayitEkle(resimler[1].toString(), "Sosyal Aglar");
 					KayitEkle(resimler[2].toString(), "Youtube");
-					KayitEkle(resimler[3].toString(), "GMail");
+					KayitEkle(resimler[3].toString(), "Gtalk");
 					KayitEkle(resimler[4].toString(), "Oyunlar");
 					KayitEkle(resimler[5].toString(), "Galeri");
 					KayitEkle(resimler[6].toString(), "Wikipedia");
@@ -83,26 +89,29 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Cursor cursor = PathGetir();
-				int i=0;
-				while (cursor.moveToNext()) {
-					String yol_adi = cursor.getString(cursor
-							.getColumnIndex("imagepath"));
-				
-					mImageIds[i]= Integer.parseInt(yol_adi);
-					i++;
-									
-						
-				}	
-			TextView text = (TextView)findViewById(R.id.text);
-				text.setText(mImageIds[2]);	
-			
+//					TextView text = (TextView)findViewById(R.id.text);
+//					Field[] IDFields = R.drawable.class.getFields();
+//					int[] IDs = new int[IDFields.length - 1];
+//					try {
+//						
+//						for (int i = 0; i < IDFields.length - 1; i++) {
+//							IDs[i] = IDFields[i + 1].getInt(null);
+//						}
+//					} catch (Exception e) {
+//						throw new IllegalArgumentException();
+//					}					
+//					text.setText(IDs[0]);
+					
 			}
 		});
 		
 	};
-	final Integer[] mImageIds = new Integer[9];
-		
+	
+	/*****************************/
+	
+//	Integer[] mImageIds = new Integer[]{paths};
+	
+	/************************************/
 	
 	private boolean checkDataBase() {
 		SQLiteDatabase checkDB = null;
@@ -127,8 +136,8 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		db.insertOrThrow("temacesitleri", null, veriler);
 
 		try {
-			Cursor cursor = KayitGetir();
-			KayitGoster(cursor);
+//			Cursor cursor = KayitGetir();
+//			KayitGoster(cursor);
 		} finally {
 			imagepath.close();
 
@@ -172,7 +181,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		ImageAdapter coverImageAdapter = new ImageAdapter(this);
 		coverFlow.setOnItemClickListener(this);
 		coverFlow.setAdapter(coverImageAdapter);       
-		coverFlow.setSpacing(-10);
+		coverFlow.setSpacing(-30);
 		coverFlow.setSelection(4, true);
 		coverFlow.setAnimationDuration(1000);
 		
@@ -183,39 +192,53 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		int mGalleryItemBackground;
 		private Context mContext;
 
-	/*	int[] mImageIds = getAllResourceIDs(R.drawable.class);
+//		Integer[] mImageIds = getAllResourceIDs();
+		
 
-		private int[] getAllResourceIDs(Class<?> aClass)
-				throws IllegalArgumentException {
+//		private Integer[] getAllResourceIDs()
+//				throws IllegalArgumentException {
+//
+//			Field[] IDFields = aClass.getFields();
+//			Cursor cursor = PathGetir();
+//			ArrayList<Integer> strings = new ArrayList<Integer>();
+//			for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+//				Integer paths = Integer.parseInt(cursor.getString(cursor.getColumnIndex("imagepath")));
+//				strings.add(paths);	
+//			}
+//			Integer[] mImage = new Integer[strings.size()];
+//			mImage = (Integer[]) strings.toArray();
+//			
+//			Integer[] IDs = new Integer[mImage.length - 1];
+//
+//			try {
+//				
+//				for (int i = 0; i < mImage.length - 1; i++) {
+//					IDs[i] = mImage[i + 1];
+//				}
+//			} catch (Exception e) {
+//				throw new IllegalArgumentException();
+//			}
+//			return IDs;
+//		}
+//		
+//		
+		
 
-			Field[] IDFields = aClass.getFields();
-
-			int[] IDs = new int[IDFields.length - 1];
-
-			try {
-
-				for (int i = 0; i < IDFields.length - 1; i++) {
-					IDs[i] = IDFields[i + 1].getInt(null);
-				}
-			} catch (Exception e) {
-				throw new IllegalArgumentException();
-			}
-			return IDs;
-		}
-*/
 		Integer[]  mImageIds= { 
-				R.drawable.sample_1,
-				R.drawable.sample_2,
-				R.drawable.sample_3,
-				R.drawable.sample_4,
-				R.drawable.sample_5,
-				R.drawable.sample_6,
-				R.drawable.sample_7,
-				R.drawable.sample_8,
-				R.drawable.sample_9
+				R.drawable.browser,
+				R.drawable.sosyalag,
+				R.drawable.youtube,
+				R.drawable.gmail,
+				R.drawable.galeri,
+				R.drawable.wikipedia,
+				R.drawable.setup,
+				R.drawable.settings					
 		};
 	
+	//	Integer[] mImageIds = upgradeImageIds();
 		
+		
+			
 		private ImageView[] mImages;
 		
 
@@ -223,6 +246,21 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			mContext = c;
 			mImages = new ImageView[mImageIds.length];
 		}
+/*******************/
+		private Integer[] upgradeImageIds() {
+			// TODO Auto-generated method stub
+			Cursor cursor = PathGetir();
+			ArrayList<Integer> strings = new ArrayList<Integer>();
+			for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+				Integer paths = Integer.parseInt(cursor.getString(cursor.getColumnIndex("imagepath")));
+				strings.add(paths);	
+			}
+			Integer[] mImageIds = new Integer[strings.size()];
+			mImageIds = (Integer[]) strings.toArray();
+			
+			return mImageIds;
+		}
+/**********************/
 
 		public boolean createReflectedImages() {
 
@@ -231,7 +269,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			int index = 0;
 			for (int imageId : mImageIds) {
 				Bitmap originalImage = BitmapFactory.decodeResource(
-						getResources(), imageId);
+						getResources(), imageId);	
 				int width = originalImage.getWidth();
 				int height = originalImage.getHeight();
 
@@ -283,7 +321,6 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				imageView.setScaleType(ScaleType.MATRIX);
 				mImages[index++] = imageView;
 				
-
 			}
 			return true;
 		}
