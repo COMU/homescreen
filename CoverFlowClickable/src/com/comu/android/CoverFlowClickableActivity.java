@@ -39,6 +39,8 @@ import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.util.Log;
+
 public class CoverFlowClickableActivity extends Activity implements OnItemClickListener{
 	private VeriTabani imagepath;
 
@@ -54,85 +56,85 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		//*******************************************          son ekleme       
 		imagepath = new VeriTabani(this);
 		
-		        setTitle("Cover Flow  Ekran Gorunumu");
-		    try {
+		if (!checkDataBase()) {
+			try {
 
+				Integer[]  resimler = { R.drawable.browser,
+						R.drawable.sosyalag, R.drawable.youtube,
+						R.drawable.gmail,R.drawable.galeri,
+						R.drawable.oyunlar, R.drawable.wikipedia,
+						R.drawable.setup, R.drawable.settings };
 
-		        Class RClass = Class.forName("com.comu.android.R");
+				KayitEkle(resimler[0].toString(), "Browser");
+				KayitEkle(resimler[1].toString(), "Sosyal Aglar");
+				KayitEkle(resimler[2].toString(), "Youtube");
+				KayitEkle(resimler[3].toString(), "Gtalk");
+				KayitEkle(resimler[4].toString(), "Oyunlar");
+				KayitEkle(resimler[5].toString(), "Galeri");
+				KayitEkle(resimler[6].toString(), "Wikipedia");
+				KayitEkle(resimler[7].toString(), "Downloads");
+				KayitEkle(resimler[8].toString(), "Ayarlar");
 
-		        Class[] subclasses = RClass.getDeclaredClasses();
-
-		        Class RDrawable = null;
-
-		        for(Class subclass : subclasses) {
-		            if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
-		                RDrawable = subclass;
-		                break;
-		            }
-		        }
-
-		        List<Map<String, Object>> drinfo = new ArrayList<Map<String, Object>>();
-
-		        java.lang.reflect.Field[] drawables = RDrawable.getFields();
-		        for(java.lang.reflect.Field dr : drawables) {
-		            Map<String, Object> map = new HashMap<String, Object>();
-		            Drawable img = getResources().getDrawable(dr.getInt(null));
-
-		            map.put("drimg", dr.getInt(null));
-		            map.put("drname", dr.getName());
-
-		            drinfo.add(map);
-		            TextView text = (TextView)findViewById(R.id.text);
-		            text.setText(dr.getName());   
-		            
-		            
-		    		
-					
-		    		if(!checkDataBase()){	
-		    			try {
-		    				 for(java.lang.reflect.Field ids : drawables){
-		    					 Drawable resim = getResources().getDrawable(ids.getInt(null));
-		    		
-		    						KayitEkle(ids.getInt(resim), ids.getName());	    				 
-					
-		    					}
-		    				 }
-	    			
-		    			finally {
-		    				imagepath.close();
-		    			}
-		    	}
-		    		
-          
-		        }
-		    } catch (Exception e) {
-		        // TODO: handle exception
-		    }
-		  
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		       
-		//*******************************************          son ekleme
-		       
+			} finally {
+				imagepath.close();
+			}
+		}
+		
+		
+		
+//		
+//		
+//		setTitle("Cover Flow  Ekran Gorunumu");
+//		    try {
+//
+//
+//		        Class RClass = Class.forName("com.comu.android.R");
+//
+//		        Class[] subclasses = RClass.getDeclaredClasses();
+//
+//		        Class RDrawable = null;
+//
+//		        for(Class subclass : subclasses) {
+//		            if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
+//		                RDrawable = subclass;
+//		                break;
+//		            }
+//		        }
+//
+//		        List<Map<String, Object>> drinfo = new ArrayList<Map<String, Object>>();
+//
+//		        java.lang.reflect.Field[] drawables = RDrawable.getFields();
+//		        for(java.lang.reflect.Field dr : drawables) {
+//		            Map<String, Object> map = new HashMap<String, Object>();
+//		            Drawable img = getResources().getDrawable(dr.getInt(null));
+//
+//		            map.put("drimg", dr.getInt(null));
+//		            map.put("drname", dr.getName());
+//
+//		            drinfo.add(map);
+//		            TextView text = (TextView)findViewById(R.id.text);
+//		            text.setText(dr.getName()+"\n");   			
+//		    		if(!checkDataBase()){	
+//		    			try {
+//		    				 for(java.lang.reflect.Field ids : drawables){
+//		    					 Drawable resim = getResources().getDrawable(ids.getInt(null));		
+//		    						KayitEkle(ids.getInt(resim), ids.getName());	    				 	
+//		    					}
+//		    				 }
+//	    			
+//		    			finally {
+//		    				imagepath.close();
+//		    			}
+//		    	}
+//		    		
+//          
+//		        }
+//		    } catch (Exception e) {
+//		        // TODO: handle exception
+//		    }	       
+//		       
+//		//*******************************************          son ekleme
+//		       
 		    
 		
 		
@@ -155,30 +157,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		setupCoverFlow(coverFlow);
 		
 
-		Button temabutonu = (Button)findViewById(R.id.buton);
-		temabutonu.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-//					TextView text = (TextView)findViewById(R.id.text);
-//					Field[] IDFields = R.drawable.class.getFields();
-//					int[] IDs = new int[IDFields.length - 1];
-//					try {
-//						
-//						for (int i = 0; i < IDFields.length - 1; i++) {
-//							IDs[i] = IDFields[i + 1].getInt(null);
-//						}
-//					} catch (Exception e) {
-//						throw new IllegalArgumentException();
-//					}					
-//					text.setText(IDs[0]);
-			
-	
-				
-			}
-		});
-		
-	};
+	}
 	
 	/*****************************/
 	
@@ -198,18 +177,18 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	    return checkDB != null ? true : false;
 	}
 
-	private void KayitEkle(int i, String etiket) {
+	private void KayitEkle(String resimler, String etiket) {
 		// TODO Auto-generated method stub
 
 		SQLiteDatabase db = imagepath.getWritableDatabase();
 		ContentValues veriler = new ContentValues();
-		veriler.put("imagepath", i);
+		veriler.put("imagepath", resimler);
 		veriler.put("etiket", etiket.toString());
 
 		db.insertOrThrow("temacesitleri", null, veriler);
 
 		try {
-//			Cursor cursor = KayitGetir();
+			Cursor cursor = KayitGetir();
 //			KayitGoster(cursor);
 		} finally {
 			imagepath.close();
@@ -238,14 +217,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	}
 
 	
-	private void KayitGoster(Cursor cursor) {
-		while (cursor.moveToNext()) {
-			String yol_adi = cursor.getString(cursor
-					.getColumnIndex("imagepath"));
-			
-			String etiket=cursor.getString(cursor.getColumnIndex("etiket"));		
-		}
-	}
+	
 
 	private void setupCoverFlow(CoverFlow coverFlow) {
 		// CoverFlow is assigned to the settings
@@ -265,50 +237,11 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		int mGalleryItemBackground;
 		private Context mContext;
 
-//		Integer[] mImageIds = getAllResourceIDs();
-		
-
-//		private Integer[] getAllResourceIDs()
-//				throws IllegalArgumentException {
-//
-//			Field[] IDFields = aClass.getFields();
-//			Cursor cursor = PathGetir();
-//			ArrayList<Integer> strings = new ArrayList<Integer>();
-//			for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-//				Integer paths = Integer.parseInt(cursor.getString(cursor.getColumnIndex("imagepath")));
-//				strings.add(paths);	
-//			}
-//			Integer[] mImage = new Integer[strings.size()];
-//			mImage = (Integer[]) strings.toArray();
-//			
-//			Integer[] IDs = new Integer[mImage.length - 1];
-//
-//			try {
-//				
-//				for (int i = 0; i < mImage.length - 1; i++) {
-//					IDs[i] = mImage[i + 1];
-//				}
-//			} catch (Exception e) {
-//				throw new IllegalArgumentException();
-//			}
-//			return IDs;
-//		}
-//		
-//		
-		
-
-		Integer[]  mImageIds= { 
-				R.drawable.browser,
-				R.drawable.sosyalag,
-				R.drawable.youtube,
-				R.drawable.gmail,
-				R.drawable.galeri,
-				R.drawable.wikipedia,
-				R.drawable.setup,
-				R.drawable.settings					
-		};
 	
-	//	Integer[] mImageIds = upgradeImageIds();
+
+		
+
+		Integer[] mImageIds = upgradeImageIds();
 		
 		
 			
@@ -319,22 +252,65 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			mContext = c;
 			mImages = new ImageView[mImageIds.length];
 		}
-/*******************/
 		private Integer[] upgradeImageIds() {
 			// TODO Auto-generated method stub
-			
-			Cursor cursor = PathGetir();
-			ArrayList<Integer> strings = new ArrayList<Integer>();
-			Integer[] mImageIds = new Integer[strings.size()];
-			for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-				Integer paths = Integer.parseInt(cursor.getString(cursor.getColumnIndex("imagepath")));
+			Integer[]  dizi= new Integer[9];
+			Cursor cursor = KayitGetir();
+			  try {
+				  
+				  
+				  		        Class RClass = Class.forName("com.comu.android.R");
+				  
+				  		        Class[] subclasses = RClass.getDeclaredClasses();
+				  
+				  		        Class RDrawable = null;
+				  		
+			  					
+				  		        for(Class subclass : subclasses) {
+				  		            if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
+				  		                RDrawable = subclass;
+				  		                break;
+				  		            }
+				  		        }
+				  		        java.lang.reflect.Field[] drawables = RDrawable.getFields();
+					  		     
+				  		      int i = 0;	
+			  		            while (cursor.moveToNext()) {
+				  					String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+			  					Integer yol = Integer.parseInt(yol_adi);
+			  					
+			  					
+				  		        for(java.lang.reflect.Field dr : drawables) {
+
+				  		            Drawable img = getResources().getDrawable(dr.getInt(null));
+			  		       
+			  					
+			  					Log.v("DEBUG", "yol: " + Integer.toString(yol));
+			  					Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
+			  					
+				  					if(dr.getInt(null)==yol); 
+				  					{
+				  						TextView t= (TextView)findViewById(com.comu.android.R.id.text);
+				  						t.setText(" kontrol calısıyor  "+ yol);
+				  						dizi[i]=dr.getInt(null);
+				  					
+				  					}
+				  					i++;	
 				
-				strings.add(paths);	
-			}
-			
-			mImageIds = (Integer[]) strings.toArray();
-			
-			return mImageIds;
+			                        }
+
+				  		
+				  					
+				  					
+				  		        }
+ 
+				  		            
+				  								  		    } catch (Exception e) {
+				  		        // TODO: handle exception
+				  		    }	       
+		
+		
+			return dizi;
 		}
 /**********************/
 
