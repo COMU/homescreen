@@ -1,9 +1,5 @@
 package com.comu.android;
 
-import java.lang.reflect.Field;
-
-import com.comu.android.CoverFlowClickableActivity.ImageAdapter;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -23,7 +19,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -31,8 +26,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
 
 public class SubMenuActivity extends Activity implements OnItemClickListener {
@@ -73,7 +66,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		        mContext = c;
 		    }
 
-		    public int getCount() {//dizinin uzunluğunu fazla döndürdüğümüzde tıklamalarda hata veriyor
+		    public int getCount() {
 		        if (alinanposition==1) return browsers.length;
 		        else if(alinanposition==2) return socialNetwork.length;
 		        else if (alinanposition==6) return folder.length;
