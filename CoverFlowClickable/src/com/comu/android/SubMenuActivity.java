@@ -7,6 +7,8 @@ import com.comu.android.CoverFlowClickableActivity.ImageAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -18,8 +20,10 @@ import android.graphics.Bitmap.Config;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -27,13 +31,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
 
 public class SubMenuActivity extends Activity implements OnItemClickListener {
 
 	public static int alinanposition=CoverFlowClickableActivity.gelenposition;
-	
+	VeriTabani imagepath = new VeriTabani(this);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// Called when the activity is first created
@@ -137,25 +142,53 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 	public class ImageAdapter extends BaseAdapter {
 		int mGalleryItemBackground;
 		private Context mContext;
+		
+		Integer[] mImageIds = upgradeImageIds();
 
-		int[] mImageIds = getAllResourceIDs(R.drawable.class);
-
-		private int[] getAllResourceIDs(Class<?> aClass)
-				throws IllegalArgumentException {
-
-			Field[] IDFields = aClass.getFields();
-
-			int[] IDs = new int[IDFields.length - 1];
-
+		private Integer[] upgradeImageIds() {
+			// TODO Auto-generated method stub
+			Integer[]  dizi= new Integer[9];
+			Cursor cursor = GetData();
 			try {
+				  Class RClass = Class.forName("com.comu.android.R");
+				  Class[] subclasses = RClass.getDeclaredClasses();
+				  Class RDrawable = null;
+				  for(Class subclass : subclasses) {
+					  if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
+						  RDrawable = subclass;
+						  break;
+						  }
+					  }
+				  java.lang.reflect.Field[] drawables = RDrawable.getFields();
+				  int i = 0;
+				  while (cursor.moveToNext()) {
+					  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+					  Integer yol = Integer.parseInt(yol_adi);
+					  for(java.lang.reflect.Field dr : drawables) {
+						  Drawable img = getResources().getDrawable(dr.getInt(null));
+//			  		      Log.v("DEBUG", "yol: " + Integer.toString(yol));
+//			  		      Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
+			  			  if(dr.getInt(null)==yol);
+			  			  {
+			  				  dizi[i]=dr.getInt(null);
+			  				  }
+			  			  i++;
+			  			  }
+					  }
+				  } catch (Exception e) {
+				  		        // TODO: handle exception
+					  }
+			  return dizi;
+			  } 
 
-				for (int i = 0; i < IDFields.length - 1; i++) {
-					IDs[i] = IDFields[i + 1].getInt(null);
-				}
-			} catch (Exception e) {
-				throw new IllegalArgumentException();
-			}
-			return IDs;
+		private String[] SELECT = { "imagepath","etiket" };
+		
+		private Cursor GetData() {
+			SQLiteDatabase db = imagepath.getReadableDatabase();
+			Cursor cursor = db.query("temacesitleri", SELECT, null, null,
+					null, null, null);
+			startManagingCursor(cursor);
+			return cursor;
 		}
 
 		private ImageView[] mImages;
@@ -302,9 +335,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 
 				
 			}
-		     
-		     
-//			else Toast.makeText(	CoverFlowClickableActivity.this ,+ position + ". icona tiklandi ", position).show();
+
 	}
 
 	

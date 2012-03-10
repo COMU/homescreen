@@ -50,120 +50,39 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		//this.setWallpaper();
-
-		
-		 
-		//*******************************************          son ekleme       
+      
 		imagepath = new VeriTabani(this);
 		
 		if (!checkDataBase()) {
 			try {
 
 				Integer[]  resimler = { R.drawable.browser,
-						R.drawable.sosyalag, R.drawable.youtube,
+						R.drawable.c_sosyalag, R.drawable.d_youtube,
 						R.drawable.gmail,R.drawable.galeri,
 						R.drawable.oyunlar, R.drawable.wikipedia,
 						R.drawable.setup, R.drawable.settings };
 
-				KayitEkle(resimler[0].toString(), "Browser");
-				KayitEkle(resimler[1].toString(), "Sosyal Aglar");
-				KayitEkle(resimler[2].toString(), "Youtube");
-				KayitEkle(resimler[3].toString(), "Gtalk");
-				KayitEkle(resimler[4].toString(), "Oyunlar");
-				KayitEkle(resimler[5].toString(), "Galeri");
-				KayitEkle(resimler[6].toString(), "Wikipedia");
-				KayitEkle(resimler[7].toString(), "Downloads");
-				KayitEkle(resimler[8].toString(), "Ayarlar");
+				InsertData(resimler[0].toString(), "Browser");
+				InsertData(resimler[1].toString(), "Sosyal Aglar");
+				InsertData(resimler[2].toString(), "Youtube");
+				InsertData(resimler[3].toString(), "Gtalk");
+				InsertData(resimler[4].toString(), "Oyunlar");
+				InsertData(resimler[5].toString(), "Galeri");
+				InsertData(resimler[6].toString(), "Wikipedia");
+				InsertData(resimler[7].toString(), "Downloads");
+				InsertData(resimler[8].toString(), "Ayarlar");
 
 			} finally {
 				imagepath.close();
 			}
 		}
 		
-		
-		
-//		
-//		
-//		setTitle("Cover Flow  Ekran Gorunumu");
-//		    try {
-//
-//
-//		        Class RClass = Class.forName("com.comu.android.R");
-//
-//		        Class[] subclasses = RClass.getDeclaredClasses();
-//
-//		        Class RDrawable = null;
-//
-//		        for(Class subclass : subclasses) {
-//		            if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
-//		                RDrawable = subclass;
-//		                break;
-//		            }
-//		        }
-//
-//		        List<Map<String, Object>> drinfo = new ArrayList<Map<String, Object>>();
-//
-//		        java.lang.reflect.Field[] drawables = RDrawable.getFields();
-//		        for(java.lang.reflect.Field dr : drawables) {
-//		            Map<String, Object> map = new HashMap<String, Object>();
-//		            Drawable img = getResources().getDrawable(dr.getInt(null));
-//
-//		            map.put("drimg", dr.getInt(null));
-//		            map.put("drname", dr.getName());
-//
-//		            drinfo.add(map);
-//		            TextView text = (TextView)findViewById(R.id.text);
-//		            text.setText(dr.getName()+"\n");   			
-//		    		if(!checkDataBase()){	
-//		    			try {
-//		    				 for(java.lang.reflect.Field ids : drawables){
-//		    					 Drawable resim = getResources().getDrawable(ids.getInt(null));		
-//		    						KayitEkle(ids.getInt(resim), ids.getName());	    				 	
-//		    					}
-//		    				 }
-//	    			
-//		    			finally {
-//		    				imagepath.close();
-//		    			}
-//		    	}
-//		    		
-//          
-//		        }
-//		    } catch (Exception e) {
-//		        // TODO: handle exception
-//		    }	       
-//		       
-//		//*******************************************          son ekleme
-//		       
-		    
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
                "coverflow", "id", "com.comu.android"));
 		setupCoverFlow(coverFlow);
 		
-
 	}
-	
-	/*****************************/
-	
-//	Integer[] mImageIds = new Integer[]{paths};
-	
-	/************************************/
+
 	
 	private boolean checkDataBase() {
 		SQLiteDatabase checkDB = null;
@@ -177,7 +96,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	    return checkDB != null ? true : false;
 	}
 
-	private void KayitEkle(String resimler, String etiket) {
+	private void InsertData(String resimler, String etiket) {
 		// TODO Auto-generated method stub
 
 		SQLiteDatabase db = imagepath.getWritableDatabase();
@@ -186,37 +105,17 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		veriler.put("etiket", etiket.toString());
 
 		db.insertOrThrow("temacesitleri", null, veriler);
-
-		try {
-			Cursor cursor = KayitGetir();
-//			KayitGoster(cursor);
-		} finally {
-			imagepath.close();
-
-		}
 	}
 
 	private String[] SELECT = { "imagepath","etiket" };
 
-	private Cursor KayitGetir() {
+	private Cursor GetData() {
 		SQLiteDatabase db = imagepath.getReadableDatabase();
 		Cursor cursor = db.query("temacesitleri", SELECT, null, null,
 				null, null, null);
 		startManagingCursor(cursor);
 		return cursor;
 	}
-
-	
-	private String[] PATH = {"imagepath"};
-	
-	public Cursor PathGetir(){
-		SQLiteDatabase db =imagepath.getReadableDatabase();
-		Cursor deneme = db.query("temacesitleri", PATH, null, null, null, null, null);
-		startManagingCursor(deneme);
-		return deneme;
-	}
-
-	
 	
 
 	private void setupCoverFlow(CoverFlow coverFlow) {
@@ -237,14 +136,8 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		int mGalleryItemBackground;
 		private Context mContext;
 
-	
-
-		
-
 		Integer[] mImageIds = upgradeImageIds();
 		
-		
-			
 		private ImageView[] mImages;
 		
 
@@ -255,64 +148,38 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		private Integer[] upgradeImageIds() {
 			// TODO Auto-generated method stub
 			Integer[]  dizi= new Integer[9];
-			Cursor cursor = KayitGetir();
+			Cursor cursor = GetData();
 			  try {
-				  
-				  
-				  		        Class RClass = Class.forName("com.comu.android.R");
-				  
-				  		        Class[] subclasses = RClass.getDeclaredClasses();
-				  
-				  		        Class RDrawable = null;
-				  		
-			  					
-				  		        for(Class subclass : subclasses) {
-				  		            if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
-				  		                RDrawable = subclass;
-				  		                break;
-				  		            }
-				  		        }
-				  		        java.lang.reflect.Field[] drawables = RDrawable.getFields();
-					  		     
-				  		      int i = 0;	
-			  		            while (cursor.moveToNext()) {
-				  					String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
-			  					Integer yol = Integer.parseInt(yol_adi);
-			  					
-			  					
-				  		        for(java.lang.reflect.Field dr : drawables) {
-
-				  		            Drawable img = getResources().getDrawable(dr.getInt(null));
-			  		       
-			  					
-			  					Log.v("DEBUG", "yol: " + Integer.toString(yol));
-			  					Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
-			  					
-				  					if(dr.getInt(null)==yol); 
-				  					{
-				  						TextView t= (TextView)findViewById(com.comu.android.R.id.text);
-				  						t.setText(" kontrol calısıyor  "+ yol);
-				  						dizi[i]=dr.getInt(null);
-				  					
-				  					}
-				  					i++;	
-				
-			                        }
-
-				  		
-				  					
-				  					
-				  		        }
- 
-				  		            
-				  								  		    } catch (Exception e) {
+				  Class RClass = Class.forName("com.comu.android.R");
+				  Class[] subclasses = RClass.getDeclaredClasses();
+				  Class RDrawable = null;
+				  for(Class subclass : subclasses) {
+					  if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
+						  RDrawable = subclass;
+						  break;
+						  }
+					  }
+				  java.lang.reflect.Field[] drawables = RDrawable.getFields();
+				  int i = 0;
+				  while (cursor.moveToNext()) {
+					  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+					  Integer yol = Integer.parseInt(yol_adi);
+					  for(java.lang.reflect.Field dr : drawables) {
+						  Drawable img = getResources().getDrawable(dr.getInt(null));
+//			  		      Log.v("DEBUG", "yol: " + Integer.toString(yol));
+//			  		      Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
+			  			  if(dr.getInt(null)==yol);
+			  			  {
+			  				  dizi[i]=dr.getInt(null);
+			  				  }
+			  			  i++;
+			  			  }
+					  }
+				  } catch (Exception e) {
 				  		        // TODO: handle exception
-				  		    }	       
-		
-		
-			return dizi;
-		}
-/**********************/
+					  }
+			  return dizi;
+			  }
 
 		public boolean createReflectedImages() {
 
@@ -448,11 +315,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				
 				case 9:
                 startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
-                    break;
-
-				
+                    break;	
 			}
-		     
-//			else Toast.makeText(	CoverFlowClickableActivity.this ,+ position + ". icona tiklandi ", position).show();
 	}
 }
