@@ -21,6 +21,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -126,6 +127,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		private Context mContext;
 
 		Integer[] mImageIds = upgradeImageIds();
+		String[] mIconName = upgradeIconName();
 		
 		private ImageView[] mImages;
 		
@@ -134,6 +136,49 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			mContext = c;
 			mImages = new ImageView[mImageIds.length];
 		}
+		/***************************/
+		 
+		 private String[] upgradeIconName() {
+			String[] iconName = new String[9];
+			Cursor cursor = GetData();
+			try {
+				  Class RClass = Class.forName("com.comu.android.R");
+				  Class[] subclasses = RClass.getDeclaredClasses();
+				  Class RDrawable = null;
+				  for(Class subclass : subclasses) {
+					  if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
+						  RDrawable = subclass;
+						  break;
+						  }
+					  }
+				  java.lang.reflect.Field[] drawables = RDrawable.getFields();
+				  int i = 0;
+				  for(java.lang.reflect.Field dr : drawables) {
+//			       	Log.v("DEBUG", "yol: " + Integer.toString(yol));
+//			  		Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
+					  while (cursor.moveToNext()) {
+							
+						  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+						  Integer yol = Integer.parseInt(yol_adi);
+						  String  name = cursor.getString(cursor.getColumnIndex("etiket"));
+						  if(dr.getInt(null)==yol);
+			  			  {
+			  				  iconName[i] = name;
+			  				Log.v("DEBUG", "yol: " + Integer.toString(yol));
+			  				  Log.v("DEBUG","iconName:"+i+" "+iconName[i]);
+			  				  }
+			  			  i++;
+			  			  }
+					  
+					  }
+				  } catch (Exception e) {
+				  		        // TODO: handle exception
+					  }
+			  return iconName;
+		}
+		 /****************************/
+		
+		
 		private Integer[] upgradeImageIds() {
 			// TODO Auto-generated method stub
 			Integer[]  dizi= new Integer[9];
@@ -150,16 +195,15 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 					  }
 				  java.lang.reflect.Field[] drawables = RDrawable.getFields();
 				  int i = 0;
-				  while (cursor.moveToNext()) {
-					  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
-					  Integer yol = Integer.parseInt(yol_adi);
-					  for(java.lang.reflect.Field dr : drawables) {
-						  Drawable img = getResources().getDrawable(dr.getInt(null));
-//			  		      Log.v("DEBUG", "yol: " + Integer.toString(yol));
-//			  		      Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
-			  			  if(dr.getInt(null)==yol);
+				  for(java.lang.reflect.Field dr : drawables) {
+//					  Log.v("DEBUG", "yol: " + Integer.toString(yol));
+//			  		  Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
+					  while (cursor.moveToNext()) {
+						  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+						  Integer yol = Integer.parseInt(yol_adi);
+						  if(dr.getInt(null)==yol);
 			  			  {
-			  				  dizi[i]=dr.getInt(null);
+			  				  dizi[i]=yol;
 			  				  }
 			  			  i++;
 			  			  }
@@ -299,12 +343,13 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				case 7:Intent viewIntent7 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent7);break;
 				
-				case 8:Intent viewIntent8 = new Intent(getApplicationContext(), SubMenuActivity.class);				
-				startActivity(viewIntent8);break;
+				case 8:startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
+                break;
 				
-				case 9:
-                startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
-                    break;	
+				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				startActivity(viewIntent9);break;
+
+                
 			}
 	}
 }
