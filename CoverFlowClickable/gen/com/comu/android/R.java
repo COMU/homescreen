@@ -22,13 +22,18 @@ public final class R {
         public static final int wikipedia=0x7f020008;
     }
     public static final class id {
+        public static final int buton1=0x7f070004;
+        public static final int buton2=0x7f070006;
         public static final int coverflow=0x7f070002;
         public static final int digitalClock1=0x7f070001;
-        public static final int gridView=0x7f070003;
+        public static final int gridView=0x7f070007;
         public static final int linearLayout1=0x7f070000;
+        public static final int text1=0x7f070003;
+        public static final int text2=0x7f070005;
     }
     public static final class layout {
         public static final int main=0x7f030000;
+        public static final int theme_menu=0x7f030001;
     }
     public static final class raw {
         public static final int chrome=0x7f050000;

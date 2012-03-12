@@ -75,6 +75,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 
 	
 	private boolean checkDataBase() {
+		//TODO make control if existing database
 		SQLiteDatabase checkDB = null;
 	    try {
 	        checkDB = SQLiteDatabase.openDatabase("/data/data/com.comu.android/databases/tema", null,
@@ -87,7 +88,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	}
 
 	private void InsertData(String resimler, String etiket) {
-		// TODO Auto-generated method stub
+		// TODO insert data to database
 
 		SQLiteDatabase db = imagepath.getWritableDatabase();
 		ContentValues veriler = new ContentValues();
@@ -100,6 +101,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	private String[] SELECT = { "imagepath","etiket" };
 
 	private Cursor GetData() {
+		//TODO get data from database
 		SQLiteDatabase db = imagepath.getReadableDatabase();
 		Cursor cursor = db.query("temacesitleri", SELECT, null, null,
 				null, null, null);
@@ -180,7 +182,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		
 		
 		private Integer[] upgradeImageIds() {
-			// TODO Auto-generated method stub
+			// TODO created an image array with imageIds from the database
 			Integer[]  dizi= new Integer[9];
 			Cursor cursor = GetData();
 			  try {
@@ -346,7 +348,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				case 8:startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
                 break;
 				
-				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), ThemeActivity.class);				
 				startActivity(viewIntent9);break;
 
                 
