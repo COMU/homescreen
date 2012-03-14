@@ -51,7 +51,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				
 		mySharedPrefs = (SharedPreferences) getSharedPreferences("sharedPrefs",MODE_PRIVATE);
 		sEditor = mySharedPrefs.edit();
-		int mTemaId = idguncelle();
+		int mTemaId = updateId();
 		Log.v("DEBUG","CmTemaId: "+mTemaId);
 		sEditor.putInt("mtemaId", mTemaId);
 		sEditor.commit();
@@ -107,7 +107,8 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				
 	}
 	
-	public static int idguncelle(){
+	public static int updateId(){
+		//TODO after pressed the button, update temacesitleritablosu's ids 
 		 int id = ThemeActivity.mTemaId;
 		 return id;	
 	}
