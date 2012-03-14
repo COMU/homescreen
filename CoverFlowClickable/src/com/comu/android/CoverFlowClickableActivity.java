@@ -30,6 +30,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.Toast;
+
 
 
 public class CoverFlowClickableActivity extends Activity implements OnItemClickListener{
@@ -73,7 +75,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				InsertData(resimler[4].toString(), "Oyunlar");
 				InsertData(resimler[5].toString(), "Galeri");
 				InsertData(resimler[6].toString(), "Wikipedia");
-				InsertData(resimler[7].toString(), "Downloads");
+				InsertData(resimler[7].toString(), "SystemSettings");
 				InsertData(resimler[8].toString(), "Ayarlar");
 				
 				Integer[] resimler2 = {R.drawable.bluetheme1,
@@ -189,6 +191,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		coverFlow.setSelection(4, true);
 		coverFlow.setAnimationDuration(1000);
 		
+
 	}
 
 
@@ -206,6 +209,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			mContext = c;
 			mImages = new ImageView[mImageIds.length];
 		}
+	
 		/***************************/
 		 
 //		 private String[] upgradeIconName() {
@@ -372,6 +376,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			i.setImageResource(mImageIds[position]);
 			i.setLayoutParams(new CoverFlow.LayoutParams(200, 300));
 			i.setScaleType(ImageView.ScaleType.FIT_XY);
+		
 			// Make sure we set anti-aliasing otherwise we get jaggies
 			BitmapDrawable drawable = (BitmapDrawable) i.getDrawable();
 			drawable.setAntiAlias(true);
@@ -395,6 +400,8 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	public static int gelenposition;
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
+		String[] dizi={"Browser", "Sosyal Aglar","Youtube","Gtalk","Oyunlar","Galeri", "Wikipedia", "SystemSettings","Ayarlar"};
+		Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
 		    position++;
 		    gelenposition=position;
 			switch (position){
