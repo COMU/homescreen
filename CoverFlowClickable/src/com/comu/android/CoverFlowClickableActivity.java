@@ -406,7 +406,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		    gelenposition=position;
 			switch (position){
 			
-				case 1:Intent viewIntent1 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				case 1:Intent viewIntent1 = new Intent("android.provider.Browser.SEARCHES_URI ",Uri.parse("http://www.google.com"));				
 				startActivity(viewIntent1);break;
 				
 				case 2:Intent viewIntent2 = new Intent(getApplicationContext(), SubMenuActivity.class);				
