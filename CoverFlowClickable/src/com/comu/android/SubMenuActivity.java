@@ -113,7 +113,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		    private Integer[] socialNetwork = {		    				    		
 		    		R.raw.facebook,
 		    		R.raw.twitter,
-		    		R.raw.delicious
+		    		R.raw.gtalk
 		    };
 
 		    private Integer[] browsers = {		    		

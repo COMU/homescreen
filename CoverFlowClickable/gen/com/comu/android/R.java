@@ -46,9 +46,9 @@ public final class R {
     }
     public static final class raw {
         public static final int chrome=0x7f050000;
-        public static final int delicious=0x7f050001;
-        public static final int facebook=0x7f050002;
-        public static final int firefox=0x7f050003;
+        public static final int facebook=0x7f050001;
+        public static final int firefox=0x7f050002;
+        public static final int gtalk=0x7f050003;
         public static final int music=0x7f050004;
         public static final int network=0x7f050005;
         public static final int pictures=0x7f050006;
