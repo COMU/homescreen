@@ -35,8 +35,8 @@ import android.widget.ImageView.ScaleType;
 public class CoverFlowClickableActivity extends Activity implements OnItemClickListener{
 	private VeriTabani imagepath;
 	
-//	SharedPreferences mySharedPrefs;
-//	SharedPreferences.Editor sEditor;
+	SharedPreferences mySharedPrefs;
+	SharedPreferences.Editor sEditor;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -46,17 +46,17 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		//this.setWallpaper();
       
 		imagepath = new VeriTabani(this);
-//		
-//		//*********************************SharedPreferences*********************
-//				
-//		mySharedPrefs = (SharedPreferences) getSharedPreferences("sharedPrefs",MODE_PRIVATE);
-//		sEditor = mySharedPrefs.edit();
-//		int mTemaId = idguncelle();
-//		Log.v("DEBUG","CmTemaId: "+mTemaId);
-//		sEditor.putInt("mtemaId", mTemaId);
-//		sEditor.commit();
-//
-////		****************************************************************
+		
+		//*********************************SharedPreferences*********************
+				
+		mySharedPrefs = (SharedPreferences) getSharedPreferences("sharedPrefs",MODE_PRIVATE);
+		sEditor = mySharedPrefs.edit();
+		int mTemaId = idguncelle();
+		Log.v("DEBUG","CmTemaId: "+mTemaId);
+		sEditor.putInt("mtemaId", mTemaId);
+		sEditor.commit();
+
+//		****************************************************************
 		if (!checkDataBase()) {
 			try {
 
@@ -107,10 +107,10 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				
 	}
 	
-//	public static int idguncelle(){
-//		 int id = ThemeActivity.mTemaId;
-//		 return id;	
-//	}
+	public static int idguncelle(){
+		 int id = ThemeActivity.mTemaId;
+		 return id;	
+	}
 	
 	private void InsertTableName(String name){
 		//TODO insert table name to database

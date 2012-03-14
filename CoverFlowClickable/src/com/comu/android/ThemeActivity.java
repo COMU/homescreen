@@ -36,7 +36,7 @@ public class ThemeActivity extends Activity{
 			return cursor;
 		}
 		
-//		public static int mTemaId ;
+		public static int mTemaId ;
 		
 		protected void onCreate(Bundle savedInstanceState) {
 		// Called when the activity is first created
@@ -51,33 +51,33 @@ public class ThemeActivity extends Activity{
 		TextView text2 = (TextView)findViewById(R.id.text2);
 		text2.setText("Tema2");
 		
-//		Button changeTheme = (Button)findViewById(R.id.buton1);
-//		changeTheme.setOnClickListener(new OnClickListener() {
-//			
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				
-//				mTemaId = 1;
-//				Log.v("DEBUG","mtemaId:" + mTemaId);
-//				Intent intent = new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
-//				startActivity(intent);
-//				
-//			}
-//		});
-//	
-//		Button changeTheme2 = (Button)findViewById(R.id.buton2);
-//		changeTheme2.setOnClickListener(new OnClickListener() {
-//			
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				
-//				mTemaId = 2;
-//				Log.v("DEBUG","mtemaId:" + mTemaId);
-//				Intent intent = new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
-//				startActivity(intent);
-//				
-//			}
-//		});
+		Button changeTheme = (Button)findViewById(R.id.buton1);
+		changeTheme.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				mTemaId = 1;
+				Log.v("DEBUG","mtemaId:" + mTemaId);
+				Intent intent = new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
+				startActivity(intent);
+				
+			}
+		});
+	
+		Button changeTheme2 = (Button)findViewById(R.id.buton2);
+		changeTheme2.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				mTemaId = 2;
+				Log.v("DEBUG","mtemaId:" + mTemaId);
+				Intent intent = new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
+				startActivity(intent);
+				
+			}
+		});
 	} 
 		
 }

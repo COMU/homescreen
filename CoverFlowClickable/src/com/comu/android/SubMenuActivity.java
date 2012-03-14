@@ -401,7 +401,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 				case 8:Intent viewIntent8 = new Intent(new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));				
 				startActivity(viewIntent8);break;
 				
-				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), ThemeActivity.class);				
 				startActivity(viewIntent9);break;
 
 				
