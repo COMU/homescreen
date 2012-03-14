@@ -55,8 +55,7 @@ public class ThemeActivity extends Activity{
 		changeTheme.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
+				// TODO Auto-generated method stub	
 				mTemaId = 1;
 				Log.v("DEBUG","mtemaId:" + mTemaId);
 				Intent intent = new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
@@ -69,8 +68,7 @@ public class ThemeActivity extends Activity{
 		changeTheme2.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
+				// TODO Auto-generated method stub	
 				mTemaId = 2;
 				Log.v("DEBUG","mtemaId:" + mTemaId);
 				Intent intent = new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
