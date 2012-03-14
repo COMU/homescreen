@@ -400,7 +400,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	public static int gelenposition;
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
-		String[] dizi={"Browser", "Sosyal Aglar","Youtube","Gtalk","Oyunlar","Galeri", "Wikipedia", "SystemSettings","Ayarlar"};
+		String[] dizi={"Browser", "Sosyal Aglar","Youtube","Gmail","Oyunlar","Galeri", "Wikipedia", "SystemSettings","Ayarlar"};
 		Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
 		    position++;
 		    gelenposition=position;

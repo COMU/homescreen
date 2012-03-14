@@ -27,6 +27,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
 
 public class SubMenuActivity extends Activity implements OnItemClickListener {
@@ -356,7 +357,10 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 	}
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
-		    position++;
+		String[] dizi={"Browser", "Sosyal Aglar","Youtube","Gmail","Oyunlar","Galeri", "Wikipedia", "SystemSettings","Ayarlar"};
+		Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
+		
+			position++;
 		    CoverFlowClickableActivity.gelenposition=position;
 		    alinanposition=position;
 			switch (position){
