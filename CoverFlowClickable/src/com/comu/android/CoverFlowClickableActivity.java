@@ -187,7 +187,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		ImageAdapter coverImageAdapter = new ImageAdapter(this);
 		coverFlow.setOnItemClickListener(this);
 		coverFlow.setAdapter(coverImageAdapter);       
-		coverFlow.setSpacing(-30);
+		coverFlow.setSpacing(-10);
 		coverFlow.setSelection(4, true);
 		coverFlow.setAnimationDuration(1000);
 		
