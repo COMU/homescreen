@@ -46,6 +46,12 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		    gridview.setAdapter(new ImageAdapter2(this));
 	}
 	
+	public static int updateId(){
+		//TODO after pressed the theme button on ThemeActivity class, update temacesitleritablosu's ids 
+		 int id = ThemeActivity.mTemaId;
+		 return id;	
+	}
+	
 	private void setupCoverFlow(CoverFlow coverFlow) {
 		// CoverFlow is assigned to the settings
 		
@@ -138,79 +144,47 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		private Context mContext;
 		
 		Integer[] mImageIds = upgradeImageIds();
-//		String[] mIconName = upgradeIconName();
 		
 		private Integer[] upgradeImageIds() {
 			// TODO created an image array with imageIds from the database
 			Integer[]  dizi= new Integer[9];
-			Cursor cursor = GetData();
-			  try {
-//				  Class RClass = Class.forName("com.comu.android.R");
-//				  Class[] subclasses = RClass.getDeclaredClasses();
-//				  Class RDrawable = null;
-//				  for(Class subclass : subclasses) {
-//					  if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
-//						  RDrawable = subclass;
-//						  break;
-//						  }
-//					  }
-//				  java.lang.reflect.Field[] drawables = RDrawable.getFields();
-//				  int i = 0;
-//				  for(java.lang.reflect.Field dr : drawables) {
-//					  Log.v("DEBUG", "yol: " + Integer.toString(yol));
-//			  		  Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
+			int themeID = updateId();
+			
+			if(themeID == 1){
+				Cursor cursor = GetData();
+				try {
 				  int i=0;
 				  while (cursor.moveToNext()) {
-						  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
-						  Integer yol = Integer.parseInt(yol_adi);
-//						  if(dr.getInt(null)==yol);
-//			  			  {
-			  				dizi[i]=yol;
-			  				Log.v("DEBUG", "dizi: " + Integer.toString(dizi[i]));
-//			  				  }
-			  			  i++;
-			  			  }
+					  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+					  Integer yol = Integer.parseInt(yol_adi);
+			  		  dizi[i]=yol;
+			  		  Log.v("DEBUG", "dizi: " + Integer.toString(dizi[i]));
+			  		  i++;
+			  	  }
 					  
 				  } catch (Exception e) {
-				  		        // TODO: handle exception
+					  // TODO: handle exception
 					  }
-			  return dizi;
 			  }
+			else{
+				Cursor cursor = GetDataFromDB();
+				 try {
+					  int i=0;
+					  while (cursor.moveToNext()) {
+						  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+						  Integer yol = Integer.parseInt(yol_adi);
+				  		  dizi[i]=yol;
+				  		  Log.v("DEBUG", "dizi: " + Integer.toString(dizi[i]));
+				  		  i++;
+				  	  }
+						  
+					  } catch (Exception e) {
+						  // TODO: handle exception
+						  }	
+			}
+			  return dizi;	  
+		}
 		
-//		private Integer[] upgradeImageIds() {
-//			// TODO Auto-generated method stub
-//			Integer[]  dizi= new Integer[9];
-//			Cursor cursor = GetData();
-//			try {
-//				  Class RClass = Class.forName("com.comu.android.R");
-//				  Class[] subclasses = RClass.getDeclaredClasses();
-//				  Class RDrawable = null;
-//				  for(Class subclass : subclasses) {
-//					  if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
-//						  RDrawable = subclass;
-//						  break;
-//						  }
-//					  }
-//				  java.lang.reflect.Field[] drawables = RDrawable.getFields();
-//				  int i = 0;
-//				  for(java.lang.reflect.Field dr : drawables) {
-////					  Log.v("DEBUG", "yol: " + Integer.toString(yol));
-////			  		  Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
-//					  while (cursor.moveToNext()) {
-//						  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
-//						  Integer yol = Integer.parseInt(yol_adi);
-//						  if(dr.getInt(null)==yol);
-//			  			  {
-//			  				  dizi[i]=yol;
-//			  				  }
-//			  			  i++;
-//			  			  }
-//					  }
-//				  } catch (Exception e) {
-//				  		        // TODO: handle exception
-//					  }
-//			  return dizi;
-//			  } 
 /***************/
 //		private String[] upgradeIconName() {
 //			String[] iconName = new String[9];
@@ -261,6 +235,16 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 			startManagingCursor(cursor);
 			return cursor;
 		}
+		
+		private Cursor GetDataFromDB() {
+			//TODO get data from database
+			SQLiteDatabase db = imagepath.getReadableDatabase();
+			Cursor cursor = db.query("tema2", SELECT, null, null,
+					null, null, null);
+			startManagingCursor(cursor);
+			return cursor;
+		}
+
 
 		private ImageView[] mImages;
 
