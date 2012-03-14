@@ -70,7 +70,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		    public int getCount() {
 		        if (alinanposition==1) return browsers.length;
 		        else if(alinanposition==2) return socialNetwork.length;
-		        else if (alinanposition==4) return folder.length;
+		        else if (alinanposition==5) return folder.length;
 		        return 2;
 		    }
 
@@ -97,7 +97,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		        	return imageView;
 		        	
 		        }
-		        if(alinanposition==4){
+		        if(alinanposition==5){
 		        	imageView.setImageResource(folder[position]);
 		        	return imageView;
 		        }
@@ -141,39 +141,76 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 //		String[] mIconName = upgradeIconName();
 		
 		private Integer[] upgradeImageIds() {
-			// TODO Auto-generated method stub
+			// TODO created an image array with imageIds from the database
 			Integer[]  dizi= new Integer[9];
 			Cursor cursor = GetData();
-			try {
-				  Class RClass = Class.forName("com.comu.android.R");
-				  Class[] subclasses = RClass.getDeclaredClasses();
-				  Class RDrawable = null;
-				  for(Class subclass : subclasses) {
-					  if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
-						  RDrawable = subclass;
-						  break;
-						  }
-					  }
-				  java.lang.reflect.Field[] drawables = RDrawable.getFields();
-				  int i = 0;
-				  for(java.lang.reflect.Field dr : drawables) {
+			  try {
+//				  Class RClass = Class.forName("com.comu.android.R");
+//				  Class[] subclasses = RClass.getDeclaredClasses();
+//				  Class RDrawable = null;
+//				  for(Class subclass : subclasses) {
+//					  if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
+//						  RDrawable = subclass;
+//						  break;
+//						  }
+//					  }
+//				  java.lang.reflect.Field[] drawables = RDrawable.getFields();
+//				  int i = 0;
+//				  for(java.lang.reflect.Field dr : drawables) {
 //					  Log.v("DEBUG", "yol: " + Integer.toString(yol));
 //			  		  Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
-					  while (cursor.moveToNext()) {
+				  int i=0;
+				  while (cursor.moveToNext()) {
 						  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
 						  Integer yol = Integer.parseInt(yol_adi);
-						  if(dr.getInt(null)==yol);
-			  			  {
-			  				  dizi[i]=yol;
-			  				  }
+//						  if(dr.getInt(null)==yol);
+//			  			  {
+			  				dizi[i]=yol;
+			  				Log.v("DEBUG", "dizi: " + Integer.toString(dizi[i]));
+//			  				  }
 			  			  i++;
 			  			  }
-					  }
+					  
 				  } catch (Exception e) {
 				  		        // TODO: handle exception
 					  }
 			  return dizi;
-			  } 
+			  }
+		
+//		private Integer[] upgradeImageIds() {
+//			// TODO Auto-generated method stub
+//			Integer[]  dizi= new Integer[9];
+//			Cursor cursor = GetData();
+//			try {
+//				  Class RClass = Class.forName("com.comu.android.R");
+//				  Class[] subclasses = RClass.getDeclaredClasses();
+//				  Class RDrawable = null;
+//				  for(Class subclass : subclasses) {
+//					  if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
+//						  RDrawable = subclass;
+//						  break;
+//						  }
+//					  }
+//				  java.lang.reflect.Field[] drawables = RDrawable.getFields();
+//				  int i = 0;
+//				  for(java.lang.reflect.Field dr : drawables) {
+////					  Log.v("DEBUG", "yol: " + Integer.toString(yol));
+////			  		  Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
+//					  while (cursor.moveToNext()) {
+//						  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+//						  Integer yol = Integer.parseInt(yol_adi);
+//						  if(dr.getInt(null)==yol);
+//			  			  {
+//			  				  dizi[i]=yol;
+//			  				  }
+//			  			  i++;
+//			  			  }
+//					  }
+//				  } catch (Exception e) {
+//				  		        // TODO: handle exception
+//					  }
+//			  return dizi;
+//			  } 
 /***************/
 //		private String[] upgradeIconName() {
 //			String[] iconName = new String[9];
@@ -219,7 +256,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		
 		private Cursor GetData() {
 			SQLiteDatabase db = imagepath.getReadableDatabase();
-			Cursor cursor = db.query("temacesitleri", SELECT, null, null,
+			Cursor cursor = db.query("tema1", SELECT, null, null,
 					null, null, null);
 			startManagingCursor(cursor);
 			return cursor;

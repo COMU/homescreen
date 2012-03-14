@@ -18,6 +18,7 @@
             android:text="@+string/DigitalClock" />
             
     </LinearLayout>
+    
 
      <com.comu.android.CoverFlow
          xmlns:coverflow="http://schemas.android.com/apk/res/com.comu.android"

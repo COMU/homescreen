@@ -3,6 +3,7 @@ package com.comu.android;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -33,6 +34,9 @@ import android.widget.ImageView.ScaleType;
 
 public class CoverFlowClickableActivity extends Activity implements OnItemClickListener{
 	private VeriTabani imagepath;
+	
+//	SharedPreferences mySharedPrefs;
+//	SharedPreferences.Editor sEditor;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -42,7 +46,17 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		//this.setWallpaper();
       
 		imagepath = new VeriTabani(this);
-		
+//		
+//		//*********************************SharedPreferences*********************
+//				
+//		mySharedPrefs = (SharedPreferences) getSharedPreferences("sharedPrefs",MODE_PRIVATE);
+//		sEditor = mySharedPrefs.edit();
+//		int mTemaId = idguncelle();
+//		Log.v("DEBUG","CmTemaId: "+mTemaId);
+//		sEditor.putInt("mtemaId", mTemaId);
+//		sEditor.commit();
+//
+////		****************************************************************
 		if (!checkDataBase()) {
 			try {
 
@@ -61,7 +75,26 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				InsertData(resimler[6].toString(), "Wikipedia");
 				InsertData(resimler[7].toString(), "Downloads");
 				InsertData(resimler[8].toString(), "Ayarlar");
-
+				
+				Integer[] resimler2 = {R.drawable.bluetheme1,
+						R.drawable.bluetheme2, R.drawable.bluetheme3,
+						R.drawable.bluetheme4, R.drawable.bluetheme5,
+						R.drawable.bluetheme6, R.drawable.bluetheme7, 
+						R.drawable.bluetheme8, R.drawable.bluetheme9};
+				
+				InsertDataToDB(resimler2[0].toString(), "Browser");
+				InsertDataToDB(resimler2[1].toString(), "Sosyal Aglar");
+				InsertDataToDB(resimler2[2].toString(), "Youtube");
+				InsertDataToDB(resimler2[3].toString(), "Gtalk");
+				InsertDataToDB(resimler2[4].toString(), "Oyunlar");
+				InsertDataToDB(resimler2[5].toString(), "Galeri");
+				InsertDataToDB(resimler2[6].toString(), "Wikipedia");
+				InsertDataToDB(resimler2[7].toString(), "Downloads");
+				InsertDataToDB(resimler2[8].toString(), "Ayarlar");
+				
+				InsertTableName("tema1");
+				InsertTableName("tema2");
+				
 			} finally {
 				imagepath.close();
 			}
@@ -71,14 +104,39 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
                "coverflow", "id", "com.comu.android"));
 		setupCoverFlow(coverFlow);
 		
+				
+	}
+	
+//	public static int idguncelle(){
+//		 int id = ThemeActivity.mTemaId;
+//		 return id;	
+//	}
+	
+	private void InsertTableName(String name){
+		//TODO insert table name to database
+		SQLiteDatabase db = imagepath.getWritableDatabase();
+		ContentValues veriler = new ContentValues();
+		veriler.put("temaTabloAdlari", name);	
+
+		db.insertOrThrow("temacesitleritablosu", null, veriler);
+	}
+	
+	private void InsertDataToDB(String resimler, String etiket) {
+		// TODO insert data to tema2 table
+		SQLiteDatabase db = imagepath.getWritableDatabase();
+		ContentValues veriler = new ContentValues();
+		veriler.put("imagepath", resimler);
+		veriler.put("etiket", etiket.toString());
+
+		db.insertOrThrow("tema2", null, veriler);
 	}
 
-	
+
 	private boolean checkDataBase() {
 		//TODO make control if existing database
 		SQLiteDatabase checkDB = null;
 	    try {
-	        checkDB = SQLiteDatabase.openDatabase("/data/data/com.comu.android/databases/tema", null,
+	        checkDB = SQLiteDatabase.openDatabase("/data/data/com.comu.android/databases/tema.db", null,
 	                SQLiteDatabase.OPEN_READONLY);
 	        checkDB.close();
 	    } catch (SQLiteException e) {
@@ -95,7 +153,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		veriler.put("imagepath", resimler);
 		veriler.put("etiket", etiket.toString());
 
-		db.insertOrThrow("temacesitleri", null, veriler);
+		db.insertOrThrow("tema1", null, veriler);
 	}
 
 	private String[] SELECT = { "imagepath","etiket" };
@@ -103,7 +161,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	private Cursor GetData() {
 		//TODO get data from database
 		SQLiteDatabase db = imagepath.getReadableDatabase();
-		Cursor cursor = db.query("temacesitleri", SELECT, null, null,
+		Cursor cursor = db.query("tema1", SELECT, null, null,
 				null, null, null);
 		startManagingCursor(cursor);
 		return cursor;
@@ -186,30 +244,32 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			Integer[]  dizi= new Integer[9];
 			Cursor cursor = GetData();
 			  try {
-				  Class RClass = Class.forName("com.comu.android.R");
-				  Class[] subclasses = RClass.getDeclaredClasses();
-				  Class RDrawable = null;
-				  for(Class subclass : subclasses) {
-					  if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
-						  RDrawable = subclass;
-						  break;
-						  }
-					  }
-				  java.lang.reflect.Field[] drawables = RDrawable.getFields();
-				  int i = 0;
-				  for(java.lang.reflect.Field dr : drawables) {
+//				  Class RClass = Class.forName("com.comu.android.R");
+//				  Class[] subclasses = RClass.getDeclaredClasses();
+//				  Class RDrawable = null;
+//				  for(Class subclass : subclasses) {
+//					  if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
+//						  RDrawable = subclass;
+//						  break;
+//						  }
+//					  }
+//				  java.lang.reflect.Field[] drawables = RDrawable.getFields();
+//				  int i = 0;
+//				  for(java.lang.reflect.Field dr : drawables) {
 //					  Log.v("DEBUG", "yol: " + Integer.toString(yol));
 //			  		  Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
-					  while (cursor.moveToNext()) {
+				  int i=0;
+				  while (cursor.moveToNext()) {
 						  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
 						  Integer yol = Integer.parseInt(yol_adi);
-						  if(dr.getInt(null)==yol);
-			  			  {
-			  				  dizi[i]=yol;
-			  				  }
+//						  if(dr.getInt(null)==yol);
+//			  			  {
+			  				dizi[i]=yol;
+			  				Log.v("DEBUG", "dizi: " + Integer.toString(dizi[i]));
+//			  				  }
 			  			  i++;
 			  			  }
-					  }
+					  
 				  } catch (Exception e) {
 				  		        // TODO: handle exception
 					  }
@@ -354,4 +414,6 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
                 
 			}
 	}
+
+
 }

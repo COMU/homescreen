@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class VeriTabani extends SQLiteOpenHelper {
 	
-	private static final String VERITABANI = "tema";
+	private static final String VERITABANI = "tema.db";
 	private static final int SURUM = 1;
 
 	public VeriTabani(Context con){
@@ -17,14 +17,17 @@ public class VeriTabani extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		db.execSQL("CREATE TABLE temacesitleri(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
-		
+		db.execSQL("CREATE TABLE tema1(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
+		db.execSQL("CREATE TABLE tema2(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
+		db.execSQL("CREATE TABLE temacesitleritablosu(id INTEGER PRIMARY KEY AUTOINCREMENT,temaTabloAdlari TEXT)");
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
-		db.execSQL("DROP TABLE IF EXIST temacesitleri");
+		db.execSQL("DROP TABLE IF EXIST tema1");
+		db.execSQL("DROP TABLE IF EXIST tema2");
+		db.execSQL("DROP TABLE IF EXIST temacesitleritablosu");
 		onCreate(db);
 	}
 
