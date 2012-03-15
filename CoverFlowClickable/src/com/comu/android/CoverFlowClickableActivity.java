@@ -55,7 +55,6 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		sEditor = mySharedPrefs.edit();
 		int mTemaId = updateId();
 		Log.v("DEBUG","CmTemaId: "+mTemaId);
-
 		sEditor.putInt("mtemaId", mTemaId);
 		sEditor.commit();
 
@@ -69,15 +68,15 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 						R.drawable.oyunlar, R.drawable.wikipedia,
 						R.drawable.setup, R.drawable.settings };
 
-				InsertData(resimler[0].toString(), "Browser");
-				InsertData(resimler[1].toString(), "Sosyal Aglar");
-				InsertData(resimler[2].toString(), "Youtube");
-				InsertData(resimler[3].toString(), "Gtalk");
-				InsertData(resimler[4].toString(), "Oyunlar");
-				InsertData(resimler[5].toString(), "Galeri");
-				InsertData(resimler[6].toString(), "Wikipedia");
-				InsertData(resimler[7].toString(), "SystemSettings");
-				InsertData(resimler[8].toString(), "Ayarlar");
+				InsertData("tema1", resimler[0].toString(), "Browser");
+				InsertData("tema1", resimler[1].toString(), "Sosyal Aglar");
+				InsertData("tema1", resimler[2].toString(), "Youtube");
+				InsertData("tema1", resimler[3].toString(), "Gtalk");
+				InsertData("tema1", resimler[4].toString(), "Oyunlar");
+				InsertData("tema1", resimler[5].toString(), "Galeri");
+				InsertData("tema1", resimler[6].toString(), "Wikipedia");
+				InsertData("tema1", resimler[7].toString(), "SystemSettings");
+				InsertData("tema1", resimler[8].toString(), "Ayarlar");
 				
 				Integer[] resimler2 = {R.drawable.bluetheme1,
 						R.drawable.bluetheme2, R.drawable.bluetheme3,
@@ -85,15 +84,15 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 						R.drawable.bluetheme6, R.drawable.bluetheme7, 
 						R.drawable.bluetheme8, R.drawable.bluetheme9};
 				
-				InsertDataToDB(resimler2[0].toString(), "Browser");
-				InsertDataToDB(resimler2[1].toString(), "Sosyal Aglar");
-				InsertDataToDB(resimler2[2].toString(), "Youtube");
-				InsertDataToDB(resimler2[3].toString(), "Gtalk");
-				InsertDataToDB(resimler2[4].toString(), "Oyunlar");
-				InsertDataToDB(resimler2[5].toString(), "Galeri");
-				InsertDataToDB(resimler2[6].toString(), "Wikipedia");
-				InsertDataToDB(resimler2[7].toString(), "Downloads");
-				InsertDataToDB(resimler2[8].toString(), "Ayarlar");
+				InsertData("tema2",resimler2[0].toString(), "Browser");
+				InsertData("tema2",resimler2[1].toString(), "Sosyal Aglar");
+				InsertData("tema2",resimler2[2].toString(), "Youtube");
+				InsertData("tema2",resimler2[3].toString(), "Gtalk");
+				InsertData("tema2",resimler2[4].toString(), "Oyunlar");
+				InsertData("tema2",resimler2[5].toString(), "Galeri");
+				InsertData("tema2",resimler2[6].toString(), "Wikipedia");
+				InsertData("tema2",resimler2[7].toString(), "Downloads");
+				InsertData("tema2",resimler2[8].toString(), "Ayarlar");
 				
 				InsertTableName("tema1");
 				InsertTableName("tema2");
@@ -128,22 +127,13 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	}
 	
 	public void updateTemaId(int id){
+		// hold theme's id in database
 		SQLiteDatabase db = imagepath.getWritableDatabase();
 		ContentValues veriler = new ContentValues();
 		veriler.put("guncelID", id);
 		
 		db.update("guncelIDTable", veriler, "id=1" , null);
 		
-	}
-	
-	private void InsertDataToDB(String resimler, String etiket) {
-		// TODO insert data to tema2 table
-		SQLiteDatabase db = imagepath.getWritableDatabase();
-		ContentValues veriler = new ContentValues();
-		veriler.put("imagepath", resimler);
-		veriler.put("etiket", etiket.toString());
-
-		db.insertOrThrow("tema2", null, veriler);
 	}
 
 
@@ -160,7 +150,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	    return checkDB != null ? true : false;
 	}
 
-	private void InsertData(String resimler, String etiket) {
+	private void InsertData(String table, String resimler, String etiket) {
 		// TODO insert data to database
 
 		SQLiteDatabase db = imagepath.getWritableDatabase();
@@ -168,29 +158,20 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		veriler.put("imagepath", resimler);
 		veriler.put("etiket", etiket.toString());
 
-		db.insertOrThrow("tema1", null, veriler);
+		db.insertOrThrow(table , null, veriler);
 	}
 
 	private String[] SELECT = { "imagepath","etiket" };
 
-	private Cursor GetData() {
+	private Cursor GetData(String table) {
 		//TODO get data from database
 		SQLiteDatabase db = imagepath.getReadableDatabase();
-		Cursor cursor = db.query("tema1", SELECT, null, null,
+		Cursor cursor = db.query(table, SELECT, null, null,
 				null, null, null);
 		startManagingCursor(cursor);
 		return cursor;
 	}
 	
-
-	private Cursor GetDataFromDB() {
-		//TODO get data from database
-		SQLiteDatabase db = imagepath.getReadableDatabase();
-		Cursor cursor = db.query("tema2", SELECT, null, null,
-				null, null, null);
-		startManagingCursor(cursor);
-		return cursor;
-	}
 
 	private void setupCoverFlow(CoverFlow coverFlow) {
 		// CoverFlow is assigned to the settings
@@ -212,7 +193,6 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		private Context mContext;
 
 		Integer[] mImageIds = upgradeImageIds();
-	//	String[] mIconName = upgradeIconName();
 		
 		private ImageView[] mImages;
 		
@@ -221,50 +201,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			mContext = c;
 			mImages = new ImageView[mImageIds.length];
 		}
-	
-		/***************************/
-		 
-//		 private String[] upgradeIconName() {
-//			String[] iconName = new String[9];
-//			Cursor cursor = GetData();
-//			try {
-//				  Class RClass = Class.forName("com.comu.android.R");
-//				  Class[] subclasses = RClass.getDeclaredClasses();
-//				  Class RDrawable = null;
-//				  for(Class subclass : subclasses) {
-//					  if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
-//						  RDrawable = subclass;
-//						  break;
-//						  }
-//					  }
-//				  java.lang.reflect.Field[] drawables = RDrawable.getFields();
-//				  int i = 0;
-//				  for(java.lang.reflect.Field dr : drawables) {
-////			       	Log.v("DEBUG", "yol: " + Integer.toString(yol));
-////			  		Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
-//					  while (cursor.moveToNext()) {
-//							
-//						  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
-//						  Integer yol = Integer.parseInt(yol_adi);
-//						  String  name = cursor.getString(cursor.getColumnIndex("etiket"));
-//						  if(dr.getInt(null)==yol);
-//			  			  {
-//			  				  iconName[i] = name;
-//			  				Log.v("DEBUG", "yol: " + Integer.toString(yol));
-//			  				  Log.v("DEBUG","iconName:"+i+" "+iconName[i]);
-//			  				  }
-//			  			  i++;
-//			  			  }
-//					  
-//					  }
-//				  } catch (Exception e) {
-//				  		        // TODO: handle exception
-//					  }
-//			  return iconName;
-//		}
-		//****************************
-		 
-		 
+
 		
 		//*******************************************
 		private Integer[] upgradeImageIds() {
@@ -273,7 +210,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			int themeID = updateId();
 			
 			if(themeID == 1){
-				Cursor cursor = GetData();
+				Cursor cursor = GetData("tema1");
 				try {
 				  int i=0;
 				  while (cursor.moveToNext()) {
@@ -289,7 +226,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 					  }
 			  }
 			else{
-				Cursor cursor = GetDataFromDB();
+				Cursor cursor = GetData("tema2");
 				 try {
 					  int i=0;
 					  while (cursor.moveToNext()) {
