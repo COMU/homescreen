@@ -2,13 +2,13 @@
 
 dir
 166
-https://github.com/COMU/homescreen/branches/testing/CoverFlowClickable/gen/com/comu/android
+https://github.com/COMU/homescreen/branches/testing/CoverFlowClickable/src/com/comu/android
 https://github.com/COMU/homescreen
 
 
 
 2012-02-26T20:24:21.000000Z
-163
+166
 damla
 
 
@@ -26,16 +26,16 @@ svn:special svn:externals svn:needs-lock
 
 2c8af8a4-fc40-abf1-706a-ce57b7db7bff
 
-R.java
+CoverFlow.java
 file
 
 
 
 
-2012-02-28T11:13:28.000000Z
-4ccb3a0e7f5b1d7037c72f52ab46b697
+2012-02-28T11:14:25.000000Z
+e1b58b63334251d66405db6596f5f355
 2012-02-26T20:24:21.000000Z
-163
+166
 damla
 
 
@@ -58,5 +58,73 @@ damla
 
 
 
-2024
+4662
+
+CoverFlowClickableActivity.java
+file
+
+
+
+
+2012-02-28T11:14:25.000000Z
+09f645c0b5eb57def78ee1aacea12c7a
+2012-02-26T20:24:21.000000Z
+166
+damla
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7482
+
+SubMenuActivity.java
+file
+
+
+
+
+2012-02-28T11:14:25.000000Z
+d6029e71586491501db773fbb24a3696
+2012-02-26T20:24:21.000000Z
+166
+damla
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9910
 

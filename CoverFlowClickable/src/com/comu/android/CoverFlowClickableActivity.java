@@ -72,8 +72,8 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				InsertData("tema1", resimler[1].toString(), "Sosyal Aglar");
 				InsertData("tema1", resimler[2].toString(), "Youtube");
 				InsertData("tema1", resimler[3].toString(), "Gmail");
-				InsertData("tema1", resimler[4].toString(), "Oyunlar");
-				InsertData("tema1", resimler[5].toString(), "Galeri");
+				InsertData("tema1", resimler[4].toString(), "Galeri");
+				InsertData("tema1", resimler[5].toString(), "Oyunlar");
 				InsertData("tema1", resimler[6].toString(), "Wikipedia");
 				InsertData("tema1", resimler[7].toString(), "İndirilenler");
 				InsertData("tema1", resimler[8].toString(), "Ayarlar");
@@ -88,8 +88,8 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				InsertData("tema2",resimler2[1].toString(), "Sosyal Aglar");
 				InsertData("tema2",resimler2[2].toString(), "Youtube");
 				InsertData("tema2",resimler2[3].toString(), "Gmail");
-				InsertData("tema2",resimler2[4].toString(), "Oyunlar");
-				InsertData("tema2",resimler2[5].toString(), "Galeri");
+				InsertData("tema2",resimler2[4].toString(), "Galeri");
+				InsertData("tema2",resimler2[5].toString(), "Oyunlar");
 				InsertData("tema2",resimler2[6].toString(), "Wikipedia");
 				InsertData("tema2",resimler2[7].toString(), "İndirilenler");
 				InsertData("tema2",resimler2[8].toString(), "Ayarlar");
@@ -349,7 +349,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	public static int gelenposition;
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
-		String[] dizi={"Tarayıcı", "Sosyal Aglar","Youtube","Gmail","Oyunlar","Galeri", "Wikipedia", "indirilenler","Ayarlar"};
+		String[] dizi={"Tarayıcı", "Sosyal Aglar","Youtube","Gmail","Galeri","Oyunlar", "Wikipedia", "indirilenler","Ayarlar"};
 		Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
 		    position++;
 		    gelenposition=position;
@@ -364,8 +364,8 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				case 3:Intent viewIntent3 = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));				
 				startActivity(viewIntent3);break;
 				
-				case 4:Intent viewIntent4 = new Intent(getApplicationContext(), SubMenuActivity.class);				
-				startActivity(viewIntent4);break;
+				case 4:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://mail.google.com/mail/")));
+			   	break;
 				
 				case 5:Intent viewIntent5 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent5);break;
@@ -373,8 +373,8 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent6);break;
 				
-				case 7:Intent viewIntent7 = new Intent(getApplicationContext(), SubMenuActivity.class);				
-				startActivity(viewIntent7);break;
+				case 7:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://tr.wikipedia.org/wiki/Ana_Sayfa")));
+			   	break;
 				
 				case 8:startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
                 break;

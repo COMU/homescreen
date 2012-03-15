@@ -38,7 +38,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// Called when the activity is first created
 		super.onCreate(savedInstanceState);
-		setContentView(R.xml.sub_menu);
+		setContentView(R.layout.sub_menu);
 		
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
 	               "coverflow", "id", "com.comu.android"));
@@ -343,7 +343,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 	}
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
-		String[] dizi={"Tarayıcı", "Sosyal Aglar","Youtube","Gmail","Oyunlar","Galeri", "Wikipedia", "İndirilenler","Ayarlar"};
+		String[] dizi={"Tarayıcı", "Sosyal Aglar","Youtube","Gmail","Galeri","Oyunlar", "Wikipedia", "İndirilenler","Ayarlar"};
 		Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
 		
 			position++;
@@ -360,8 +360,8 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 				case 3:Intent viewIntent3 = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));				
 				startActivity(viewIntent3);break;
 				
-				case 4:Intent viewIntent4 = new Intent(getApplicationContext(), SubMenuActivity.class);				
-				startActivity(viewIntent4);break;
+				case 4:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://mail.google.com/mail/")));
+			   	break;
 				
 				case 5:Intent viewIntent5 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent5);break;
@@ -369,8 +369,8 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent6);break;
 				
-				case 7:Intent viewIntent7 = new Intent(getApplicationContext(), SubMenuActivity.class);				
-				startActivity(viewIntent7);break;
+				case 7:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://tr.wikipedia.org/wiki/Ana_Sayfa")));
+			   	break;
 				
 				case 8:Intent viewIntent8 = new Intent(new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));				
 				startActivity(viewIntent8);break;
