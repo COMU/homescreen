@@ -45,7 +45,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		//this.setWallpaper();
+		
       
 		imagepath = new VeriTabani(this);
 		
@@ -68,14 +68,14 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 						R.drawable.oyunlar, R.drawable.wikipedia,
 						R.drawable.setup, R.drawable.settings };
 
-				InsertData("tema1", resimler[0].toString(), "Browser");
+				InsertData("tema1", resimler[0].toString(), "Tarayıcı");
 				InsertData("tema1", resimler[1].toString(), "Sosyal Aglar");
 				InsertData("tema1", resimler[2].toString(), "Youtube");
-				InsertData("tema1", resimler[3].toString(), "Gtalk");
+				InsertData("tema1", resimler[3].toString(), "Gmail");
 				InsertData("tema1", resimler[4].toString(), "Oyunlar");
 				InsertData("tema1", resimler[5].toString(), "Galeri");
 				InsertData("tema1", resimler[6].toString(), "Wikipedia");
-				InsertData("tema1", resimler[7].toString(), "SystemSettings");
+				InsertData("tema1", resimler[7].toString(), "İndirilenler");
 				InsertData("tema1", resimler[8].toString(), "Ayarlar");
 				
 				Integer[] resimler2 = {R.drawable.bluetheme1,
@@ -84,14 +84,14 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 						R.drawable.bluetheme6, R.drawable.bluetheme7, 
 						R.drawable.bluetheme8, R.drawable.bluetheme9};
 				
-				InsertData("tema2",resimler2[0].toString(), "Browser");
+				InsertData("tema2",resimler2[0].toString(), "Tarayıcı");
 				InsertData("tema2",resimler2[1].toString(), "Sosyal Aglar");
 				InsertData("tema2",resimler2[2].toString(), "Youtube");
-				InsertData("tema2",resimler2[3].toString(), "Gtalk");
+				InsertData("tema2",resimler2[3].toString(), "Gmail");
 				InsertData("tema2",resimler2[4].toString(), "Oyunlar");
 				InsertData("tema2",resimler2[5].toString(), "Galeri");
 				InsertData("tema2",resimler2[6].toString(), "Wikipedia");
-				InsertData("tema2",resimler2[7].toString(), "Downloads");
+				InsertData("tema2",resimler2[7].toString(), "İndirilenler");
 				InsertData("tema2",resimler2[8].toString(), "Ayarlar");
 				
 				InsertTableName("tema1");
@@ -106,7 +106,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
                "coverflow", "id", "com.comu.android"));
 		setupCoverFlow(coverFlow);
 		
-//		updateTemaId(mTemaId);		
+	//	updateTemaId(mTemaId);		
 
 		
 	}
@@ -181,7 +181,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		coverFlow.setOnItemClickListener(this);
 		coverFlow.setAdapter(coverImageAdapter);       
 		coverFlow.setSpacing(-10);
-		coverFlow.setSelection(4, true);
+		coverFlow.setSelection(5, true);
 		coverFlow.setAnimationDuration(1000);
 		
 
@@ -349,14 +349,14 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	public static int gelenposition;
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
-		String[] dizi={"Browser", "Sosyal Aglar","Youtube","Gmail","Oyunlar","Galeri", "Wikipedia", "SystemSettings","Ayarlar"};
+		String[] dizi={"Tarayıcı", "Sosyal Aglar","Youtube","Gmail","Oyunlar","Galeri", "Wikipedia", "indirilenler","Ayarlar"};
 		Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
 		    position++;
 		    gelenposition=position;
 			switch (position){
 			
-				case 1:Intent viewIntent1 = new Intent("android.provider.Browser.SEARCHES_URI ",Uri.parse("http://www.google.com"));				
-				startActivity(viewIntent1);break;
+			   	case 1:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.google.com")));
+			   	break;
 				
 				case 2:Intent viewIntent2 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent2);break;

@@ -44,7 +44,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 	               "coverflow", "id", "com.comu.android"));
 			setupCoverFlow(coverFlow);
 			final GridView gridview = (GridView) findViewById(R.id.gridView);
-		    gridview.setAdapter(new ImageAdapter2(this));
+		    gridview.setAdapter(new GridImageAdapter(this));
 	}
 	
 	public static int updateId(){
@@ -67,10 +67,10 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 	}
 	public static int  iconCounter;
 	
-	public class ImageAdapter2 extends BaseAdapter {
+	public class GridImageAdapter extends BaseAdapter {
 		 private Context mContext=null;
 
-		    public ImageAdapter2(Context c) {
+		    public GridImageAdapter(Context c) {
 		        mContext = c;
 		    }
 
@@ -343,7 +343,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 	}
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
-		String[] dizi={"Browser", "Sosyal Aglar","Youtube","Gmail","Oyunlar","Galeri", "Wikipedia", "SystemSettings","Ayarlar"};
+		String[] dizi={"Tarayıcı", "Sosyal Aglar","Youtube","Gmail","Oyunlar","Galeri", "Wikipedia", "İndirilenler","Ayarlar"};
 		Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
 		
 			position++;
@@ -351,8 +351,8 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		    alinanposition=position;
 			switch (position){
 			
-				case 1:Intent viewIntent1 = new Intent("android.provider.Browser.SEARCHES_URI ",Uri.parse("http://www.google.com"));				
-				startActivity(viewIntent1);break;
+				case 1:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.google.com")));
+				break;
 				
 				case 2:Intent viewIntent2 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent2);break;

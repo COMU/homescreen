@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.animation.Transformation;
 import android.widget.Gallery;
 import android.widget.ImageView;
-import android.widget.Toast;
+
 
 public class CoverFlow extends Gallery{
 
