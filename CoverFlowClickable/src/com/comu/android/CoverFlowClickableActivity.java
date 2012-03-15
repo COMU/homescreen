@@ -55,6 +55,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		sEditor = mySharedPrefs.edit();
 		int mTemaId = updateId();
 		Log.v("DEBUG","CmTemaId: "+mTemaId);
+
 		sEditor.putInt("mtemaId", mTemaId);
 		sEditor.commit();
 
@@ -106,7 +107,9 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
                "coverflow", "id", "com.comu.android"));
 		setupCoverFlow(coverFlow);
 		
-				
+		updateTemaId(mTemaId);		
+
+		
 	}
 	
 	public static int updateId(){
@@ -122,6 +125,15 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		veriler.put("temaTabloAdlari", name);	
 
 		db.insertOrThrow("temacesitleritablosu", null, veriler);
+	}
+	
+	public void updateTemaId(int id){
+		SQLiteDatabase db = imagepath.getWritableDatabase();
+		ContentValues veriler = new ContentValues();
+		veriler.put("guncelID", id);
+		
+		db.update("guncelIDTable", veriler, "id=1" , null);
+		
 	}
 	
 	private void InsertDataToDB(String resimler, String etiket) {
