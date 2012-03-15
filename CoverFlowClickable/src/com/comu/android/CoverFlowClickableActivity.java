@@ -106,7 +106,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
                "coverflow", "id", "com.comu.android"));
 		setupCoverFlow(coverFlow);
 		
-		updateTemaId(mTemaId);		
+//		updateTemaId(mTemaId);		
 
 		
 	}

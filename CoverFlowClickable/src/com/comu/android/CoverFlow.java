@@ -171,7 +171,7 @@ public class CoverFlow extends Gallery{
 		;
 		final int imageWidth = child.getLayoutParams().width;
 		final int rotation = Math.abs(rotationAngle);
-
+		child.setAlpha(100);
 		mCamera.translate(0.0f, 0.0f, 100.0f);
 
 		// As the angle of the view gets less, zoom in
