@@ -19,7 +19,6 @@ import android.graphics.Bitmap.Config;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -127,7 +126,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		ContentValues veriler = new ContentValues();
 		veriler.put("guncelID", id);
 		
-		db.update("IDTable", veriler, "id=1" , null);
+	//	db.update("IDTable", veriler, "id=1" , null);
 		
 	}
 	
