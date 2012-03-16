@@ -25,7 +25,7 @@ public class ThemeActivity extends Activity{
 			return cursor;
 		}
 		
-		public static int mTemaId ;
+		public static int mTemaId = 1;
 		
 		protected void onCreate(Bundle savedInstanceState) {
 		// Called when the activity is first created
