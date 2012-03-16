@@ -126,7 +126,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		ContentValues veriler = new ContentValues();
 		veriler.put("guncelID", id);
 		
-	//	db.update("IDTable", veriler, "id=1" , null);
+		db.update("IDTable", veriler, "id=1" , null);
 		
 	}
 	
