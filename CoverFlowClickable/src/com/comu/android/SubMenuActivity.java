@@ -86,7 +86,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		        imageView = new ImageView(mContext);
 		        imageView.setLayoutParams(new GridView.LayoutParams(90, 90));
 		        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);	
-		        
+
 		        if(alinanposition==2){
 		        	imageView.setImageResource(socialNetwork[position]);
 		        	iconCounter= socialNetwork.length;
