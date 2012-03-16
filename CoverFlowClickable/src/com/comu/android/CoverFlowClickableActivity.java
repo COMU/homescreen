@@ -97,6 +97,8 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				InsertTableName("tema1");
 				InsertTableName("tema2");
 				
+				InsertID(1);
+				
 			} finally {
 				imagepath.close();
 			}
@@ -106,10 +108,29 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
                "coverflow", "id", "com.comu.android"));
 		setupCoverFlow(coverFlow);
 		
-	//	updateTemaId(mTemaId);		
+		updateTemaId(mTemaId);		
+	
+	}
+	
+	private void InsertID(int id){
+		//TODO insert table name to database
+		SQLiteDatabase db = imagepath.getWritableDatabase();
+		ContentValues veriler = new ContentValues();
+		veriler.put("guncelID", id);	
 
+		db.insertOrThrow("IDTable", null, veriler);
+	}
+	
+	public void updateTemaId(int id){
+		// hold theme's id in database
+		SQLiteDatabase db = imagepath.getWritableDatabase();
+		ContentValues veriler = new ContentValues();
+		veriler.put("guncelID", id);
+		
+		db.update("IDTable", veriler, "id=1" , null);
 		
 	}
+	
 	
 	public static int updateId(){
 		//TODO after pressed the theme button on ThemeActivity class, update temacesitleritablosu's ids 
@@ -124,16 +145,6 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		veriler.put("temaTabloAdlari", name);	
 
 		db.insertOrThrow("temacesitleritablosu", null, veriler);
-	}
-	
-	public void updateTemaId(int id){
-		// hold theme's id in database
-		SQLiteDatabase db = imagepath.getWritableDatabase();
-		ContentValues veriler = new ContentValues();
-		veriler.put("guncelID", id);
-		
-		db.update("guncelIDTable", veriler, "id=1" , null);
-		
 	}
 
 
