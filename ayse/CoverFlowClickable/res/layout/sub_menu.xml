@@ -26,31 +26,29 @@
            android:layout_width="match_parent"
            android:layout_height="70dp"
            android:gravity="center" >
-
            <ImageView
                android:layout_width="50dp"
                android:layout_height="50dp" />
            <ImageView
                android:layout_width="50dp"
-               android:layout_height="50dp" />
-        
+               android:layout_height="50dp" />       
        </TableRow>
        <TableRow
            android:layout_width="match_parent"
            android:layout_height="20dp"
            android:gravity="center" >
             <TextView
-               android:layout_width="25dp"
-               android:layout_height="25dp"
-               android:padding="1dip"
-               android:gravity="center"
-               android:text="ayse" />
-              <TextView
-               android:layout_width="15dp"
+               android:layout_width="50dp"
                android:layout_height="10dp"
                android:padding="1dip"
                android:gravity="center"
-               android:text="ayse" />
+                />
+              <TextView
+               android:layout_width="50dp"
+               android:layout_height="10dp"
+               android:padding="1dip"
+               android:gravity="center"
+                />
        </TableRow>
        <TableRow
            android:layout_width="match_parent"
@@ -59,18 +57,17 @@
            <ImageView
                android:layout_width="50dp"
                android:layout_height="50dp"/>
-
        </TableRow>
         <TableRow
            android:layout_width="match_parent"
            android:layout_height="20dp"
            android:gravity="center" >
             <TextView
-               android:layout_width="25dp"
-               android:layout_height="25dp"
+               android:layout_width="50dp"
+               android:layout_height="10dp"
                android:padding="1dip"
                android:gravity="center"
-               android:text="ayse" />
+                />
        
        </TableRow>
    </TableLayout>

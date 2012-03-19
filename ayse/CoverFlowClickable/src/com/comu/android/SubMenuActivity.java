@@ -19,6 +19,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -41,21 +42,79 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// Called when the activity is first created
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.sub_menu);
+	//	setContentView(R.layout.sub_menu);
 		
-		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
-	               "coverflow", "id", "com.comu.android"));
-		setupCoverFlow(coverFlow);
-		final TableLayout table = (TableLayout) findViewById(R.id.submenu);
+//		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
+//	               "coverflow", "id", "com.comu.android"));
+//		setupCoverFlow(coverFlow);      
+		
+		final Integer[] socialNetwork = {		    				    		
+		    		R.raw.facebook,
+		    		R.raw.twitter,
+		    		R.raw.gtalk
+		    };
+		final String[] SocialIcons={"Facebook","Twitter","GTalk"};
+		
+		
+
+	    final Integer[] folder = {		    		
+		    		R.raw.music,
+		    		R.raw.pictures,
+		    		R.raw.video
+		    };
+	    final String[] FolderIcons={"Müzik","Resim","Video"};
+	    
+	    final TableLayout table = new TableLayout(this);
+	//	final TableLayout table = (TableLayout) findViewById(R.id.submenu);
+		
 		  TableRow tr1 = new TableRow(this);
+		  tr1.setGravity(Gravity.CENTER_HORIZONTAL);
 		  TableRow tr2 = new TableRow(this);
-	
-		subMenuViews(alinanposition,table);
+		  tr2.setGravity(Gravity.CENTER_HORIZONTAL);
+		  TableRow tr3 = new TableRow(this);
+		  tr3.setGravity(Gravity.CENTER_HORIZONTAL);
+		  TableRow tr4 = new TableRow(this);
+		  tr4.setGravity(Gravity.CENTER_HORIZONTAL);
+		  ImageView img1 = new ImageView(this);
+		  ImageView img2 = new ImageView(this);
+		  ImageView img3 = new ImageView(this);
+		  TextView it1 = new TextView(this);
+		  TextView it2 = new TextView(this);
+		  TextView it3 = new TextView(this);
+		  if(alinanposition==2){
+			 
+			  it1.setText(SocialIcons[0]);
+			  it2.setText(SocialIcons[1]);
+			  it3.setText(SocialIcons[2]);
+			  img1.setImageResource(socialNetwork[0]);
+			  img2.setImageResource(socialNetwork[1]);
+			  img3.setImageResource(socialNetwork[2]);
+		  }
+          if(alinanposition==5){
+        	  it1.setText(FolderIcons[0]);
+			  it2.setText(FolderIcons[1]);
+			  it3.setText(FolderIcons[2]);
+			  img1.setImageResource(folder[0]);
+			  img2.setImageResource(folder[1]);
+			  img3.setImageResource(folder[2]);
+		  }	
+          
+          tr1.addView(img1);
+          tr1.addView(img2);
+          tr3.addView(img3);
+          tr2.addView(it1);
+          tr2.addView(it2);
+          tr4.addView(it3);
+          table.addView(tr1);
+          table.addView(tr2);
+          table.addView(tr3);
+          table.addView(tr4);
+          
+          setContentView(table);
 	}
-	public final TableLayout subTable = new TableLayout(this);
+
 	
-	
-	public static void subMenuViews(int position, TableLayout table){		
+/*	public static void subMenuViews(int position, TableLayout table){		
 		
    //		TableRow sunLine = new TableRow(this);;
 		final TextView iconName;
@@ -77,16 +136,12 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 	    String[] FolderIcons={"Müzik","Resim","Video"};
    //   if(alinanposition==2){
         for(int i=0;i<socialNetwork.length;i++){
-        	 
-        	
-    	   
-    	   
-    	   
+ 
         }
         
    //   }	
 		
-	}
+	}*/
 	public static int updateId(){
 		//TODO after pressed the theme button on ThemeActivity class, update temacesitleritablosu's ids 
 		 int id = ThemeActivity.mTemaId;
@@ -105,7 +160,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		coverFlow.setAnimationDuration(1000);
 		
 	}
-	public static int  iconCounter;
+/*	public static int  iconCounter;
 	
 	
 	public class SubImageAdapter extends BaseAdapter {
@@ -166,7 +221,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 
 			
 
-	}
+	}*/
 	public class ImageAdapter extends BaseAdapter {
 		int mGalleryItemBackground;
 		private Context mContext;
