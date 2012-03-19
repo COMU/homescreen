@@ -9,6 +9,7 @@ import android.view.animation.Transformation;
 import android.widget.Gallery;
 import android.widget.ImageView;
 
+
 public class CoverFlow extends Gallery{
 
 	/**
@@ -19,7 +20,7 @@ public class CoverFlow extends Gallery{
 	/**
 	 * The maximum angle the Child ImageView will be rotated by
 	 */
-	private int mMaxRotationAngle = 75;
+	private int mMaxRotationAngle = 65;
 
 	/**
 	 * The maximum zoom on the centre Child
@@ -28,7 +29,8 @@ public class CoverFlow extends Gallery{
 
 	/**
 	 * The Centre of the Coverflow
-	 */
+	 * 
+	 */		
 	private int mCoveflowCenter;
 
 	public CoverFlow(Context context) {
@@ -169,7 +171,7 @@ public class CoverFlow extends Gallery{
 		;
 		final int imageWidth = child.getLayoutParams().width;
 		final int rotation = Math.abs(rotationAngle);
-
+		child.setAlpha(100);
 		mCamera.translate(0.0f, 0.0f, 100.0f);
 
 		// As the angle of the view gets less, zoom in
@@ -184,5 +186,9 @@ public class CoverFlow extends Gallery{
 		imageMatrix.postTranslate((imageWidth / 2), (imageHeight / 2));
 		mCamera.restore();
 	}
+
+
+	
+	
 	
 }
