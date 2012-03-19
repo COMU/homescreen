@@ -30,7 +30,8 @@ import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
 
 public class SubMenuActivity extends Activity implements OnItemClickListener {
-
+int temp=0;
+	
 	public static int alinanposition=CoverFlowClickableActivity.gelenposition;
 	VeriTabani imagepath = new VeriTabani(this);
 	@Override
@@ -384,11 +385,16 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 
 	@Override
 	public void onBackPressed() {
-		
+		temp++;
 		GridView g= (GridView) findViewById(com.comu.android.R.id.gridView);
-		
 		g.setVisibility(View.INVISIBLE);
-		
+		//setContentView(R.layout.main);
+		if(temp>=2) {
+		Intent MainScreen= new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
+		startActivity(MainScreen);
+		temp=0;
+		}
+	
 	}
 	
 }
