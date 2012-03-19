@@ -420,4 +420,6 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	}
 
 
+
+
 }

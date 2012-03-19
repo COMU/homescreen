@@ -382,5 +382,13 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 
 	}
 
+	@Override
+	public void onBackPressed() {
+		
+		GridView g= (GridView) findViewById(com.comu.android.R.id.gridView);
+		
+		g.setVisibility(View.INVISIBLE);
+		
+	}
 	
 }
