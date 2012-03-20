@@ -36,8 +36,8 @@ import android.widget.Toast;
 public class CoverFlowClickableActivity extends Activity implements OnItemClickListener{
 	private VeriTabani imagepath;
 	
-	SharedPreferences mySharedPrefs;
-	SharedPreferences.Editor sEditor;
+//	SharedPreferences mySharedPrefs;
+//	SharedPreferences.Editor sEditor;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -50,12 +50,12 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		
 		//*********************************SharedPreferences*********************
 				
-		mySharedPrefs = (SharedPreferences) getSharedPreferences("sharedPrefs",MODE_PRIVATE);
-		sEditor = mySharedPrefs.edit();
-		int mTemaId = updateId();
-		Log.v("DEBUG","CmTemaId: "+mTemaId);
-		sEditor.putInt("mtemaId", mTemaId);
-		sEditor.commit();
+//		mySharedPrefs = (SharedPreferences) getSharedPreferences("sharedPrefs",MODE_PRIVATE);
+//		sEditor = mySharedPrefs.edit();
+//		int mTemaId = updateId();
+//		Log.v("DEBUG","CmTemaId: "+mTemaId);
+//		sEditor.putInt("mtemaId", mTemaId);
+//		sEditor.commit();
 
 //		****************************************************************
 		if (!checkDataBase()) {
@@ -106,8 +106,6 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
                "coverflow", "id", "com.comu.android"));
 		setupCoverFlow(coverFlow);
-		
-		updateTemaId(mTemaId);		
 	
 	}
 	
@@ -242,6 +240,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			Integer[] dizi= new Integer[9];
 //			int themeID = updateId();
 			Integer[] themeID  = theme();
+			Log.v("DEBUG", "theme durumu :" + themeID[0]);
 			if(themeID[0] == 1){
 				Cursor cursor = GetData("tema1");
 				try {

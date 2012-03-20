@@ -1,6 +1,7 @@
 package com.comu.android;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -25,6 +26,16 @@ public class ThemeActivity extends Activity{
 			return cursor;
 		}
 		
+		public void updateTemaId(int id){
+			// hold theme's id in database
+			SQLiteDatabase db = imagepath.getWritableDatabase();
+			ContentValues veriler = new ContentValues();
+			veriler.put("guncelID", id);
+			
+			db.update("IDTable", veriler, "id=1" , null);
+			
+		}
+		
 		public static int mTemaId = 1;
 		
 		protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +58,7 @@ public class ThemeActivity extends Activity{
 				// TODO Auto-generated method stub	
 				mTemaId = 1;
 				Log.v("DEBUG","mtemaId:" + mTemaId);
+				updateTemaId(mTemaId);
 				Intent intent = new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
 				startActivity(intent);
 				
@@ -59,6 +71,7 @@ public class ThemeActivity extends Activity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub	
 				mTemaId = 2;
+				updateTemaId(mTemaId);
 				Log.v("DEBUG","mtemaId:" + mTemaId);
 				Intent intent = new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
 				startActivity(intent);
