@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+  <TableLayout
+    	android:id="@+id/submenu"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent" >
+
+       <TableRow
+           android:layout_width="match_parent"
+           android:layout_height="70dp"
+           android:gravity="center" >
+           <ImageView
+               android:layout_width="50dp"
+               android:layout_height="50dp" />
+           <ImageView
+               android:layout_width="50dp"
+               android:layout_height="50dp" />       
+       </TableRow>
+       <TableRow
+           android:layout_width="match_parent"
+           android:layout_height="20dp"
+           android:gravity="center" >
+            <TextView
+               android:layout_width="50dp"
+               android:layout_height="10dp"
+               android:padding="1dip"
+               android:gravity="center"
+                />
+              <TextView
+               android:layout_width="50dp"
+               android:layout_height="10dp"
+               android:padding="1dip"
+               android:gravity="center"
+                />
+       </TableRow>
+       <TableRow
+           android:layout_width="match_parent"
+           android:layout_height="70dp"
+           android:gravity="center"  >
+           <ImageView
+               android:layout_width="50dp"
+               android:layout_height="50dp"/>
+       </TableRow>
+        <TableRow
+           android:layout_width="match_parent"
+           android:layout_height="20dp"
+           android:gravity="center" >
+            <TextView
+               android:layout_width="50dp"
+               android:layout_height="10dp"
+               android:padding="1dip"
+               android:gravity="center"
+                />
+       
+       </TableRow>
+   </TableLayout>   
+
+</LinearLayout>
