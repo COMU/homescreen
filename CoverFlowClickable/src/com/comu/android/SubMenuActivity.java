@@ -387,7 +387,7 @@ int temp=0;
 				case 5:Intent viewIntent5 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent5);break;
 	
-				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), GameSubMenu.class);				
 				startActivity(viewIntent6);break;
 				
 				case 7:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://tr.wikipedia.org/wiki/Ana_Sayfa")));
