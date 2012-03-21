@@ -15,7 +15,7 @@
 	<com.comu.android.CoverFlow
 		xmlns:coverflow="http://schemas.android.com/apk/res/com.comu.android"
 		android:id="@+id/coverflow" android:layout_width="match_parent"
-		android:layout_height="200dp" />
+		android:layout_height="230dp" />
 	
     <TableLayout xmlns:tablelayout="http://schemas.android.com/apk/res/android"
        android:id="@+id/tablelayout" android:layout_width="match_parent"

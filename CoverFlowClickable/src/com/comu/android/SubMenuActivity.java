@@ -71,7 +71,7 @@ int temp=0;
 		  TableRow tr1 = new TableRow(this);
 		  tr1.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
-                  100));
+                  120));
 		  tr1.setGravity(Gravity.CENTER);
 		  TableRow tr2 = new TableRow(this);
 		  tr2.setLayoutParams(new LayoutParams(
@@ -81,7 +81,7 @@ int temp=0;
 		  TableRow tr3 = new TableRow(this);
 		  tr3.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
-                  100));
+                  120));
 		  tr3.setGravity(Gravity.CENTER);
 		  TableRow tr4 = new TableRow(this);
 		  tr4.setLayoutParams(new LayoutParams(
@@ -90,33 +90,33 @@ int temp=0;
 		  tr4.setGravity(Gravity.CENTER);
 		  ImageView img1 = new ImageView(this);
 		  img1.setLayoutParams(new LayoutParams(
-                  70,
-                  60));
+                  80,
+                  80));
 		  ImageView img2 = new ImageView(this);
 		  img2.setLayoutParams(new LayoutParams(
-                  70,
-                  60));
+                  80,
+                  80));
 		  ImageView img3 = new ImageView(this);
 		  img3.setLayoutParams(new LayoutParams(
-                  70,
-                  60));
+                  80,
+                  80));
 		  TextView it1 = new TextView(this);
 		  it1.setLayoutParams(new LayoutParams(
-                  70,
+                  80,
                   40));
-		  it1.setTextSize(TypedValue.DENSITY_DEFAULT, 22);
+		  it1.setTextSize(TypedValue.DENSITY_DEFAULT, 25);
 		  it1.setGravity(Gravity.CENTER);
 		  TextView it2 = new TextView(this);
 		  it2.setLayoutParams(new LayoutParams(
-                  70,
+                  80,
                   40));
-		  it2.setTextSize(TypedValue.DENSITY_DEFAULT, 22);
+		  it2.setTextSize(TypedValue.DENSITY_DEFAULT, 25);
 		  it2.setGravity(Gravity.CENTER);
 		  TextView it3 = new TextView(this);
 		  it3.setLayoutParams(new LayoutParams(
-                  70,
+                  80,
                   40));
-		  it3.setTextSize(TypedValue.DENSITY_DEFAULT, 22);
+		  it3.setTextSize(TypedValue.DENSITY_DEFAULT, 25);
 		  it3.setGravity(Gravity.CENTER);
 		  if(alinanposition==2){
 			 
