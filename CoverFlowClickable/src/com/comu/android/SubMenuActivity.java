@@ -132,13 +132,27 @@ int temp=0;
 		
 		Integer[] mImageIds = upgradeImageIds();
 		
+		public Integer[] theme(){
+			Integer[] arrayID = new Integer[1];
+			Cursor theme = GetDataID("IDTable");
+			while(theme.moveToFirst()){
+				int i=0;
+				int themeID = theme.getInt(theme.getColumnIndex("guncelID"));
+				arrayID[i] = themeID;
+				Log.v("DEBUG", "hangi tema:" + themeID);
+				break;
+			}
+			return arrayID;
+		}
+		
 		private Integer[] upgradeImageIds() {
 			// TODO created an image array with imageIds from the database
-			Integer[]  dizi= new Integer[9];
-			int themeID = updateId();
-			
-			if(themeID == 1){
-				Cursor cursor = GetData();
+			Integer[] dizi= new Integer[9];
+//			int themeID = updateId();
+			Integer[] themeID  = theme();
+			Log.v("DEBUG", "theme durumu :" + themeID[0]);
+			if(themeID[0] == 1){
+				Cursor cursor = GetData("tema1");
 				try {
 				  int i=0;
 				  while (cursor.moveToNext()) {
@@ -153,8 +167,8 @@ int temp=0;
 					  // TODO: handle exception
 					  }
 			  }
-			else{
-				Cursor cursor = GetDataFromDB();
+			else if(themeID[0] == 2){
+				Cursor cursor = GetData("tema2");
 				 try {
 					  int i=0;
 					  while (cursor.moveToNext()) {
@@ -171,67 +185,30 @@ int temp=0;
 			}
 			  return dizi;	  
 		}
-		
-/***************/
-//		private String[] upgradeIconName() {
-//			String[] iconName = new String[9];
-//			Cursor cursor = GetData();
-//			try {
-//				  Class RClass = Class.forName("com.comu.android.R");
-//				  Class[] subclasses = RClass.getDeclaredClasses();
-//				  Class RDrawable = null;
-//				  for(Class subclass : subclasses) {
-//					  if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
-//						  RDrawable = subclass;
-//						  break;
-//						  }
-//					  }
-//				  java.lang.reflect.Field[] drawables = RDrawable.getFields();
-//				  int i = 0;
-//				  while (cursor.moveToNext()) {
-//			
-//					  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
-//					  Integer yol = Integer.parseInt(yol_adi);
-//					  String  name = cursor.getString(cursor.getColumnIndex("etiket"));
-//					  
-//					  for(java.lang.reflect.Field dr : drawables) {
-//						  Drawable img = getResources().getDrawable(dr.getInt(null));
-////			  		      Log.v("DEBUG", "yol: " + Integer.toString(yol));
-////			  		      Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
-//			  			  if(dr.getInt(null)==yol);
-//			  			  {
-//			  				  iconName[i] = name;
-//			  				  Log.v("DEBUG","iconName:"+i+" "+iconName[i]);
-//			  				  }
-//			  			  i++;
-//			  			  }
-//					  }
-//				  } catch (Exception e) {
-//				  		        // TODO: handle exception
-//					  }
-//			  return iconName;
-//		}
-		
-/*******************/
+			
+
 		private String[] SELECT = { "imagepath","etiket" };
 		
-		private Cursor GetData() {
-			SQLiteDatabase db = imagepath.getReadableDatabase();
-			Cursor cursor = db.query("tema1", SELECT, null, null,
-					null, null, null);
-			startManagingCursor(cursor);
-			return cursor;
-		}
-		
-		private Cursor GetDataFromDB() {
+		private Cursor GetData(String table) {
 			//TODO get data from database
 			SQLiteDatabase db = imagepath.getReadableDatabase();
-			Cursor cursor = db.query("tema2", SELECT, null, null,
+			Cursor cursor = db.query(table, SELECT, null, null,
 					null, null, null);
 			startManagingCursor(cursor);
 			return cursor;
 		}
 
+		private String[] ThemeID = { "guncelID" };
+		
+		private Cursor GetDataID(String table) {
+			//TODO get data from database
+			SQLiteDatabase db = imagepath.getReadableDatabase();
+			Cursor cursor = db.query(table, ThemeID, null, null,
+					null, null, null);
+			startManagingCursor(cursor);
+			return cursor;
+		}
+		
 
 		private ImageView[] mImages;
 
