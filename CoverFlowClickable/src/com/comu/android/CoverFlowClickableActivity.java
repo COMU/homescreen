@@ -93,8 +93,23 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				InsertData("tema2",resimler2[7].toString(), "İndirilenler");
 				InsertData("tema2",resimler2[8].toString(), "Ayarlar");
 				
+				Integer[] gameIcon = {R.drawable.gameicon1, R.drawable.gameicon2, R.drawable.gameicon3,
+						R.drawable.gameicon4, R.drawable.gameicon5, R.drawable.gameicon6,
+						R.drawable.gameicon7, R.drawable.gameicon8 };
+				
+				InsertData("gameIconTable", gameIcon[0].toString(), "Frozen Bubble");
+				InsertData("gameIconTable", gameIcon[1].toString(), "Unlock Me");
+				InsertData("gameIconTable", gameIcon[2].toString(), "Backgammon");
+				InsertData("gameIconTable", gameIcon[3].toString(), "Snake");
+				InsertData("gameIconTable", gameIcon[4].toString(), "Solitaire");
+				InsertData("gameIconTable", gameIcon[5].toString(), "Tetris");
+				InsertData("gameIconTable", gameIcon[6].toString(), "Sudoku");
+				InsertData("gameIconTable", gameIcon[7].toString(), "Puzzle");
+				
+			
 				InsertTableName("tema1");
 				InsertTableName("tema2");
+				InsertTableName("gameIconTable");
 				
 				InsertID(1);
 				

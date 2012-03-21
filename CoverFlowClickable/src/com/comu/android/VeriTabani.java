@@ -21,6 +21,7 @@ public class VeriTabani extends SQLiteOpenHelper {
 		db.execSQL("CREATE TABLE tema2(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
 		db.execSQL("CREATE TABLE temacesitleritablosu(id INTEGER PRIMARY KEY AUTOINCREMENT,temaTabloAdlari TEXT)");
 		db.execSQL("CREATE TABLE IDTable(id INTEGER PRIMARY KEY AUTOINCREMENT, guncelID INTEGER)");
+		db.execSQL("CREATE TABLE gameIconTable(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
 	}
 
 	@Override
@@ -30,6 +31,7 @@ public class VeriTabani extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXIST tema2");
 		db.execSQL("DROP TABLE IF EXIST temacesitleritablosu");
 		db.execSQL("DROP TABLE IF EXIST IDTable");
+		db.execSQL("DROP TABLE IF EXIST gameIconTable");
 		onCreate(db);
 	}
 
