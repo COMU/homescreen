@@ -23,20 +23,23 @@ public final class R {
         public static final int browser=0x7f020009;
         public static final int c_sosyalag=0x7f02000a;
         public static final int d_youtube=0x7f02000b;
-        public static final int galeri=0x7f02000c;
-        public static final int gameicon1=0x7f02000d;
-        public static final int gameicon2=0x7f02000e;
-        public static final int gameicon3=0x7f02000f;
-        public static final int gameicon4=0x7f020010;
-        public static final int gameicon5=0x7f020011;
-        public static final int gameicon6=0x7f020012;
-        public static final int gameicon7=0x7f020013;
-        public static final int gameicon8=0x7f020014;
-        public static final int gmail=0x7f020015;
-        public static final int oyunlar=0x7f020016;
-        public static final int settings=0x7f020017;
-        public static final int setup=0x7f020018;
-        public static final int wikipedia=0x7f020019;
+        public static final int facebook=0x7f02000c;
+        public static final int galeri=0x7f02000d;
+        public static final int gameicon1=0x7f02000e;
+        public static final int gameicon2=0x7f02000f;
+        public static final int gameicon3=0x7f020010;
+        public static final int gameicon4=0x7f020011;
+        public static final int gameicon5=0x7f020012;
+        public static final int gameicon6=0x7f020013;
+        public static final int gameicon7=0x7f020014;
+        public static final int gameicon8=0x7f020015;
+        public static final int gmail=0x7f020016;
+        public static final int gtalk=0x7f020017;
+        public static final int oyunlar=0x7f020018;
+        public static final int settings=0x7f020019;
+        public static final int setup=0x7f02001a;
+        public static final int twitter=0x7f02001b;
+        public static final int wikipedia=0x7f02001c;
     }
     public static final class id {
         public static final int buton1=0x7f060005;

@@ -105,7 +105,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				InsertData("gameIconTable", gameIcon[6].toString(), "Sudoku");
 				InsertData("gameIconTable", gameIcon[7].toString(), "Puzzle");
 				
-				Integer[] socialNetworkIcon = {R.raw.facebook, R.raw.twitter, R.raw.gtalk};
+				Integer[] socialNetworkIcon = {R.drawable.facebook, R.drawable.twitter, R.drawable.gtalk};
 				
 				InsertData("socialIconTable", socialNetworkIcon[0].toString(), "Facebook");
 				InsertData("socialIconTable", socialNetworkIcon[1].toString(), "Twitter");

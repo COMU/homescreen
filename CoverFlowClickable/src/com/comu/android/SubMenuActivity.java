@@ -155,12 +155,10 @@ int temp=0;
 	  		  dizi[i]=yol;
 	  		  Log.v("DEBUG", "dizi: " + Integer.toString(dizi[i]));
 	  		  i++;
-	  	  }
-			  
+	  	  	}
 		  } catch (Exception e) {
 			  // TODO: handle exception
 			  }
-		
 		return dizi;
 	}
 
