@@ -19,15 +19,20 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
+import android.widget.TableRow.LayoutParams;
 
 public class SubMenuActivity extends Activity implements OnItemClickListener {
 int temp=0;
@@ -43,8 +48,107 @@ int temp=0;
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
 	               "coverflow", "id", "com.comu.android"));
 			setupCoverFlow(coverFlow);
-			final GridView gridview = (GridView) findViewById(R.id.gridView);
-		    gridview.setAdapter(new GridImageAdapter(this));
+		
+		final Integer[] socialNetwork = {		    				    		
+		    		R.raw.facebook,
+		    		R.raw.twitter,
+		    		R.raw.gtalk
+		    };
+		final String[] SocialIcons={"Facebook","Twitter","GTalk"};
+		
+		
+
+	    final Integer[] folder = {		    		
+		    		R.raw.music,
+		    		R.raw.pictures,
+		    		R.raw.video
+		    };
+	    final String[] FolderIcons={"Müzik","Resim","Video"};
+	    
+
+	    final TableLayout table = (TableLayout) findViewById(R.id.tablelayout);
+		table.setStretchAllColumns(true); 
+		  TableRow tr1 = new TableRow(this);
+		  tr1.setLayoutParams(new LayoutParams(
+                  LayoutParams.FILL_PARENT,
+                  100));
+		  tr1.setGravity(Gravity.CENTER);
+		  TableRow tr2 = new TableRow(this);
+		  tr2.setLayoutParams(new LayoutParams(
+                  LayoutParams.FILL_PARENT,
+                  40));
+		  tr2.setGravity(Gravity.CENTER);
+		  TableRow tr3 = new TableRow(this);
+		  tr3.setLayoutParams(new LayoutParams(
+                  LayoutParams.FILL_PARENT,
+                  100));
+		  tr3.setGravity(Gravity.CENTER);
+		  TableRow tr4 = new TableRow(this);
+		  tr4.setLayoutParams(new LayoutParams(
+                  LayoutParams.FILL_PARENT,
+                  40));
+		  tr4.setGravity(Gravity.CENTER);
+		  ImageView img1 = new ImageView(this);
+		  img1.setLayoutParams(new LayoutParams(
+                  70,
+                  60));
+		  ImageView img2 = new ImageView(this);
+		  img2.setLayoutParams(new LayoutParams(
+                  70,
+                  60));
+		  ImageView img3 = new ImageView(this);
+		  img3.setLayoutParams(new LayoutParams(
+                  70,
+                  60));
+		  TextView it1 = new TextView(this);
+		  it1.setLayoutParams(new LayoutParams(
+                  70,
+                  40));
+		  it1.setTextSize(TypedValue.DENSITY_DEFAULT, 22);
+		  it1.setGravity(Gravity.CENTER);
+		  TextView it2 = new TextView(this);
+		  it2.setLayoutParams(new LayoutParams(
+                  70,
+                  40));
+		  it2.setTextSize(TypedValue.DENSITY_DEFAULT, 22);
+		  it2.setGravity(Gravity.CENTER);
+		  TextView it3 = new TextView(this);
+		  it3.setLayoutParams(new LayoutParams(
+                  70,
+                  40));
+		  it3.setTextSize(TypedValue.DENSITY_DEFAULT, 22);
+		  it3.setGravity(Gravity.CENTER);
+		  if(alinanposition==2){
+			 
+			  it1.setText(SocialIcons[0]);
+			  it2.setText(SocialIcons[1]);
+			  it3.setText(SocialIcons[2]);
+			  img1.setImageResource(socialNetwork[0]);
+			  img2.setImageResource(socialNetwork[1]);
+			  img3.setImageResource(socialNetwork[2]);
+		  }
+          if(alinanposition==5){
+        	  it1.setText(FolderIcons[0]);
+			  it2.setText(FolderIcons[1]);
+			  it3.setText(FolderIcons[2]);
+			  img1.setImageResource(folder[0]);
+			  img2.setImageResource(folder[1]);
+			  img3.setImageResource(folder[2]);
+		  }	
+         
+
+          tr1.addView(img1);
+          tr2.addView(it1);
+          tr1.addView(img2);          
+          tr2.addView(it2);
+          tr3.addView(img3);
+          tr4.addView(it3);
+          table.addView(tr1);
+          table.addView(tr2);
+          table.addView(tr3);
+          table.addView(tr4);
+	         
+			
 	}
 	
 	public static int updateId(){
@@ -65,67 +169,7 @@ int temp=0;
 		coverFlow.setAnimationDuration(1000);
 		
 	}
-	public static int  iconCounter;
-	
-	public class GridImageAdapter extends BaseAdapter {
-		 private Context mContext=null;
 
-		    public GridImageAdapter(Context c) {
-		        mContext = c;
-		    }
-
-		    public int getCount() {
-
-		        if(alinanposition==2) return socialNetwork.length;
-		        else if (alinanposition==5) return folder.length;
-		        return 2;
-		    }
-
-		 
-		    public View getView(int position, View convertView, ViewGroup parent) {
-		        ImageView imageView;
-		        imageView = new ImageView(mContext);
-		        imageView.setLayoutParams(new GridView.LayoutParams(90, 90));
-		        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);	
-
-		        if(alinanposition==2){
-		        	imageView.setImageResource(socialNetwork[position]);
-		        	iconCounter= socialNetwork.length;
-		        	return imageView;
-		        	
-		        }
-		        if(alinanposition==5){
-		        	imageView.setImageResource(folder[position]);
-		        	return imageView;
-		        }
-		        else return imageView;
-		    }
-
-		    private Integer[] socialNetwork = {		    				    		
-		    		R.raw.facebook,
-		    		R.raw.twitter,
-		    		R.raw.gtalk
-		    };
-
-		    private Integer[] folder = {		    		
-		    		R.raw.music,
-		    		R.raw.pictures,
-		    		R.raw.video
-		    };
-		    
-			public Object getItem(int position) {
-				// not used 	
-				return null;
-			}
-
-			public long getItemId(int position) {
-				// not used 
-				return 0;
-			}
-
-			
-
-	}
 	public class ImageAdapter extends BaseAdapter {
 		int mGalleryItemBackground;
 		private Context mContext;
@@ -360,18 +404,18 @@ int temp=0;
 
 	}
 
-	@Override
-	public void onBackPressed() {
-		temp++;
-		GridView g= (GridView) findViewById(com.comu.android.R.id.gridView);
-		g.setVisibility(View.INVISIBLE);
-		//setContentView(R.layout.main);
-		if(temp>=2) {
-		Intent MainScreen= new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
-		startActivity(MainScreen);
-		temp=0;
-		}
-	
-	}
+//	@Override
+//	public void onBackPressed() {
+//		temp++;
+//		GridView g= (GridView) findViewById(com.comu.android.R.id.gridView);
+//		g.setVisibility(View.INVISIBLE);
+//		//setContentView(R.layout.main);
+//		if(temp>=2) {
+//		Intent MainScreen= new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
+//		startActivity(MainScreen);
+//		temp=0;
+//		}
+//	
+//	}
 	
 }

@@ -43,8 +43,8 @@ public final class R {
         public static final int buton2=0x7f060007;
         public static final int coverflow=0x7f060002;
         public static final int digitalClock1=0x7f060001;
-        public static final int gridView=0x7f060003;
         public static final int linearLayout1=0x7f060000;
+        public static final int tablelayout=0x7f060003;
         public static final int text1=0x7f060004;
         public static final int text2=0x7f060006;
     }
