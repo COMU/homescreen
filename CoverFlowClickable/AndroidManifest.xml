@@ -25,6 +25,8 @@
         </activity>
         <activity android:name=".ThemeActivity">
         </activity>
+        <activity android:name=".GameSubMenu">
+        </activity>
 		
          </application>
 </manifest>
