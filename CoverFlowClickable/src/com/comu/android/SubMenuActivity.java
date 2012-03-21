@@ -49,20 +49,13 @@ int temp=0;
 	               "coverflow", "id", "com.comu.android"));
 			setupCoverFlow(coverFlow);
 		
-		final Integer[] socialNetwork = {		    				    		
-		    		R.raw.facebook,
-		    		R.raw.twitter,
-		    		R.raw.gtalk
-		    };
+			
+		final Integer[] socialNetwork = getSocial();
 		final String[] SocialIcons={"Facebook","Twitter","GTalk"};
 		
 		
 
-	    final Integer[] folder = {		    		
-		    		R.raw.music,
-		    		R.raw.pictures,
-		    		R.raw.video
-		    };
+	    final Integer[] folder = getGallery();
 	    final String[] FolderIcons={"Müzik","Resim","Video"};
 	    
 
@@ -151,6 +144,58 @@ int temp=0;
 			
 	}
 	
+	private Integer[] getGallery() {
+		Integer[] dizi = new Integer[3];
+		Cursor cursor = GetData("galleryIconTable");
+		try {
+		  int i=0;
+		  while (cursor.moveToNext()) {
+			  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+			  Integer yol = Integer.parseInt(yol_adi);
+	  		  dizi[i]=yol;
+	  		  Log.v("DEBUG", "dizi: " + Integer.toString(dizi[i]));
+	  		  i++;
+	  	  }
+			  
+		  } catch (Exception e) {
+			  // TODO: handle exception
+			  }
+		
+		return dizi;
+	}
+
+	private Integer[] getSocial() {
+		// TODO Auto-generated method stub
+		Integer[] dizi = new Integer[3];
+		Cursor cursor = GetData("socialIconTable");
+		try {
+		  int i=0;
+		  while (cursor.moveToNext()) {
+			  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+			  Integer yol = Integer.parseInt(yol_adi);
+	  		  dizi[i]=yol;
+	  		  Log.v("DEBUG", "dizi: " + Integer.toString(dizi[i]));
+	  		  i++;
+	  	  }
+			  
+		  } catch (Exception e) {
+			  // TODO: handle exception
+			  }
+		
+		return dizi;
+	}
+
+	private String[] SELECT = { "imagepath","etiket" };
+
+	private Cursor GetData(String table) {
+		//TODO get data from database
+		SQLiteDatabase db = imagepath.getReadableDatabase();
+		Cursor cursor = db.query(table, SELECT, null, null,
+				null, null, null);
+		startManagingCursor(cursor);
+		return cursor;
+	}
+
 	public static int updateId(){
 		//TODO after pressed the theme button on ThemeActivity class, update temacesitleritablosu's ids 
 		 int id = ThemeActivity.mTemaId;
