@@ -60,11 +60,10 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		if (!checkDataBase()) {
 			try {
 
-				Integer[]  resimler = { R.drawable.browser,
-						R.drawable.c_sosyalag, R.drawable.youtube,
-						R.drawable.gmail,R.drawable.galeri,
-						R.drawable.oyunlar, R.drawable.wikipedia,
-						R.drawable.setup, R.drawable.settings };
+				Integer[]  resimler = { R.drawable.sitesicon, R.drawable.chatsicon, R.drawable.youtubethreed,
+						R.drawable.mailicon, R.drawable.photosicon, R.drawable.gamesicon, R.drawable.wikipediaicon,
+						R.drawable.torrenticon, R.drawable.systempreferencesicon
+						 };
 
 				InsertData("tema1", resimler[0].toString(), "Tarayıcı");
 				InsertData("tema1", resimler[1].toString(), "Sosyal Aglar");
@@ -105,13 +104,13 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				InsertData("gameIconTable", gameIcon[6].toString(), "Sudoku");
 				InsertData("gameIconTable", gameIcon[7].toString(), "Puzzle");
 				
-				Integer[] socialNetworkIcon = {R.drawable.facebook, R.drawable.twitter, R.drawable.gtalk};
+				Integer[] socialNetworkIcon = {R.drawable.facebookicon, R.drawable.twittericon, R.drawable.gtalkicon};
 				
 				InsertData("socialIconTable", socialNetworkIcon[0].toString(), "Facebook");
 				InsertData("socialIconTable", socialNetworkIcon[1].toString(), "Twitter");
 				InsertData("socialIconTable", socialNetworkIcon[2].toString(), "GTalk");
 			
-				Integer[] GalleryIcon = {R.drawable.music, R.drawable.pictures, R.drawable.video};
+				Integer[] GalleryIcon = {R.drawable.musicicon, R.drawable.picturesicon, R.drawable.videoicon};
 				
 				InsertData("galleryIconTable", GalleryIcon[0].toString(), "Müzik");
 				InsertData("galleryIconTable", GalleryIcon[1].toString(), "Resimler");

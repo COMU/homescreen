@@ -46,10 +46,10 @@ public class ThemeActivity extends Activity{
 		
 		
 		TextView text = (TextView)findViewById(R.id.text1);
-		text.setText("Tema1");
+		text.setText("Default Grey Theme");
 		
 		TextView text2 = (TextView)findViewById(R.id.text2);
-		text2.setText("Tema2");
+		text2.setText("Blue Theme");
 		
 		Button changeTheme = (Button)findViewById(R.id.buton1);
 		changeTheme.setOnClickListener(new OnClickListener() {
