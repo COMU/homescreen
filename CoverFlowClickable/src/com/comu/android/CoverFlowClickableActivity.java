@@ -61,7 +61,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			try {
 
 				Integer[]  resimler = { R.drawable.browser,
-						R.drawable.c_sosyalag, R.drawable.d_youtube,
+						R.drawable.c_sosyalag, R.drawable.youtube,
 						R.drawable.gmail,R.drawable.galeri,
 						R.drawable.oyunlar, R.drawable.wikipedia,
 						R.drawable.setup, R.drawable.settings };
@@ -111,7 +111,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				InsertData("socialIconTable", socialNetworkIcon[1].toString(), "Twitter");
 				InsertData("socialIconTable", socialNetworkIcon[2].toString(), "GTalk");
 			
-				Integer[] GalleryIcon = {R.raw.music, R.raw.pictures, R.raw.video};
+				Integer[] GalleryIcon = {R.drawable.music, R.drawable.pictures, R.drawable.video};
 				
 				InsertData("galleryIconTable", GalleryIcon[0].toString(), "Müzik");
 				InsertData("galleryIconTable", GalleryIcon[1].toString(), "Resimler");

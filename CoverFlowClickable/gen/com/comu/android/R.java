@@ -35,11 +35,16 @@ public final class R {
         public static final int gameicon8=0x7f020015;
         public static final int gmail=0x7f020016;
         public static final int gtalk=0x7f020017;
-        public static final int oyunlar=0x7f020018;
-        public static final int settings=0x7f020019;
-        public static final int setup=0x7f02001a;
-        public static final int twitter=0x7f02001b;
-        public static final int wikipedia=0x7f02001c;
+        public static final int music=0x7f020018;
+        public static final int network=0x7f020019;
+        public static final int oyunlar=0x7f02001a;
+        public static final int pictures=0x7f02001b;
+        public static final int settings=0x7f02001c;
+        public static final int setup=0x7f02001d;
+        public static final int twitter=0x7f02001e;
+        public static final int video=0x7f02001f;
+        public static final int wikipedia=0x7f020020;
+        public static final int youtube=0x7f020021;
     }
     public static final class id {
         public static final int buton1=0x7f060005;
@@ -62,10 +67,9 @@ public final class R {
         public static final int firefox=0x7f040002;
         public static final int gtalk=0x7f040003;
         public static final int music=0x7f040004;
-        public static final int network=0x7f040005;
-        public static final int pictures=0x7f040006;
-        public static final int twitter=0x7f040007;
-        public static final int video=0x7f040008;
+        public static final int pictures=0x7f040005;
+        public static final int twitter=0x7f040006;
+        public static final int video=0x7f040007;
     }
     public static final class string {
         public static final int DigitalClock=0x7f050002;
