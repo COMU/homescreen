@@ -239,7 +239,7 @@ int temp=0;
 			Integer[] themeID  = theme();
 			Log.v("DEBUG", "theme durumu :" + themeID[0]);
 			if(themeID[0] == 1){
-				Cursor cursor = GetData("tema1");
+				Cursor cursor = GetData("greyTheme");
 				try {
 				  int i=0;
 				  while (cursor.moveToNext()) {
@@ -255,7 +255,7 @@ int temp=0;
 					  }
 			  }
 			else if(themeID[0] == 2){
-				Cursor cursor = GetData("tema2");
+				Cursor cursor = GetData("blueTheme");
 				 try {
 					  int i=0;
 					  while (cursor.moveToNext()) {

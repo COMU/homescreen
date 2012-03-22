@@ -17,8 +17,8 @@ public class VeriTabani extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		db.execSQL("CREATE TABLE tema1(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
-		db.execSQL("CREATE TABLE tema2(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
+		db.execSQL("CREATE TABLE greyTheme(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
+		db.execSQL("CREATE TABLE blueTheme(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
 		db.execSQL("CREATE TABLE temacesitleritablosu(id INTEGER PRIMARY KEY AUTOINCREMENT,temaTabloAdlari TEXT)");
 		db.execSQL("CREATE TABLE IDTable(id INTEGER PRIMARY KEY AUTOINCREMENT, guncelID INTEGER)");
 		db.execSQL("CREATE TABLE gameIconTable(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
@@ -30,8 +30,8 @@ public class VeriTabani extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
-		db.execSQL("DROP TABLE IF EXIST tema1");
-		db.execSQL("DROP TABLE IF EXIST tema2");
+		db.execSQL("DROP TABLE IF EXIST greyTheme");
+		db.execSQL("DROP TABLE IF EXIST blueTheme");
 		db.execSQL("DROP TABLE IF EXIST temacesitleritablosu");
 		db.execSQL("DROP TABLE IF EXIST IDTable");
 		db.execSQL("DROP TABLE IF EXIST gameIconTable");

@@ -65,15 +65,15 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 						R.drawable.torrenticon, R.drawable.systempreferencesicon
 						 };
 
-				InsertData("tema1", resimler[0].toString(), "Tarayıcı");
-				InsertData("tema1", resimler[1].toString(), "Sosyal Aglar");
-				InsertData("tema1", resimler[2].toString(), "Youtube");
-				InsertData("tema1", resimler[3].toString(), "Gmail");
-				InsertData("tema1", resimler[4].toString(), "Galeri");
-				InsertData("tema1", resimler[5].toString(), "Oyunlar");
-				InsertData("tema1", resimler[6].toString(), "Wikipedia");
-				InsertData("tema1", resimler[7].toString(), "İndirilenler");
-				InsertData("tema1", resimler[8].toString(), "Ayarlar");
+				InsertData("greyTheme", resimler[0].toString(), "Tarayıcı");
+				InsertData("greyTheme", resimler[1].toString(), "Sosyal Aglar");
+				InsertData("greyTheme", resimler[2].toString(), "Youtube");
+				InsertData("greyTheme", resimler[3].toString(), "Gmail");
+				InsertData("greyTheme", resimler[4].toString(), "Galeri");
+				InsertData("greyTheme", resimler[5].toString(), "Oyunlar");
+				InsertData("greyTheme", resimler[6].toString(), "Wikipedia");
+				InsertData("greyTheme", resimler[7].toString(), "İndirilenler");
+				InsertData("greyTheme", resimler[8].toString(), "Ayarlar");
 				
 				Integer[] resimler2 = {R.drawable.bluetheme1,
 						R.drawable.bluetheme2, R.drawable.bluetheme3,
@@ -81,15 +81,15 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 						R.drawable.bluetheme6, R.drawable.bluetheme7, 
 						R.drawable.bluetheme8, R.drawable.bluetheme9};
 				
-				InsertData("tema2",resimler2[0].toString(), "Tarayıcı");
-				InsertData("tema2",resimler2[1].toString(), "Sosyal Aglar");
-				InsertData("tema2",resimler2[2].toString(), "Youtube");
-				InsertData("tema2",resimler2[3].toString(), "Gmail");
-				InsertData("tema2",resimler2[4].toString(), "Galeri");
-				InsertData("tema2",resimler2[5].toString(), "Oyunlar");
-				InsertData("tema2",resimler2[6].toString(), "Wikipedia");
-				InsertData("tema2",resimler2[7].toString(), "İndirilenler");
-				InsertData("tema2",resimler2[8].toString(), "Ayarlar");
+				InsertData("blueTheme",resimler2[0].toString(), "Tarayıcı");
+				InsertData("blueTheme",resimler2[1].toString(), "Sosyal Aglar");
+				InsertData("blueTheme",resimler2[2].toString(), "Youtube");
+				InsertData("blueTheme",resimler2[3].toString(), "Gmail");
+				InsertData("blueTheme",resimler2[4].toString(), "Galeri");
+				InsertData("blueTheme",resimler2[5].toString(), "Oyunlar");
+				InsertData("blueTheme",resimler2[6].toString(), "Wikipedia");
+				InsertData("blueTheme",resimler2[7].toString(), "İndirilenler");
+				InsertData("blueTheme",resimler2[8].toString(), "Ayarlar");
 				
 				Integer[] gameIcon = {R.drawable.gameicon1, R.drawable.gameicon2, R.drawable.gameicon3,
 						R.drawable.gameicon4, R.drawable.gameicon5, R.drawable.gameicon6,
@@ -116,8 +116,8 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				InsertData("galleryIconTable", GalleryIcon[1].toString(), "Resimler");
 				InsertData("galleryIconTable", GalleryIcon[2].toString(), "Video");
 				
-				InsertTableName("tema1");
-				InsertTableName("tema2");
+				InsertTableName("greyTheme");
+				InsertTableName("blueTheme");
 				InsertTableName("gameIconTable");
 				
 				InsertID(1);
@@ -266,7 +266,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			Integer[] themeID  = theme();
 			Log.v("DEBUG", "theme durumu :" + themeID[0]);
 			if(themeID[0] == 1){
-				Cursor cursor = GetData("tema1");
+				Cursor cursor = GetData("greyTheme");
 				try {
 				  int i=0;
 				  while (cursor.moveToNext()) {
@@ -282,7 +282,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 					  }
 			  }
 			else if(themeID[0] == 2){
-				Cursor cursor = GetData("tema2");
+				Cursor cursor = GetData("blueTheme");
 				 try {
 					  int i=0;
 					  while (cursor.moveToNext()) {
