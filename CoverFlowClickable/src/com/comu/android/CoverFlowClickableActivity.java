@@ -119,8 +119,11 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				InsertTableName("greyTheme");
 				InsertTableName("blueTheme");
 				InsertTableName("gameIconTable");
+				InsertTableName("socialIconTable");
+				InsertTableName("galleryIconTable");
 				
-				InsertID(1);
+				InsertID("IDTable", 1);
+				InsertID("subIDTable", 4);
 				
 			} finally {
 				imagepath.close();
@@ -133,7 +136,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	
 	}
 	
-	private void InsertID(int id){
+	private void InsertID(String table, int id){
 		//TODO insert table name to database
 		SQLiteDatabase db = imagepath.getWritableDatabase();
 		ContentValues veriler = new ContentValues();

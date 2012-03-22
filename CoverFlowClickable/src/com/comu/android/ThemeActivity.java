@@ -33,10 +33,20 @@ public class ThemeActivity extends Activity{
 			veriler.put("guncelID", id);
 			
 			db.update("IDTable", veriler, "id=1" , null);
+		}
+		
+		public void updateSubThemeId(int id) {
+			// TODO Auto-generated method stub
+			SQLiteDatabase db = imagepath.getWritableDatabase();
+			ContentValues veriler = new ContentValues();
+			veriler.put("guncelID", id);
+			
+			db.update("subIDTable", veriler, "id=1" , null);
 			
 		}
 		
 		public static int mTemaId = 1;
+		public static int mSubThemeId = 4;
 		
 		protected void onCreate(Bundle savedInstanceState) {
 		// Called when the activity is first created
@@ -57,8 +67,10 @@ public class ThemeActivity extends Activity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub	
 				mTemaId = 1;
+				mSubThemeId = 4;
 				Log.v("DEBUG","mtemaId:" + mTemaId);
 				updateTemaId(mTemaId);
+				updateSubThemeId(mSubThemeId);
 				Intent intent = new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
 				startActivity(intent);
 				
@@ -71,7 +83,9 @@ public class ThemeActivity extends Activity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub	
 				mTemaId = 2;
+				mSubThemeId = 5;
 				updateTemaId(mTemaId);
+				updateSubThemeId(mSubThemeId);
 				Log.v("DEBUG","mtemaId:" + mTemaId);
 				Intent intent = new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
 				startActivity(intent);
