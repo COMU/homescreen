@@ -3,7 +3,6 @@ package com.comu.android;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,49 +30,50 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.Toast;
 
+
+
 public class CoverFlowClickableActivity extends Activity implements OnItemClickListener{
 	private VeriTabani imagepath;
 	
-	SharedPreferences mySharedPrefs;
-	SharedPreferences.Editor sEditor;
+//	SharedPreferences mySharedPrefs;
+//	SharedPreferences.Editor sEditor;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		//getApplicationContext().setWallpaper(); 
+		
       
 		imagepath = new VeriTabani(this);
 		
 		//*********************************SharedPreferences*********************
 				
-		mySharedPrefs = (SharedPreferences) getSharedPreferences("sharedPrefs",MODE_PRIVATE);
-		sEditor = mySharedPrefs.edit();
-		int mTemaId = updateId();
-		Log.v("DEBUG","CmTemaId: "+mTemaId);
-		sEditor.putInt("mtemaId", mTemaId);
-		sEditor.commit();
+//		mySharedPrefs = (SharedPreferences) getSharedPreferences("sharedPrefs",MODE_PRIVATE);
+//		sEditor = mySharedPrefs.edit();
+//		int mTemaId = updateId();
+//		Log.v("DEBUG","CmTemaId: "+mTemaId);
+//		sEditor.putInt("mtemaId", mTemaId);
+//		sEditor.commit();
 
 //		****************************************************************
 		if (!checkDataBase()) {
 			try {
 
-				Integer[]  resimler = { R.drawable.browser,
-						R.drawable.c_sosyalag, R.drawable.d_youtube,
-						R.drawable.gmail,R.drawable.galeri,
-						R.drawable.oyunlar, R.drawable.wikipedia,
-						R.drawable.setup, R.drawable.settings };
+				Integer[]  resimler = { R.drawable.sitesicon, R.drawable.chatsicon, R.drawable.youtubethreed,
+						R.drawable.mailicon, R.drawable.photosicon, R.drawable.gamesicon, R.drawable.wikipediaicon,
+						R.drawable.torrenticon, R.drawable.systempreferencesicon
+						 };
 
-				InsertData("tema1", resimler[0].toString(), "Tarayıcı");
-				InsertData("tema1", resimler[1].toString(), "Sosyal Aglar");
-				InsertData("tema1", resimler[2].toString(), "Youtube");
-				InsertData("tema1", resimler[3].toString(), "Gmail");
-				InsertData("tema1", resimler[4].toString(), "Galeri");
-				InsertData("tema1", resimler[5].toString(), "Oyunlar");
-				InsertData("tema1", resimler[6].toString(), "Wikipedia");
-				InsertData("tema1", resimler[7].toString(), "İndirilenler");
-				InsertData("tema1", resimler[8].toString(), "Ayarlar");
+				InsertData("greyTheme", resimler[0].toString(), "Tarayıcı");
+				InsertData("greyTheme", resimler[1].toString(), "Sosyal Aglar");
+				InsertData("greyTheme", resimler[2].toString(), "Youtube");
+				InsertData("greyTheme", resimler[3].toString(), "Gmail");
+				InsertData("greyTheme", resimler[4].toString(), "Galeri");
+				InsertData("greyTheme", resimler[5].toString(), "Oyunlar");
+				InsertData("greyTheme", resimler[6].toString(), "Wikipedia");
+				InsertData("greyTheme", resimler[7].toString(), "İndirilenler");
+				InsertData("greyTheme", resimler[8].toString(), "Ayarlar");
 				
 				Integer[] resimler2 = {R.drawable.bluetheme1,
 						R.drawable.bluetheme2, R.drawable.bluetheme3,
@@ -81,20 +81,55 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 						R.drawable.bluetheme6, R.drawable.bluetheme7, 
 						R.drawable.bluetheme8, R.drawable.bluetheme9};
 				
-				InsertData("tema2",resimler2[0].toString(), "Tarayıcı");
-				InsertData("tema2",resimler2[1].toString(), "Sosyal Aglar");
-				InsertData("tema2",resimler2[2].toString(), "Youtube");
-				InsertData("tema2",resimler2[3].toString(), "Gmail");
-				InsertData("tema2",resimler2[4].toString(), "Galeri");
-				InsertData("tema2",resimler2[5].toString(), "Oyunlar");
-				InsertData("tema2",resimler2[6].toString(), "Wikipedia");
-				InsertData("tema2",resimler2[7].toString(), "İndirilenler");
-				InsertData("tema2",resimler2[8].toString(), "Ayarlar");
+				InsertData("blueTheme",resimler2[0].toString(), "Tarayıcı");
+				InsertData("blueTheme",resimler2[1].toString(), "Sosyal Aglar");
+				InsertData("blueTheme",resimler2[2].toString(), "Youtube");
+				InsertData("blueTheme",resimler2[3].toString(), "Gmail");
+				InsertData("blueTheme",resimler2[4].toString(), "Galeri");
+				InsertData("blueTheme",resimler2[5].toString(), "Oyunlar");
+				InsertData("blueTheme",resimler2[6].toString(), "Wikipedia");
+				InsertData("blueTheme",resimler2[7].toString(), "İndirilenler");
+				InsertData("blueTheme",resimler2[8].toString(), "Ayarlar");
 				
-				InsertTableName("tema1");
-				InsertTableName("tema2");
+				Integer[] gameIcon = {R.drawable.gameicon1, R.drawable.gameicon2, R.drawable.gameicon3,
+						R.drawable.gameicon4, R.drawable.gameicon5, R.drawable.gameicon6,
+						R.drawable.gameicon7, R.drawable.gameicon8 };
 				
-				InsertID(1);
+				InsertData("gameIconTable", gameIcon[0].toString(), "Frozen Bubble");
+				InsertData("gameIconTable", gameIcon[1].toString(), "Unlock Me");
+				InsertData("gameIconTable", gameIcon[2].toString(), "Backgammon");
+				InsertData("gameIconTable", gameIcon[3].toString(), "Snake");
+				InsertData("gameIconTable", gameIcon[4].toString(), "Solitaire");
+				InsertData("gameIconTable", gameIcon[5].toString(), "Tetris");
+				InsertData("gameIconTable", gameIcon[6].toString(), "Sudoku");
+				InsertData("gameIconTable", gameIcon[7].toString(), "Puzzle");
+				
+				Integer[] socialNetworkIcon = {R.drawable.facebookicon, R.drawable.twittericon, R.drawable.gtalkicon};
+				
+				InsertData("socialIconTable", socialNetworkIcon[0].toString(), "Facebook");
+				InsertData("socialIconTable", socialNetworkIcon[1].toString(), "Twitter");
+				InsertData("socialIconTable", socialNetworkIcon[2].toString(), "GTalk");
+				
+				Integer[] eggsocialNetworkIcon = {R.drawable.facebook, R.drawable.twitter, R.drawable.gtalk};
+				
+				InsertData("eggsocialIconTable", eggsocialNetworkIcon[0].toString(), "Facebook");
+				InsertData("eggsocialIconTable", eggsocialNetworkIcon[1].toString(), "Twitter");
+				InsertData("eggsocialIconTable", eggsocialNetworkIcon[2].toString(), "GTalk");
+			
+				Integer[] GalleryIcon = {R.drawable.musicicon, R.drawable.picturesicon, R.drawable.videoicon};
+				
+				InsertData("galleryIconTable", GalleryIcon[0].toString(), "Müzik");
+				InsertData("galleryIconTable", GalleryIcon[1].toString(), "Resimler");
+				InsertData("galleryIconTable", GalleryIcon[2].toString(), "Video");
+				
+				InsertTableName("greyTheme");
+				InsertTableName("blueTheme");
+				InsertTableName("gameIconTable");
+				InsertTableName("socialIconTable");
+				InsertTableName("galleryIconTable");
+				
+				InsertID("IDTable", 1);
+				InsertID("subIDTable", 4);
 				
 			} finally {
 				imagepath.close();
@@ -104,13 +139,10 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
                "coverflow", "id", "com.comu.android"));
 		setupCoverFlow(coverFlow);
-		
-		
-		updateTemaId(mTemaId);		
 	
 	}
 	
-	private void InsertID(int id){
+	private void InsertID(String table, int id){
 		//TODO insert table name to database
 		SQLiteDatabase db = imagepath.getWritableDatabase();
 		ContentValues veriler = new ContentValues();
@@ -181,6 +213,17 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		return cursor;
 	}
 	
+	private String[] ThemeID = { "guncelID" };
+	
+	private Cursor GetDataID(String table) {
+		//TODO get data from database
+		SQLiteDatabase db = imagepath.getReadableDatabase();
+		Cursor cursor = db.query(table, ThemeID, null, null,
+				null, null, null);
+		startManagingCursor(cursor);
+		return cursor;
+	}
+	
 
 	private void setupCoverFlow(CoverFlow coverFlow) {
 		// CoverFlow is assigned to the settings
@@ -191,8 +234,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		coverFlow.setAdapter(coverImageAdapter);       
 		coverFlow.setSpacing(-10);
 		coverFlow.setSelection(5, true);
-		coverFlow.setAnimationDuration(1000);
-		
+		coverFlow.setAnimationDuration(1000);	
 
 	}
 
@@ -212,14 +254,28 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		}
 
 		
+		public Integer[] theme(){
+			Integer[] arrayID = new Integer[1];
+			Cursor theme = GetDataID("IDTable");
+			while(theme.moveToFirst()){
+				int i=0;
+				int themeID = theme.getInt(theme.getColumnIndex("guncelID"));
+				arrayID[i] = themeID;
+				Log.v("DEBUG", "hangi tema:" + themeID);
+				break;
+			}
+			return arrayID;
+		}
+		
 		//*******************************************
 		private Integer[] upgradeImageIds() {
 			// TODO created an image array with imageIds from the database
-			Integer[]  dizi= new Integer[9];
-			int themeID = updateId();
-			
-			if(themeID == 1){
-				Cursor cursor = GetData("tema1");
+			Integer[] dizi= new Integer[9];
+//			int themeID = updateId();
+			Integer[] themeID  = theme();
+			Log.v("DEBUG", "theme durumu :" + themeID[0]);
+			if(themeID[0] == 1){
+				Cursor cursor = GetData("greyTheme");
 				try {
 				  int i=0;
 				  while (cursor.moveToNext()) {
@@ -234,8 +290,8 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 					  // TODO: handle exception
 					  }
 			  }
-			else{
-				Cursor cursor = GetData("tema2");
+			else if(themeID[0] == 2){
+				Cursor cursor = GetData("blueTheme");
 				 try {
 					  int i=0;
 					  while (cursor.moveToNext()) {
@@ -334,9 +390,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 			i.setImageResource(mImageIds[position]);
 			i.setLayoutParams(new CoverFlow.LayoutParams(200, 300));
 			i.setScaleType(ImageView.ScaleType.FIT_XY);
-//			String[] dizi={"Tarayıcı", "Sosyal Aglar","Youtube","Gmail","Galeri","Oyunlar", "Wikipedia", "indirilenler","Ayarlar"};
-//			Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
-//		    position++;
+		
 			// Make sure we set anti-aliasing otherwise we get jaggies
 			BitmapDrawable drawable = (BitmapDrawable) i.getDrawable();
 			drawable.setAntiAlias(true);
@@ -381,7 +435,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 				case 5:Intent viewIntent5 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent5);break;
 	
-				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), GameSubMenu.class);				
 				startActivity(viewIntent6);break;
 				
 				case 7:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://tr.wikipedia.org/wiki/Ana_Sayfa")));
@@ -396,6 +450,8 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
                 
 			}
 	}
+
+
 
 
 }

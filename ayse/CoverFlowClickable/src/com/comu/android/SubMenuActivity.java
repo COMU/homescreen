@@ -19,68 +19,109 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
+import android.widget.TableRow.LayoutParams;
 
 public class SubMenuActivity extends Activity implements OnItemClickListener {
-
+int temp=0;
+	
 	public static int alinanposition=CoverFlowClickableActivity.gelenposition;
 	VeriTabani imagepath = new VeriTabani(this);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// Called when the activity is first created
 		super.onCreate(savedInstanceState);
-	//	setContentView(R.layout.sub_menu);
+		setContentView(R.layout.sub_menu);
 		
-//		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
-//	               "coverflow", "id", "com.comu.android"));
-//		setupCoverFlow(coverFlow);      
+		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
+	               "coverflow", "id", "com.comu.android"));
+			setupCoverFlow(coverFlow);
+//		final ImageView folderImages = new ImageView(this);
+//		final ImageView socialImages = new ImageView(this);
 		
-		final Integer[] socialNetwork = {		    				    		
-		    		R.raw.facebook,
-		    		R.raw.twitter,
-		    		R.raw.gtalk
-		    };
+		final Integer[] socialNetwork = getSocial();
 		final String[] SocialIcons={"Facebook","Twitter","GTalk"};
 		
 		
 
-	    final Integer[] folder = {		    		
-		    		R.raw.music,
-		    		R.raw.pictures,
-		    		R.raw.video
-		    };
+	    final Integer[] folder = getGallery();
 	    final String[] FolderIcons={"Müzik","Resim","Video"};
 	    
-	    final TableLayout table = new TableLayout(this);
-	//	final TableLayout table = (TableLayout) findViewById(R.id.submenu);
-		
+
+	    final TableLayout table = (TableLayout) findViewById(R.id.tablelayout);
+		table.setStretchAllColumns(true);
+		table.setOnClickListener(new OnClickListener(){
+		        public void onClick(View arg){
+		             
+		             Toast toast = Toast.makeText(getApplicationContext(),"tiklandi", Toast.LENGTH_SHORT);
+		             toast.show();
+
+		        }
+		    });
+
 		  TableRow tr1 = new TableRow(this);
-		  tr1.setGravity(Gravity.CENTER_HORIZONTAL);
+		  tr1.setLayoutParams(new LayoutParams(
+                  LayoutParams.FILL_PARENT,
+                  120));
+		  tr1.setGravity(Gravity.CENTER);
 		  TableRow tr2 = new TableRow(this);
-		  tr2.setGravity(Gravity.CENTER_HORIZONTAL);
+		  tr2.setLayoutParams(new LayoutParams(
+                  LayoutParams.FILL_PARENT,
+                  40));
+		  tr2.setGravity(Gravity.CENTER);
 		  TableRow tr3 = new TableRow(this);
-		  tr3.setGravity(Gravity.CENTER_HORIZONTAL);
+		  tr3.setLayoutParams(new LayoutParams(
+                  LayoutParams.FILL_PARENT,
+                  120));
+		  tr3.setGravity(Gravity.CENTER);
 		  TableRow tr4 = new TableRow(this);
-		  tr4.setGravity(Gravity.CENTER_HORIZONTAL);
+		  tr4.setLayoutParams(new LayoutParams(
+                  LayoutParams.FILL_PARENT,
+                  40));
+		  tr4.setGravity(Gravity.CENTER);
 		  ImageView img1 = new ImageView(this);
+		  img1.setLayoutParams(new LayoutParams(
+                  80,
+                  80));
 		  ImageView img2 = new ImageView(this);
+		  img2.setLayoutParams(new LayoutParams(
+                  80,
+                  80));
 		  ImageView img3 = new ImageView(this);
+		  img3.setLayoutParams(new LayoutParams(
+                  80,
+                  80));
 		  TextView it1 = new TextView(this);
+		  it1.setLayoutParams(new LayoutParams(
+                  80,
+                  40));
+		  it1.setTextSize(TypedValue.DENSITY_DEFAULT, 25);
+		  it1.setGravity(Gravity.CENTER);
 		  TextView it2 = new TextView(this);
+		  it2.setLayoutParams(new LayoutParams(
+                  80,
+                  40));
+		  it2.setTextSize(TypedValue.DENSITY_DEFAULT, 25);
+		  it2.setGravity(Gravity.CENTER);
 		  TextView it3 = new TextView(this);
+		  it3.setLayoutParams(new LayoutParams(
+                  80,
+                  40));
+		  it3.setTextSize(TypedValue.DENSITY_DEFAULT, 25);
+		  it3.setGravity(Gravity.CENTER);
 		  if(alinanposition==2){
 			 
 			  it1.setText(SocialIcons[0]);
@@ -89,6 +130,10 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 			  img1.setImageResource(socialNetwork[0]);
 			  img2.setImageResource(socialNetwork[1]);
 			  img3.setImageResource(socialNetwork[2]);
+//			  socialImages.setTag(img1);
+//			  socialImages.setTag(img2);
+//			  socialImages.setTag(img3);
+//			  socialImages.setOnClickListener(this);
 		  }
           if(alinanposition==5){
         	  it1.setText(FolderIcons[0]);
@@ -98,52 +143,77 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 			  img2.setImageResource(folder[1]);
 			  img3.setImageResource(folder[2]);
 		  }	
-          
+         
+
           tr1.addView(img1);
-          tr1.addView(img2);
-          tr3.addView(img3);
           tr2.addView(it1);
+          tr1.addView(img2);          
           tr2.addView(it2);
+          tr3.addView(img3);
           tr4.addView(it3);
           table.addView(tr1);
           table.addView(tr2);
           table.addView(tr3);
           table.addView(tr4);
-          
-          setContentView(table);
+//	      img1.setOnClickListener((OnClickListener) this);
+//	      img2.setOnClickListener((OnClickListener) this);
+//	      img3.setOnClickListener((OnClickListener) this);
+	      
+			
 	}
 
-	
-/*	public static void subMenuViews(int position, TableLayout table){		
-		
-   //		TableRow sunLine = new TableRow(this);;
-		final TextView iconName;
-		
-		Integer[] socialNetwork = {		    				    		
-		    		R.raw.facebook,
-		    		R.raw.twitter,
-		    		R.raw.gtalk
-		    };
-		String[] SocialIcons={"Facebook","Twitter","GTalk"};
-		
-		
+	private Integer[] getGallery() {
+		Integer[] dizi = new Integer[3];
+		Cursor cursor = GetData("galleryIconTable");
+		try {
+		  int i=0;
+		  while (cursor.moveToNext()) {
+			  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+			  Integer yol = Integer.parseInt(yol_adi);
+	  		  dizi[i]=yol;
+	  		  Log.v("DEBUG", "dizi: " + Integer.toString(dizi[i]));
+	  		  i++;
+	  	  	}
+		  } catch (Exception e) {
+			  // handle exception
+			  }
+		return dizi;
+	}
 
-	    Integer[] folder = {		    		
-		    		R.raw.music,
-		    		R.raw.pictures,
-		    		R.raw.video
-		    };
-	    String[] FolderIcons={"Müzik","Resim","Video"};
-   //   if(alinanposition==2){
-        for(int i=0;i<socialNetwork.length;i++){
- 
-        }
-        
-   //   }	
+	private Integer[] getSocial() {
+		// Auto-generated method stub
+		Integer[] dizi = new Integer[3];
+		Cursor cursor = GetData("socialIconTable");
+		try {
+		  int i=0;
+		  while (cursor.moveToNext()) {
+			  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+			  Integer yol = Integer.parseInt(yol_adi);
+	  		  dizi[i]=yol;
+	  		  Log.v("DEBUG", "dizi: " + Integer.toString(dizi[i]));
+	  		  i++;
+	  	  }
+			  
+		  } catch (Exception e) {
+			  // handle exception
+			  }
 		
-	}*/
+		return dizi;
+	}
+
+	private String[] SELECT = { "imagepath","etiket" };
+
+	private Cursor GetData(String table) {
+		// get data from database
+		SQLiteDatabase db = imagepath.getReadableDatabase();
+		Cursor cursor = db.query(table, SELECT, null, null,
+				null, null, null);
+		startManagingCursor(cursor);
+		return cursor;
+	}
+
 	public static int updateId(){
-		//TODO after pressed the theme button on ThemeActivity class, update temacesitleritablosu's ids 
+		//after pressed the theme button on ThemeActivity class, update temacesitleritablosu's ids 
 		 int id = ThemeActivity.mTemaId;
 		 return id;	
 	}
@@ -160,81 +230,34 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		coverFlow.setAnimationDuration(1000);
 		
 	}
-/*	public static int  iconCounter;
-	
-	
-	public class SubImageAdapter extends BaseAdapter {
-		 private Context mContext=null;
 
-		    public SubImageAdapter(Context c) {
-		        mContext = c;
-		    }
-
-		    public int getCount() {
-
-		        if(alinanposition==2) return socialNetwork.length;
-		        else if (alinanposition==5) return folder.length;
-		        return 2;
-		    }
-
-		 
-		    public View getView(int position, View convertView, ViewGroup parent) {
-		        ImageView imageView;
-		        imageView = new ImageView(mContext);
-		        imageView.setLayoutParams(new GridView.LayoutParams(90, 90));
-		        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);	
-		        
-		        if(alinanposition==2){
-		        	imageView.setImageResource(socialNetwork[position]);
-		        	iconCounter= socialNetwork.length;
-		        	return imageView;
-		        	
-		        }
-		        if(alinanposition==5){
-		        	imageView.setImageResource(folder[position]);
-		        	return imageView;
-		        }
-		        else return imageView;
-		    }
-
-		    private Integer[] socialNetwork = {		    				    		
-		    		R.raw.facebook,
-		    		R.raw.twitter,
-		    		R.raw.gtalk
-		    };
-
-		    private Integer[] folder = {		    		
-		    		R.raw.music,
-		    		R.raw.pictures,
-		    		R.raw.video
-		    };
-		    
-			public Object getItem(int position) {
-				// not used 	
-				return null;
-			}
-
-			public long getItemId(int position) {
-				// not used 
-				return 0;
-			}
-
-			
-
-	}*/
 	public class ImageAdapter extends BaseAdapter {
 		int mGalleryItemBackground;
 		private Context mContext;
 		
 		Integer[] mImageIds = upgradeImageIds();
 		
+		public Integer[] theme(){
+			Integer[] arrayID = new Integer[1];
+			Cursor theme = GetDataID("IDTable");
+			while(theme.moveToFirst()){
+				int i=0;
+				int themeID = theme.getInt(theme.getColumnIndex("guncelID"));
+				arrayID[i] = themeID;
+				Log.v("DEBUG", "hangi tema:" + themeID);
+				break;
+			}
+			return arrayID;
+		}
+		
 		private Integer[] upgradeImageIds() {
-			// TODO created an image array with imageIds from the database
-			Integer[]  dizi= new Integer[9];
-			int themeID = updateId();
-			
-			if(themeID == 1){
-				Cursor cursor = GetData();
+			// created an image array with imageIds from the database
+			Integer[] dizi= new Integer[9];
+//			int themeID = updateId();
+			Integer[] themeID  = theme();
+			Log.v("DEBUG", "theme durumu :" + themeID[0]);
+			if(themeID[0] == 1){
+				Cursor cursor = GetData("greyTheme");
 				try {
 				  int i=0;
 				  while (cursor.moveToNext()) {
@@ -246,11 +269,11 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 			  	  }
 					  
 				  } catch (Exception e) {
-					  // TODO: handle exception
+					  // handle exception
 					  }
 			  }
-			else{
-				Cursor cursor = GetDataFromDB();
+			else if(themeID[0] == 2){
+				Cursor cursor = GetData("blueTheme");
 				 try {
 					  int i=0;
 					  while (cursor.moveToNext()) {
@@ -262,72 +285,35 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 				  	  }
 						  
 					  } catch (Exception e) {
-						  // TODO: handle exception
+						  //  handle exception
 						  }	
 			}
 			  return dizi;	  
 		}
-		
-/***************/
-//		private String[] upgradeIconName() {
-//			String[] iconName = new String[9];
-//			Cursor cursor = GetData();
-//			try {
-//				  Class RClass = Class.forName("com.comu.android.R");
-//				  Class[] subclasses = RClass.getDeclaredClasses();
-//				  Class RDrawable = null;
-//				  for(Class subclass : subclasses) {
-//					  if("com.comu.android.R.drawable".equals(subclass.getCanonicalName())) {
-//						  RDrawable = subclass;
-//						  break;
-//						  }
-//					  }
-//				  java.lang.reflect.Field[] drawables = RDrawable.getFields();
-//				  int i = 0;
-//				  while (cursor.moveToNext()) {
-//			
-//					  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
-//					  Integer yol = Integer.parseInt(yol_adi);
-//					  String  name = cursor.getString(cursor.getColumnIndex("etiket"));
-//					  
-//					  for(java.lang.reflect.Field dr : drawables) {
-//						  Drawable img = getResources().getDrawable(dr.getInt(null));
-////			  		      Log.v("DEBUG", "yol: " + Integer.toString(yol));
-////			  		      Log.v("DEBUG", "dr: " + Integer.toString(dr.getInt(null)));
-//			  			  if(dr.getInt(null)==yol);
-//			  			  {
-//			  				  iconName[i] = name;
-//			  				  Log.v("DEBUG","iconName:"+i+" "+iconName[i]);
-//			  				  }
-//			  			  i++;
-//			  			  }
-//					  }
-//				  } catch (Exception e) {
-//				  		        // TODO: handle exception
-//					  }
-//			  return iconName;
-//		}
-		
-/*******************/
+			
+
 		private String[] SELECT = { "imagepath","etiket" };
 		
-		private Cursor GetData() {
+		private Cursor GetData(String table) {
+			// get data from database
 			SQLiteDatabase db = imagepath.getReadableDatabase();
-			Cursor cursor = db.query("tema1", SELECT, null, null,
-					null, null, null);
-			startManagingCursor(cursor);
-			return cursor;
-		}
-		
-		private Cursor GetDataFromDB() {
-			//TODO get data from database
-			SQLiteDatabase db = imagepath.getReadableDatabase();
-			Cursor cursor = db.query("tema2", SELECT, null, null,
+			Cursor cursor = db.query(table, SELECT, null, null,
 					null, null, null);
 			startManagingCursor(cursor);
 			return cursor;
 		}
 
+		private String[] ThemeID = { "guncelID" };
+		
+		private Cursor GetDataID(String table) {
+			//get data from database
+			SQLiteDatabase db = imagepath.getReadableDatabase();
+			Cursor cursor = db.query(table, ThemeID, null, null,
+					null, null, null);
+			startManagingCursor(cursor);
+			return cursor;
+		}
+		
 
 		private ImageView[] mImages;
 
@@ -437,6 +423,8 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		}
 	
 	}
+	
+
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
 		String[] dizi={"Tarayıcı", "Sosyal Aglar","Youtube","Gmail","Galeri","Oyunlar", "Wikipedia", "İndirilenler","Ayarlar"};
@@ -462,7 +450,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 				case 5:Intent viewIntent5 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent5);break;
 	
-				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), GameSubMenu.class);				
 				startActivity(viewIntent6);break;
 				
 				case 7:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://tr.wikipedia.org/wiki/Ana_Sayfa")));
@@ -479,5 +467,18 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 
 	}
 
+//	@Override
+//	public void onBackPressed() {
+//		temp++;
+//		GridView g= (GridView) findViewById(com.comu.android.R.id.gridView);
+//		g.setVisibility(View.INVISIBLE);
+//		//setContentView(R.layout.main);
+//		if(temp>=2) {
+//		Intent MainScreen= new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
+//		startActivity(MainScreen);
+//		temp=0;
+//		}
+//	
+//	}
 	
 }
