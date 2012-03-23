@@ -1,6 +1,5 @@
 package com.comu.android;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;

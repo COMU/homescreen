@@ -1,6 +1,6 @@
 package com.comu.android;
 
-import android.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,6 +22,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -48,19 +49,16 @@ public static int currentPosition=5;
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
 	               "coverflow", "id", "com.comu.android"));
 			setupCoverFlow(coverFlow);
-		
-			
+					
 		final Integer[] socialNetwork = getSocial();
 		final String[] SocialIcons={"Facebook","Twitter","GTalk"};
 		
-		
-
 	    final Integer[] folder = getGallery();
-	    final String[] FolderIcons={"Müzik","Resim","Video"};
-	    
+	    final String[] FolderIcons={"Müzik","Resim","Video"};	    
 
 	    final TableLayout table = (TableLayout) findViewById(R.id.tablelayout);
 		table.setStretchAllColumns(true); 
+		table.setSelected(true);
 		  TableRow tr1 = new TableRow(this);
 		  tr1.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
@@ -70,7 +68,7 @@ public static int currentPosition=5;
 		  tr2.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
                   40));
-		  tr2.setGravity(Gravity.CENTER);
+		  tr2.setGravity(Gravity.CENTER);		 
 		  TableRow tr3 = new TableRow(this);
 		  tr3.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
@@ -81,18 +79,24 @@ public static int currentPosition=5;
                   LayoutParams.FILL_PARENT,
                   40));
 		  tr4.setGravity(Gravity.CENTER);
-		  ImageView img1 = new ImageView(this);
+		  final ImageView img1 = new ImageView(this);
 		  img1.setLayoutParams(new LayoutParams(
                   80,
                   80));
+		  img1.setClickable(true);
+		  img1.setSelected(true);
 		  ImageView img2 = new ImageView(this);
 		  img2.setLayoutParams(new LayoutParams(
                   80,
                   80));
+		  img2.setClickable(true);
+		  img2.setSelected(true);
 		  ImageView img3 = new ImageView(this);
 		  img3.setLayoutParams(new LayoutParams(
                   80,
                   80));
+		  img3.setClickable(true);
+		  img3.setSelected(true);
 		  TextView it1 = new TextView(this);
 		  it1.setLayoutParams(new LayoutParams(
                   80,
@@ -129,7 +133,6 @@ public static int currentPosition=5;
 			  img3.setImageResource(folder[2]);
 		  }	
          
-
           tr1.addView(img1);
           tr2.addView(it1);
           tr1.addView(img2);          
@@ -140,10 +143,39 @@ public static int currentPosition=5;
           table.addView(tr2);
           table.addView(tr3);
           table.addView(tr4);
-	         
-			
+         	
+	 img1.setOnClickListener(new OnClickListener(){
+	        public void onClick(View arg){
+	        	int sonuc=img1.getId();
+//	        	if(folder[0]==img1.getResources().getInteger(0)){
+//	        		 Toast toast = Toast.makeText(getApplicationContext(),"tiklandi", Toast.LENGTH_SHORT);
+//		             toast.show();	
+//	        	}
+//	        	else if(socialNetwork[0]==img1.getResources().getInteger(0)){
+//	        		 Toast toast = Toast.makeText(getApplicationContext(),"tiklandi", Toast.LENGTH_SHORT);
+//		             toast.show();	
+//	        	}
+	        	Toast toast = Toast.makeText(getApplicationContext(),sonuc, Toast.LENGTH_SHORT);
+	            toast.show();	
+	        }
+	    });
+   img2.setOnClickListener(new OnClickListener(){
+	        public void onClick(View arg){
+	             
+	             Toast toast = Toast.makeText(getApplicationContext(),"tiklandi", Toast.LENGTH_SHORT);
+	             toast.show();
+
+	        }
+	    });   
+   img3.setOnClickListener(new OnClickListener(){
+	        public void onClick(View arg){
+	             
+	             Toast toast = Toast.makeText(getApplicationContext(),"tiklandi", Toast.LENGTH_SHORT);
+	             toast.show();
+
+	        }
+	    });  
 	}
-	
 	private Integer[] getGallery() {
 		Integer[] dizi = new Integer[3];
 		Cursor cursor = GetData("galleryIconTable");

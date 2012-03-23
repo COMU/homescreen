@@ -1,7 +1,7 @@
 package com.comu.android;
 
 
-import android.app.Activity;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
