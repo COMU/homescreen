@@ -12,7 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ThemeActivity extends Activity{
+public class ThemeActivity extends BetterActivity{
 		VeriTabani imagepath = new VeriTabani(this);
 		
 		private String[] SELECT = { "id" };

@@ -34,10 +34,10 @@ import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
 import android.widget.TableRow.LayoutParams;
 
-public class SubMenuActivity extends Activity implements OnItemClickListener {
-int temp=0;
+public class SubMenuActivity extends BetterActivity implements OnItemClickListener {
+
+public static int currentPosition=5;
 	
-	public static int alinanposition=CoverFlowClickableActivity.gelenposition;
 	VeriTabani imagepath = new VeriTabani(this);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +111,7 @@ int temp=0;
                   40));
 		  it3.setTextSize(TypedValue.DENSITY_DEFAULT, 25);
 		  it3.setGravity(Gravity.CENTER);
-		  if(alinanposition==2){
+		  if(currentPosition==1){
 			 
 			  it1.setText(SocialIcons[0]);
 			  it2.setText(SocialIcons[1]);
@@ -120,7 +120,7 @@ int temp=0;
 			  img2.setImageResource(socialNetwork[1]);
 			  img3.setImageResource(socialNetwork[2]);
 		  }
-          if(alinanposition==5){
+          if(currentPosition==4){
         	  it1.setText(FolderIcons[0]);
 			  it2.setText(FolderIcons[1]);
 			  it3.setText(FolderIcons[2]);
@@ -208,7 +208,7 @@ int temp=0;
 		coverFlow.setOnItemClickListener(this);
 		coverFlow.setAdapter(coverImageAdapter);       
 		coverFlow.setSpacing(-10);
-		coverFlow.setSelection(alinanposition-1, true);
+		coverFlow.setSelection(currentPosition, true);
 		coverFlow.setAnimationDuration(1000);
 		
 	}
@@ -405,60 +405,70 @@ int temp=0;
 		}
 	
 	}
+	
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
 		String[] dizi={"Tarayıcı", "Sosyal Aglar","Youtube","Gmail","Galeri","Oyunlar", "Wikipedia", "İndirilenler","Ayarlar"};
 		Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
 		
-			position++;
-		    CoverFlowClickableActivity.gelenposition=position;
-		    alinanposition=position;
+	position++;
+
+	
 			switch (position){
 			
 				case 1:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.google.com")));
+				   currentPosition=position-1;
 				break;
 				
 				case 2:Intent viewIntent2 = new Intent(getApplicationContext(), SubMenuActivity.class);				
-				startActivity(viewIntent2);break;
+				startActivity(viewIntent2);
+				currentPosition=position-1;
+				break;
 				
 				case 3:Intent viewIntent3 = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));				
-				startActivity(viewIntent3);break;
+				startActivity(viewIntent3);
+				currentPosition=position-1;
+				break;
 				
 				case 4:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://mail.google.com/mail/")));
-			   	break;
+				   currentPosition=position-1;
+				break;
 				
 				case 5:Intent viewIntent5 = new Intent(getApplicationContext(), SubMenuActivity.class);				
-				startActivity(viewIntent5);break;
+				startActivity(viewIntent5);
+				currentPosition=position-1;
+				break;
 	
 				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), GameSubMenu.class);				
-				startActivity(viewIntent6);break;
+				startActivity(viewIntent6);
+				currentPosition=position-1;
+				break;
 				
 				case 7:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://tr.wikipedia.org/wiki/Ana_Sayfa")));
-			   	break;
+				   currentPosition=position-1;
+				break;
 				
 				case 8:Intent viewIntent8 = new Intent(new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));				
-				startActivity(viewIntent8);break;
+				startActivity(viewIntent8);
+				currentPosition=position-1;
+				break;
 				
 				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), ThemeActivity.class);				
-				startActivity(viewIntent9);break;
+				startActivity(viewIntent9);
+				   currentPosition=position-1;
+				break;
 
 				
 			}
 
 	}
 
-//	@Override
-//	public void onBackPressed() {
-//		temp++;
-//		GridView g= (GridView) findViewById(com.comu.android.R.id.gridView);
-//		g.setVisibility(View.INVISIBLE);
-//		//setContentView(R.layout.main);
-//		if(temp>=2) {
-//		Intent MainScreen= new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
-//		startActivity(MainScreen);
-//		temp=0;
-//		}
-//	
-//	}
+	@Override
+	public void onBackPressed() {
+
+		Intent MainScreen= new Intent(getApplicationContext(),CoverFlowClickableActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(MainScreen);
+	
+	}
 	
 }

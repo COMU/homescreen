@@ -27,7 +27,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView.ScaleType;
 import android.widget.Toast;
 
-public class GameSubMenu extends Activity implements OnItemClickListener{
+public class GameSubMenu extends BetterActivity implements OnItemClickListener{
 	
 	private VeriTabani imagepath;
 	

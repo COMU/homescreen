@@ -32,7 +32,7 @@ import android.widget.Toast;
 
 
 
-public class CoverFlowClickableActivity extends Activity implements OnItemClickListener{
+public class CoverFlowClickableActivity extends BetterActivity implements OnItemClickListener{
 	private VeriTabani imagepath;
 	
 //	SharedPreferences mySharedPrefs;
@@ -233,7 +233,7 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 		coverFlow.setOnItemClickListener(this);
 		coverFlow.setAdapter(coverImageAdapter);       
 		coverFlow.setSpacing(-10);
-		coverFlow.setSelection(5, true);
+		coverFlow.setSelection(SubMenuActivity.currentPosition, true);
 		coverFlow.setAnimationDuration(1000);	
 
 	}
@@ -411,41 +411,55 @@ public class CoverFlowClickableActivity extends Activity implements OnItemClickL
 	
 	}
 
-	public static int gelenposition;
+	
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
 		String[] dizi={"Tarayıcı", "Sosyal Aglar","Youtube","Gmail","Galeri","Oyunlar", "Wikipedia", "indirilenler","Ayarlar"};
 		Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
-		    position++;
-		    gelenposition=position;
+	
+		position++;
+	
 			switch (position){
 			
 			   	case 1:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.google.com")));
+			   	SubMenuActivity.currentPosition=position-1;
 			   	break;
 				
 				case 2:Intent viewIntent2 = new Intent(getApplicationContext(), SubMenuActivity.class);				
+				SubMenuActivity.currentPosition=position-1;
 				startActivity(viewIntent2);break;
 				
 				case 3:Intent viewIntent3 = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));				
-				startActivity(viewIntent3);break;
+				startActivity(viewIntent3);
+				SubMenuActivity.currentPosition=position-1;
+				break;
 				
 				case 4:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://mail.google.com/mail/")));
-			   	break;
+				SubMenuActivity.currentPosition=position-1;
+				break;
 				
 				case 5:Intent viewIntent5 = new Intent(getApplicationContext(), SubMenuActivity.class);				
-				startActivity(viewIntent5);break;
+				startActivity(viewIntent5);
+				SubMenuActivity.currentPosition=position-1;
+				break;
 	
 				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), GameSubMenu.class);				
-				startActivity(viewIntent6);break;
+				startActivity(viewIntent6);
+				SubMenuActivity.currentPosition=position-1;
+				break;
 				
 				case 7:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://tr.wikipedia.org/wiki/Ana_Sayfa")));
-			   	break;
+				SubMenuActivity.currentPosition=position-1;
+				break;
 				
 				case 8:startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
-                break;
+				SubMenuActivity.currentPosition=position-1;
+				break;
 				
 				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), ThemeActivity.class);				
-				startActivity(viewIntent9);break;
+				startActivity(viewIntent9);
+				SubMenuActivity.currentPosition=position-1;
+				break;
 
                 
 			}
