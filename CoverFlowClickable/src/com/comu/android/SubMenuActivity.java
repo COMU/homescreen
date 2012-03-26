@@ -67,23 +67,27 @@ int temp=0;
 	    
 
 	    final TableLayout table = (TableLayout) findViewById(R.id.tablelayout);
-		table.setStretchAllColumns(true); 
+		table.setStretchAllColumns(true);
+		
 		
 		  TableRow tr1 = new TableRow(this);
 		  tr1.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
                   120));
 		  tr1.setGravity(Gravity.CENTER);
+		  tr1.setFocusable(true);
 		  TableRow tr2 = new TableRow(this);
 		  tr2.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
                   40));
 		  tr2.setGravity(Gravity.CENTER);
+		  tr2.setFocusable(true);
 		  TableRow tr3 = new TableRow(this);
 		  tr3.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
                   120));
 		  tr3.setGravity(Gravity.CENTER);
+		  tr3.setFocusable(true);
 		  TableRow tr4 = new TableRow(this);
 		  tr4.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
@@ -93,17 +97,17 @@ int temp=0;
 		  img1.setLayoutParams(new LayoutParams(
                   80,
                   80));
-//		  img1.setClickable(true);
+		  img1.setFocusable(true);
 		  final ImageView img2 = new ImageView(this);
 		  img2.setLayoutParams(new LayoutParams(
                   80,
                   80));
-//		  img2.setClickable(true);
+		  img2.setFocusable(true);
 		  final ImageView img3 = new ImageView(this);
 		  img3.setLayoutParams(new LayoutParams(
                   80,
                   80));
-//		  img3.setClickable(true);
+		  img3.setFocusable(true);
 		  TextView it1 = new TextView(this);
 		  it1.setLayoutParams(new LayoutParams(
                   80,
