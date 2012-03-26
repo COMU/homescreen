@@ -64,6 +64,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 						R.drawable.torrenticon, R.drawable.systempreferencesicon
 						 };
 
+
 				InsertData("greyTheme", resimler[0].toString(), "Tarayıcı");
 				InsertData("greyTheme", resimler[1].toString(), "Sosyal Aglar");
 				InsertData("greyTheme", resimler[2].toString(), "Youtube");
@@ -121,11 +122,20 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 				InsertData("galleryIconTable", GalleryIcon[1].toString(), "Resimler");
 				InsertData("galleryIconTable", GalleryIcon[2].toString(), "Video");
 				
+
+				Integer[] PastelisIcon = {R.drawable.hpmusic, R.drawable.hpphotos, R.drawable.hpvideo};
+				
+				InsertData("pastelisIconTable", PastelisIcon[0].toString(), "Müzik");
+				InsertData("pastelisIconTable", PastelisIcon[1].toString(), "Resimler");
+				InsertData("pastelisIconTable", PastelisIcon[2].toString(), "Video");
+				
+				
 				InsertTableName("greyTheme");
 				InsertTableName("blueTheme");
 				InsertTableName("gameIconTable");
 				InsertTableName("socialIconTable");
 				InsertTableName("galleryIconTable");
+				InsertTableName("pastelisIconTable");
 				
 				InsertID("IDTable", 1);
 				InsertID("subIDTable", 4);
@@ -147,7 +157,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 		ContentValues veriler = new ContentValues();
 		veriler.put("guncelID", id);	
 
-		db.insertOrThrow("IDTable", null, veriler);
+		db.insertOrThrow(table, null, veriler);
 	}
 	
 	public void updateTemaId(int id){
@@ -233,6 +243,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 		coverFlow.setAdapter(coverImageAdapter);       
 		coverFlow.setSpacing(-10);
 		coverFlow.setSelection(SubMenuActivity.currentPosition, true);
+//		coverFlow.setSelection(5, true);
 		coverFlow.setAnimationDuration(1000);	
 
 	}
@@ -410,14 +421,15 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 	
 	}
 
-	
+//	public static int gelenposition;
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
 		String[] dizi={"Tarayıcı", "Sosyal Aglar","Youtube","Gmail","Galeri","Oyunlar", "Wikipedia", "indirilenler","Ayarlar"};
 		Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
 	
 		position++;
-	
+//		gelenposition = position;
+		
 			switch (position){
 			
 			   	case 1:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.google.com")));

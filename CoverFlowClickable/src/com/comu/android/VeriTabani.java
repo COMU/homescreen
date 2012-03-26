@@ -25,6 +25,7 @@ public class VeriTabani extends SQLiteOpenHelper {
 		db.execSQL("CREATE TABLE socialIconTable(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
 		db.execSQL("CREATE TABLE eggsocialIconTable(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
 		db.execSQL("CREATE TABLE galleryIconTable(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
+		db.execSQL("CREATE TABLE pastelisIconTable(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
 		db.execSQL("CREATE TABLE subIDTable(id INTEGER PRIMARY KEY AUTOINCREMENT, guncelID INTEGER)");
 
 
@@ -40,6 +41,7 @@ public class VeriTabani extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXIST gameIconTable");
 		db.execSQL("DROP TABLE IF EXIST socialIconTable");
 		db.execSQL("DROP TABLE IF EXIST galleryIconTable");
+		db.execSQL("DROP TABLE IF EXIST pastelisIconTable");
 		db.execSQL("DROP TABLE IF EXIST subIDTable");
 		db.execSQL("DROP TABLE IF EXIST eggsocialIconTable");
 

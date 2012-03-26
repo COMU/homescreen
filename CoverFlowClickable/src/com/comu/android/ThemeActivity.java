@@ -1,5 +1,6 @@
 package com.comu.android;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,7 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ThemeActivity extends BetterActivity{
+public class ThemeActivity extends Activity{
 		VeriTabani imagepath = new VeriTabani(this);
 		
 		private String[] SELECT = { "id" };

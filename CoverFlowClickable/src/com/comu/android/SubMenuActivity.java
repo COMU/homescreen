@@ -1,6 +1,6 @@
 package com.comu.android;
 
-
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,7 +22,6 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -35,10 +34,11 @@ import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
 import android.widget.TableRow.LayoutParams;
 
-public class SubMenuActivity extends BetterActivity implements OnItemClickListener {
-
-public static int currentPosition=5;
+public class SubMenuActivity extends Activity implements OnItemClickListener {
+int temp=0;
 	
+//	public static int alinanposition=CoverFlowClickableActivity.gelenposition;
+	public static int currentPosition = 5;
 	VeriTabani imagepath = new VeriTabani(this);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +49,24 @@ public static int currentPosition=5;
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
 	               "coverflow", "id", "com.comu.android"));
 			setupCoverFlow(coverFlow);
-					
+		
+			
 		final Integer[] socialNetwork = getSocial();
 		final String[] SocialIcons={"Facebook","Twitter","GTalk"};
 		
+		final Integer[] eggSocialNetwork = getEggSocial();
+		final String[] eggSocialIcons={"Facebook","Twitter","GTalk"};
+		
+
 	    final Integer[] folder = getGallery();
-	    final String[] FolderIcons={"Müzik","Resim","Video"};	    
+	    final String[] FolderIcons={"Müzik","Resim","Video"};
+	    
+	    final Integer[] eggfolder = getEggGallery();
+	    final String[] eggFolderIcons={"Müzik","Resim","Video"};
+	    
 
 	    final TableLayout table = (TableLayout) findViewById(R.id.tablelayout);
 		table.setStretchAllColumns(true); 
-		table.setSelected(true);
 		  TableRow tr1 = new TableRow(this);
 		  tr1.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
@@ -68,7 +76,7 @@ public static int currentPosition=5;
 		  tr2.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
                   40));
-		  tr2.setGravity(Gravity.CENTER);		 
+		  tr2.setGravity(Gravity.CENTER);
 		  TableRow tr3 = new TableRow(this);
 		  tr3.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
@@ -79,24 +87,18 @@ public static int currentPosition=5;
                   LayoutParams.FILL_PARENT,
                   40));
 		  tr4.setGravity(Gravity.CENTER);
-		  final ImageView img1 = new ImageView(this);
+		  ImageView img1 = new ImageView(this);
 		  img1.setLayoutParams(new LayoutParams(
                   80,
                   80));
-		  img1.setClickable(true);
-		  img1.setSelected(true);
 		  ImageView img2 = new ImageView(this);
 		  img2.setLayoutParams(new LayoutParams(
                   80,
                   80));
-		  img2.setClickable(true);
-		  img2.setSelected(true);
 		  ImageView img3 = new ImageView(this);
 		  img3.setLayoutParams(new LayoutParams(
                   80,
                   80));
-		  img3.setClickable(true);
-		  img3.setSelected(true);
 		  TextView it1 = new TextView(this);
 		  it1.setLayoutParams(new LayoutParams(
                   80,
@@ -115,67 +117,146 @@ public static int currentPosition=5;
                   40));
 		  it3.setTextSize(TypedValue.DENSITY_DEFAULT, 25);
 		  it3.setGravity(Gravity.CENTER);
-		  if(currentPosition==1){
-			 
-			  it1.setText(SocialIcons[0]);
-			  it2.setText(SocialIcons[1]);
-			  it3.setText(SocialIcons[2]);
-			  img1.setImageResource(socialNetwork[0]);
-			  img2.setImageResource(socialNetwork[1]);
-			  img3.setImageResource(socialNetwork[2]);
-		  }
-          if(currentPosition==4){
-        	  it1.setText(FolderIcons[0]);
-			  it2.setText(FolderIcons[1]);
-			  it3.setText(FolderIcons[2]);
-			  img1.setImageResource(folder[0]);
-			  img2.setImageResource(folder[1]);
-			  img3.setImageResource(folder[2]);
-		  }	
-         
-          tr1.addView(img1);
-          tr2.addView(it1);
-          tr1.addView(img2);          
-          tr2.addView(it2);
-          tr3.addView(img3);
-          tr4.addView(it3);
-          table.addView(tr1);
-          table.addView(tr2);
-          table.addView(tr3);
-          table.addView(tr4);
-         	
-	 img1.setOnClickListener(new OnClickListener(){
-	        public void onClick(View arg){
-	        	int sonuc=img1.getId();
-//	        	if(folder[0]==img1.getResources().getInteger(0)){
-//	        		 Toast toast = Toast.makeText(getApplicationContext(),"tiklandi", Toast.LENGTH_SHORT);
-//		             toast.show();	
-//	        	}
-//	        	else if(socialNetwork[0]==img1.getResources().getInteger(0)){
-//	        		 Toast toast = Toast.makeText(getApplicationContext(),"tiklandi", Toast.LENGTH_SHORT);
-//		             toast.show();	
-//	        	}
-	        	Toast toast = Toast.makeText(getApplicationContext(),sonuc, Toast.LENGTH_SHORT);
-	            toast.show();	
-	        }
-	    });
-   img2.setOnClickListener(new OnClickListener(){
-	        public void onClick(View arg){
-	             
-	             Toast toast = Toast.makeText(getApplicationContext(),"tiklandi", Toast.LENGTH_SHORT);
-	             toast.show();
+		  
+	
+		 
+		  
+			if (currentPosition == 1) {
+				Integer[] checkArray = SubMenu();
+				if (checkArray[0] == 4) {
+				Log.v("DEBUG", "checkArray:" + checkArray[0]);
+				Log.v("DEBUG", "checkArray:" + socialNetwork[0]);
+				it1.setText(SocialIcons[0]);
+				it2.setText(SocialIcons[1]);
+				it3.setText(SocialIcons[2]);
+				img1.setImageResource(socialNetwork[0]);
+				img2.setImageResource(socialNetwork[1]);
+				img3.setImageResource(socialNetwork[2]);
+				
+				tr1.addView(img1);
+				tr2.addView(it1);
+				tr1.addView(img2);
+				tr2.addView(it2);
+				tr3.addView(img3);
+				tr4.addView(it3);
+				table.addView(tr1);
+				table.addView(tr2);
+				table.addView(tr3);
+				table.addView(tr4);
+			}
+				else if(checkArray[0] == 5){
+					it1.setText(eggSocialIcons[0]);
+					it2.setText(eggSocialIcons[1]);
+					it3.setText(eggSocialIcons[2]);
+					img1.setImageResource(eggSocialNetwork[0]);
+					img2.setImageResource(eggSocialNetwork[1]);
+					img3.setImageResource(eggSocialNetwork[2]);		
+					
+					tr1.addView(img1);
+					tr2.addView(it1);
+					tr1.addView(img2);
+					tr2.addView(it2);
+					tr3.addView(img3);
+					tr4.addView(it3);
+					table.addView(tr1);
+					table.addView(tr2);
+					table.addView(tr3);
+					table.addView(tr4);
+				}
+			}
+			else if (currentPosition == 4) {
+			Integer[] checkArray = SubMenu();
+			if (checkArray[0] == 4) {
+				it1.setText(FolderIcons[0]);
+				it2.setText(FolderIcons[1]);
+				it3.setText(FolderIcons[2]);
+				img1.setImageResource(folder[0]);
+				img2.setImageResource(folder[1]);
+				img3.setImageResource(folder[2]);
 
-	        }
-	    });   
-   img3.setOnClickListener(new OnClickListener(){
-	        public void onClick(View arg){
-	             
-	             Toast toast = Toast.makeText(getApplicationContext(),"tiklandi", Toast.LENGTH_SHORT);
-	             toast.show();
+				tr1.addView(img1);
+				tr2.addView(it1);
+				tr1.addView(img2);
+				tr2.addView(it2);
+				tr3.addView(img3);
+				tr4.addView(it3);
+				table.addView(tr1);
+				table.addView(tr2);
+				table.addView(tr3);
+				table.addView(tr4);
+			} 
+			else if (checkArray[0] == 5) {
+				it1.setText(eggFolderIcons[0]);
+				it2.setText(eggFolderIcons[1]);
+				it3.setText(eggFolderIcons[2]);
+				img1.setImageResource(eggfolder[0]);
+				img2.setImageResource(eggfolder[1]);
+				img3.setImageResource(eggfolder[2]);
 
-	        }
-	    });  
+				tr1.addView(img1);
+				tr2.addView(it1);
+				tr1.addView(img2);
+				tr2.addView(it2);
+				tr3.addView(img3);
+				tr4.addView(it3);
+				table.addView(tr1);
+				table.addView(tr2);
+				table.addView(tr3);
+				table.addView(tr4);
+			}
+		}
+
 	}
+	
+	private Integer[] getEggGallery() {
+		// TODO Auto-generated method stub
+		Integer[] dizi = new Integer[3];
+		Cursor cursor = GetData("pastelisIconTable");
+		try {
+		  int i=0;
+		  while (cursor.moveToNext()) {
+			  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+			  Integer yol = Integer.parseInt(yol_adi);
+	  		  dizi[i]=yol;
+	  		  Log.v("DEBUG", "dizi: " + Integer.toString(dizi[i]));
+	  		  i++;
+	  	  }
+			  
+		  } catch (Exception e) {
+			  // TODO: handle exception
+			  }
+		
+		return dizi;
+	}
+
+	private Integer[] SubMenu(){
+		 Integer[] checkArray = new Integer[1];
+		  Cursor cursor = GetDataID("subIDTable");
+		  try{
+		  while(cursor.moveToFirst()){
+			  int id = cursor.getInt(cursor.getColumnIndex("guncelID"));
+			  checkArray[0] = id ;
+			  Log.v("DEBUG", "checkArray:" + checkArray[0]);
+			  break;		 
+		  	}
+		  } catch (Exception e) {
+			// TODO: handle exception
+		}
+		  return checkArray;
+	}
+	
+	private String[] SubThemeID = { "guncelID" };
+	
+	private Cursor GetDataID(String table) {
+		//TODO get data from database
+		SQLiteDatabase db = imagepath.getReadableDatabase();
+		Cursor cursor = db.query(table, SubThemeID, null, null,
+				null, null, null);
+		startManagingCursor(cursor);
+		return cursor;
+	}
+	
+	
 	private Integer[] getGallery() {
 		Integer[] dizi = new Integer[3];
 		Cursor cursor = GetData("galleryIconTable");
@@ -198,6 +279,27 @@ public static int currentPosition=5;
 		// TODO Auto-generated method stub
 		Integer[] dizi = new Integer[3];
 		Cursor cursor = GetData("socialIconTable");
+		try {
+		  int i=0;
+		  while (cursor.moveToNext()) {
+			  String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+			  Integer yol = Integer.parseInt(yol_adi);
+	  		  dizi[i]=yol;
+	  		  Log.v("DEBUG", "dizi: " + Integer.toString(dizi[i]));
+	  		  i++;
+	  	  }
+			  
+		  } catch (Exception e) {
+			  // TODO: handle exception
+			  }
+		
+		return dizi;
+	}
+	
+	private Integer[] getEggSocial() {
+		// TODO Auto-generated method stub
+		Integer[] dizi = new Integer[3];
+		Cursor cursor = GetData("eggsocialIconTable");
 		try {
 		  int i=0;
 		  while (cursor.moveToNext()) {
@@ -437,60 +539,59 @@ public static int currentPosition=5;
 		}
 	
 	}
-	
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
 		String[] dizi={"Tarayıcı", "Sosyal Aglar","Youtube","Gmail","Galeri","Oyunlar", "Wikipedia", "İndirilenler","Ayarlar"};
 		Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
-		
+
 	position++;
 
-	
+
 			switch (position){
-			
+
 				case 1:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.google.com")));
 				   currentPosition=position-1;
 				break;
-				
+
 				case 2:Intent viewIntent2 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent2);
 				currentPosition=position-1;
 				break;
-				
+
 				case 3:Intent viewIntent3 = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));				
 				startActivity(viewIntent3);
 				currentPosition=position-1;
 				break;
-				
+
 				case 4:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://mail.google.com/mail/")));
 				   currentPosition=position-1;
 				break;
-				
+
 				case 5:Intent viewIntent5 = new Intent(getApplicationContext(), SubMenuActivity.class);				
 				startActivity(viewIntent5);
 				currentPosition=position-1;
 				break;
-	
+
 				case 6:Intent viewIntent6 = new Intent(getApplicationContext(), GameSubMenu.class);				
 				startActivity(viewIntent6);
 				currentPosition=position-1;
 				break;
-				
+
 				case 7:startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://tr.wikipedia.org/wiki/Ana_Sayfa")));
 				   currentPosition=position-1;
 				break;
-				
+
 				case 8:Intent viewIntent8 = new Intent(new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));				
 				startActivity(viewIntent8);
 				currentPosition=position-1;
 				break;
-				
+
 				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), ThemeActivity.class);				
 				startActivity(viewIntent9);
 				   currentPosition=position-1;
 				break;
 
-				
+
 			}
 
 	}
@@ -500,7 +601,23 @@ public static int currentPosition=5;
 
 		Intent MainScreen= new Intent(getApplicationContext(),CoverFlowClickableActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(MainScreen);
-	
+
 	}
+
+
+	}
+
+//	@Override
+//	public void onBackPressed() {
+//		temp++;
+//		GridView g= (GridView) findViewById(com.comu.android.R.id.gridView);
+//		g.setVisibility(View.INVISIBLE);
+//		//setContentView(R.layout.main);
+//		if(temp>=2) {
+//		Intent MainScreen= new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
+//		startActivity(MainScreen);
+//		temp=0;
+//		}
+//	
+//	}
 	
-}
