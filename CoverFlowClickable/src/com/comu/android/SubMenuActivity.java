@@ -23,6 +23,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -67,6 +68,7 @@ int temp=0;
 
 	    final TableLayout table = (TableLayout) findViewById(R.id.tablelayout);
 		table.setStretchAllColumns(true); 
+		
 		  TableRow tr1 = new TableRow(this);
 		  tr1.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
@@ -87,18 +89,21 @@ int temp=0;
                   LayoutParams.FILL_PARENT,
                   40));
 		  tr4.setGravity(Gravity.CENTER);
-		  ImageView img1 = new ImageView(this);
+		  final ImageView img1 = new ImageView(this);
 		  img1.setLayoutParams(new LayoutParams(
                   80,
                   80));
-		  ImageView img2 = new ImageView(this);
+//		  img1.setClickable(true);
+		  final ImageView img2 = new ImageView(this);
 		  img2.setLayoutParams(new LayoutParams(
                   80,
                   80));
-		  ImageView img3 = new ImageView(this);
+//		  img2.setClickable(true);
+		  final ImageView img3 = new ImageView(this);
 		  img3.setLayoutParams(new LayoutParams(
                   80,
                   80));
+//		  img3.setClickable(true);
 		  TextView it1 = new TextView(this);
 		  it1.setLayoutParams(new LayoutParams(
                   80,
@@ -118,9 +123,7 @@ int temp=0;
 		  it3.setTextSize(TypedValue.DENSITY_DEFAULT, 25);
 		  it3.setGravity(Gravity.CENTER);
 		  
-	
-		 
-		  
+	  
 			if (currentPosition == 1) {
 				Integer[] checkArray = SubMenu();
 				if (checkArray[0] == 4) {
@@ -130,8 +133,11 @@ int temp=0;
 				it2.setText(SocialIcons[1]);
 				it3.setText(SocialIcons[2]);
 				img1.setImageResource(socialNetwork[0]);
+				img1.setTag("facebook");
 				img2.setImageResource(socialNetwork[1]);
+				img2.setTag("twitter");
 				img3.setImageResource(socialNetwork[2]);
+				img3.setTag("gtalk");				
 				
 				tr1.addView(img1);
 				tr2.addView(it1);
@@ -171,8 +177,12 @@ int temp=0;
 				it2.setText(FolderIcons[1]);
 				it3.setText(FolderIcons[2]);
 				img1.setImageResource(folder[0]);
+				img1.setTag("muzik");
 				img2.setImageResource(folder[1]);
+				img2.setTag("resim");
 				img3.setImageResource(folder[2]);
+				img3.setTag("video");
+				
 
 				tr1.addView(img1);
 				tr2.addView(it1);
@@ -204,12 +214,52 @@ int temp=0;
 				table.addView(tr3);
 				table.addView(tr4);
 			}
-		}
-
+			}
+			img1.setOnClickListener(new OnClickListener(){
+		        public void onClick(View arg){
+		        	
+		        	if(img1.getTag().toString()=="facebook"){
+		        	
+						startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://www.facebook.com")).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
+		        		
+		        	}
+		        	else if(img1.getTag().toString()=="muzik"){
+		        		Toast toast = Toast.makeText(getApplicationContext(),"müzik", Toast.LENGTH_SHORT);
+			             toast.show();		        				        		
+		        	}
+		        }
+		    });
+			img2.setOnClickListener(new OnClickListener(){
+		        public void onClick(View arg){
+		        	
+		        	if(img2.getTag().toString()=="twitter"){
+			        	
+						startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://www.twitter.com")).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
+		        		
+		        	}
+		        	else if(img2.getTag().toString()=="resim"){
+		        		Toast toast = Toast.makeText(getApplicationContext(),"resim", Toast.LENGTH_SHORT);
+			            toast.show();		        			        		
+		        	}	            
+		        }
+		    });   
+			img3.setOnClickListener(new OnClickListener(){
+		        public void onClick(View arg){
+		        	if(img3.getTag().toString()=="gtalk"){
+			        	
+		        		Toast toast = Toast.makeText(getApplicationContext(),"gtalk", Toast.LENGTH_SHORT);
+			            toast.show();        		
+		        	}
+		        	else if(img3.getTag().toString()=="video"){
+		        		Toast toast = Toast.makeText(getApplicationContext(),"video", Toast.LENGTH_SHORT);
+			            toast.show();		        				        		
+		        	}	            
+		        }
+		    });  
 	}
 	
 	private Integer[] getEggGallery() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		Integer[] dizi = new Integer[3];
 		Cursor cursor = GetData("pastelisIconTable");
 		try {
@@ -223,7 +273,7 @@ int temp=0;
 	  	  }
 			  
 		  } catch (Exception e) {
-			  // TODO: handle exception
+			  // handle exception
 			  }
 		
 		return dizi;
@@ -240,7 +290,7 @@ int temp=0;
 			  break;		 
 		  	}
 		  } catch (Exception e) {
-			// TODO: handle exception
+			// handle exception
 		}
 		  return checkArray;
 	}
@@ -248,7 +298,7 @@ int temp=0;
 	private String[] SubThemeID = { "guncelID" };
 	
 	private Cursor GetDataID(String table) {
-		//TODO get data from database
+		// get data from database
 		SQLiteDatabase db = imagepath.getReadableDatabase();
 		Cursor cursor = db.query(table, SubThemeID, null, null,
 				null, null, null);
@@ -270,13 +320,13 @@ int temp=0;
 	  		  i++;
 	  	  	}
 		  } catch (Exception e) {
-			  // TODO: handle exception
+			  // handle exception
 			  }
 		return dizi;
 	}
 
 	private Integer[] getSocial() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		Integer[] dizi = new Integer[3];
 		Cursor cursor = GetData("socialIconTable");
 		try {
@@ -290,14 +340,14 @@ int temp=0;
 	  	  }
 			  
 		  } catch (Exception e) {
-			  // TODO: handle exception
+			  // handle exception
 			  }
 		
 		return dizi;
 	}
 	
 	private Integer[] getEggSocial() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		Integer[] dizi = new Integer[3];
 		Cursor cursor = GetData("eggsocialIconTable");
 		try {
@@ -311,7 +361,7 @@ int temp=0;
 	  	  }
 			  
 		  } catch (Exception e) {
-			  // TODO: handle exception
+			  // handle exception
 			  }
 		
 		return dizi;
@@ -320,7 +370,7 @@ int temp=0;
 	private String[] SELECT = { "imagepath","etiket" };
 
 	private Cursor GetData(String table) {
-		//TODO get data from database
+		// get data from database
 		SQLiteDatabase db = imagepath.getReadableDatabase();
 		Cursor cursor = db.query(table, SELECT, null, null,
 				null, null, null);
@@ -329,7 +379,7 @@ int temp=0;
 	}
 
 	public static int updateId(){
-		//TODO after pressed the theme button on ThemeActivity class, update temacesitleritablosu's ids 
+		// after pressed the theme button on ThemeActivity class, update temacesitleritablosu's ids 
 		 int id = ThemeActivity.mTemaId;
 		 return id;	
 	}
@@ -367,7 +417,7 @@ int temp=0;
 		}
 		
 		private Integer[] upgradeImageIds() {
-			// TODO created an image array with imageIds from the database
+			// created an image array with imageIds from the database
 			Integer[] dizi= new Integer[9];
 //			int themeID = updateId();
 			Integer[] themeID  = theme();
@@ -385,7 +435,7 @@ int temp=0;
 			  	  }
 					  
 				  } catch (Exception e) {
-					  // TODO: handle exception
+					  // handle exception
 					  }
 			  }
 			else if(themeID[0] == 2){
@@ -401,7 +451,7 @@ int temp=0;
 				  	  }
 						  
 					  } catch (Exception e) {
-						  // TODO: handle exception
+						  // handle exception
 						  }	
 			}
 			  return dizi;	  
@@ -411,7 +461,7 @@ int temp=0;
 		private String[] SELECT = { "imagepath","etiket" };
 		
 		private Cursor GetData(String table) {
-			//TODO get data from database
+			// get data from database
 			SQLiteDatabase db = imagepath.getReadableDatabase();
 			Cursor cursor = db.query(table, SELECT, null, null,
 					null, null, null);
@@ -422,7 +472,7 @@ int temp=0;
 		private String[] ThemeID = { "guncelID" };
 		
 		private Cursor GetDataID(String table) {
-			//TODO get data from database
+			// get data from database
 			SQLiteDatabase db = imagepath.getReadableDatabase();
 			Cursor cursor = db.query(table, ThemeID, null, null,
 					null, null, null);
@@ -588,7 +638,7 @@ int temp=0;
 
 				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), ThemeActivity.class);				
 				startActivity(viewIntent9);
-				   currentPosition=position-1;
+				   currentPosition=position-4;
 				break;
 
 
