@@ -50,44 +50,37 @@ int temp=0;
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
 	               "coverflow", "id", "com.comu.android"));
 			setupCoverFlow(coverFlow);
-		
-			
+					
 		final Integer[] socialNetwork = getSocial();
 		final String[] SocialIcons={"Facebook","Twitter","GTalk"};
 		
 		final Integer[] eggSocialNetwork = getEggSocial();
 		final String[] eggSocialIcons={"Facebook","Twitter","GTalk"};
 		
-
 	    final Integer[] folder = getGallery();
 	    final String[] FolderIcons={"Müzik","Resim","Video"};
 	    
 	    final Integer[] eggfolder = getEggGallery();
 	    final String[] eggFolderIcons={"Müzik","Resim","Video"};
 	    
-
 	    final TableLayout table = (TableLayout) findViewById(R.id.tablelayout);
 		table.setStretchAllColumns(true);
-		
-		
+				
 		  TableRow tr1 = new TableRow(this);
 		  tr1.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
                   120));
 		  tr1.setGravity(Gravity.CENTER);
-		  tr1.setFocusable(true);
 		  TableRow tr2 = new TableRow(this);
 		  tr2.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
                   40));
 		  tr2.setGravity(Gravity.CENTER);
-		  tr2.setFocusable(true);
 		  TableRow tr3 = new TableRow(this);
 		  tr3.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
                   120));
 		  tr3.setGravity(Gravity.CENTER);
-		  tr3.setFocusable(true);
 		  TableRow tr4 = new TableRow(this);
 		  tr4.setLayoutParams(new LayoutParams(
                   LayoutParams.FILL_PARENT,
@@ -159,8 +152,11 @@ int temp=0;
 					it2.setText(eggSocialIcons[1]);
 					it3.setText(eggSocialIcons[2]);
 					img1.setImageResource(eggSocialNetwork[0]);
+					img1.setTag("facebook");
 					img2.setImageResource(eggSocialNetwork[1]);
-					img3.setImageResource(eggSocialNetwork[2]);		
+					img2.setTag("twitter");
+					img3.setImageResource(eggSocialNetwork[2]);	
+					img3.setTag("gtalk");
 					
 					tr1.addView(img1);
 					tr2.addView(it1);
@@ -204,8 +200,11 @@ int temp=0;
 				it2.setText(eggFolderIcons[1]);
 				it3.setText(eggFolderIcons[2]);
 				img1.setImageResource(eggfolder[0]);
+				img1.setTag("muzik");
 				img2.setImageResource(eggfolder[1]);
+				img2.setTag("resim");
 				img3.setImageResource(eggfolder[2]);
+				img3.setTag("video");
 
 				tr1.addView(img1);
 				tr2.addView(it1);
