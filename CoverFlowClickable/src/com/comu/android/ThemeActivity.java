@@ -18,7 +18,7 @@ public class ThemeActivity extends Activity{
 		private String[] SELECT = { "id" };
 		
 		private Cursor GetData() {
-			//TODO get data from database
+			// get data from database
 			SQLiteDatabase db = imagepath.getReadableDatabase();
 			Cursor cursor = db.query("temacesitleritablosu", SELECT , null, null,
 					null, null, null);
@@ -36,7 +36,7 @@ public class ThemeActivity extends Activity{
 		}
 		
 		public void updateSubThemeId(int id) {
-			// TODO Auto-generated method stub
+			// Auto-generated method stub
 			SQLiteDatabase db = imagepath.getWritableDatabase();
 			ContentValues veriler = new ContentValues();
 			veriler.put("guncelID", id);
@@ -65,7 +65,7 @@ public class ThemeActivity extends Activity{
 		changeTheme.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
-				// TODO Auto-generated method stub	
+				// Auto-generated method stub	
 				mTemaId = 1;
 				mSubThemeId = 4;
 				Log.v("DEBUG","mtemaId:" + mTemaId);
@@ -81,7 +81,7 @@ public class ThemeActivity extends Activity{
 		changeTheme2.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
-				// TODO Auto-generated method stub	
+				// Auto-generated method stub	
 				mTemaId = 2;
 				mSubThemeId = 5;
 				updateTemaId(mTemaId);

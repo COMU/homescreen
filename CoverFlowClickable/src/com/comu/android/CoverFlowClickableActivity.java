@@ -1,6 +1,5 @@
 package com.comu.android;
 
-import android.app.WallpaperManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -44,16 +43,13 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		
+//		Intent wallPaperIntent = new Intent(getApplicationContext(), WallPaper.class);				
+//		startActivity(wallPaperIntent);
+		
 		final LinearLayout mainLayout = (LinearLayout) findViewById(R.id.main_layout);
-		mainLayout.setBackgroundResource(R.drawable.wallpaper1);
-//		Intent intent = new Intent();
-//		intent.setAction(WallpaperManager.class.);
-//		startActivity(intent);
+		mainLayout.setBackgroundResource(R.drawable.wallpaper_blue);
 
-//		Bitmap myImg = BitmapFactory.decodeResource(getResources(), R.drawable.wallpaper1);
-//		this.drawBitmap(myImg, 0, 0, null);
-
-      
 		imagepath = new VeriTabani(this);
 		
 		//*********************************SharedPreferences*********************
@@ -162,7 +158,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 	}
 	
 	private void InsertID(String table, int id){
-		//TODO insert table name to database
+		// insert table name to database
 		SQLiteDatabase db = imagepath.getWritableDatabase();
 		ContentValues veriler = new ContentValues();
 		veriler.put("guncelID", id);	
@@ -182,13 +178,13 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 	
 	
 	public static int updateId(){
-		//TODO after pressed the theme button on ThemeActivity class, update temacesitleritablosu's ids 
+		// after pressed the theme button on ThemeActivity class, update temacesitleritablosu's ids 
 		 int id = ThemeActivity.mTemaId;
 		 return id;	
 	}
 	
 	private void InsertTableName(String name){
-		//TODO insert table name to database
+		// insert table name to database
 		SQLiteDatabase db = imagepath.getWritableDatabase();
 		ContentValues veriler = new ContentValues();
 		veriler.put("temaTabloAdlari", name);	
@@ -198,7 +194,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 
 
 	private boolean checkDataBase() {
-		//TODO make control if existing database
+		// make control if existing database
 		SQLiteDatabase checkDB = null;
 	    try {
 	        checkDB = SQLiteDatabase.openDatabase("/data/data/com.comu.android/databases/tema.db", null,
@@ -211,7 +207,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 	}
 
 	private void InsertData(String table, String resimler, String etiket) {
-		// TODO insert data to database
+		// insert data to database
 
 		SQLiteDatabase db = imagepath.getWritableDatabase();
 		ContentValues veriler = new ContentValues();
@@ -224,7 +220,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 	private String[] SELECT = { "imagepath","etiket" };
 
 	private Cursor GetData(String table) {
-		//TODO get data from database
+		// get data from database
 		SQLiteDatabase db = imagepath.getReadableDatabase();
 		Cursor cursor = db.query(table, SELECT, null, null,
 				null, null, null);
@@ -235,7 +231,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 	private String[] ThemeID = { "guncelID" };
 	
 	private Cursor GetDataID(String table) {
-		//TODO get data from database
+		// get data from database
 		SQLiteDatabase db = imagepath.getReadableDatabase();
 		Cursor cursor = db.query(table, ThemeID, null, null,
 				null, null, null);
@@ -289,7 +285,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 		
 		//*******************************************
 		private Integer[] upgradeImageIds() {
-			// TODO created an image array with imageIds from the database
+			// created an image array with imageIds from the database
 			Integer[] dizi= new Integer[9];
 //			int themeID = updateId();
 			Integer[] themeID  = theme();
@@ -307,7 +303,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 			  	  }
 					  
 				  } catch (Exception e) {
-					  // TODO: handle exception
+					  // handle exception
 					  }
 			  }
 			else if(themeID[0] == 2){
@@ -323,7 +319,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 				  	  }
 						  
 					  } catch (Exception e) {
-						  // TODO: handle exception
+						  // handle exception
 						  }	
 			}
 			  return dizi;	  

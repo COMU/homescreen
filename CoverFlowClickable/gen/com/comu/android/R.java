@@ -59,11 +59,13 @@ public final class R {
         public static final int twittericon=0x7f02002d;
         public static final int video=0x7f02002e;
         public static final int videoicon=0x7f02002f;
-        public static final int wallpaper1=0x7f020030;
-        public static final int wikipedia=0x7f020031;
-        public static final int wikipediaicon=0x7f020032;
-        public static final int youtube=0x7f020033;
-        public static final int youtubethreed=0x7f020034;
+        public static final int wallpaper_blue=0x7f020030;
+        public static final int wallpaper_blue_abstract=0x7f020031;
+        public static final int wallpaper_grey=0x7f020032;
+        public static final int wikipedia=0x7f020033;
+        public static final int wikipediaicon=0x7f020034;
+        public static final int youtube=0x7f020035;
+        public static final int youtubethreed=0x7f020036;
     }
     public static final class id {
         public static final int buton1=0x7f050007;

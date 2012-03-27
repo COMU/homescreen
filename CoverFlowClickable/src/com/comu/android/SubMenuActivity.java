@@ -48,8 +48,11 @@ int temp=0;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sub_menu);
 		
+//		Intent wallPaperIntent = new Intent(getApplicationContext(), WallPaper.class);				
+//		startActivity(wallPaperIntent);
+		
 		final LinearLayout subLayout = (LinearLayout) findViewById(R.id.sub_layout);
-		subLayout.setBackgroundResource(R.drawable.wallpaper1);
+		subLayout.setBackgroundResource(R.drawable.wallpaper_blue);
 		
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
 	               "coverflow", "id", "com.comu.android"));

@@ -16,7 +16,7 @@ public class VeriTabani extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
+		//  Auto-generated method stub
 		db.execSQL("CREATE TABLE greyTheme(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
 		db.execSQL("CREATE TABLE blueTheme(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
 		db.execSQL("CREATE TABLE temacesitleritablosu(id INTEGER PRIMARY KEY AUTOINCREMENT,temaTabloAdlari TEXT)");
@@ -33,7 +33,7 @@ public class VeriTabani extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		db.execSQL("DROP TABLE IF EXIST greyTheme");
 		db.execSQL("DROP TABLE IF EXIST blueTheme");
 		db.execSQL("DROP TABLE IF EXIST temacesitleritablosu");

@@ -173,8 +173,8 @@ public class CoverFlow extends Gallery{
 		final int rotation = Math.abs(rotationAngle);
 
 		if(child.hasFocusable())
-		child.setAlpha(460);
-		else child.setAlpha(510);
+			child.setAlpha(460);
+			else child.setAlpha(510);
 
 		mCamera.translate(0.0f, 0.0f, 100.0f);
 		child.setFocusable(true);
