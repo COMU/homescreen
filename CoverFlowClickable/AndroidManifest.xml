@@ -28,6 +28,8 @@
         </activity>
         <activity android:name=".GameSubMenu">
         </activity>
+        <activity android:name="com.comu.android.WallPaper">
+        </activity>
 		
          </application>
 </manifest>
