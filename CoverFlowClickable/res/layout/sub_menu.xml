@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="match_parent"
-	android:baselineAligned="false" android:orientation="vertical"
-	android:background="@drawable/wallpaper1">
+	android:baselineAligned="false" android:orientation="vertical"   
+	android:id="@+id/sub_layout">
+	
 	<LinearLayout android:id="@+id/linearLayout1"
 		android:layout_width="fill_parent" android:layout_height="50dp"
 		android:orientation="horizontal">

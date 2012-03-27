@@ -28,6 +28,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -43,8 +44,10 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		Intent intent = new Intent();
-//		intent.setAction(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER);
+		final LinearLayout mainLayout = (LinearLayout) findViewById(R.id.main_layout);
+		mainLayout.setBackgroundResource(R.drawable.wallpaper1);
+//		Intent intent = new Intent();
+//		intent.setAction(WallpaperManager.class.);
 //		startActivity(intent);
 
 //		Bitmap myImg = BitmapFactory.decodeResource(getResources(), R.drawable.wallpaper1);

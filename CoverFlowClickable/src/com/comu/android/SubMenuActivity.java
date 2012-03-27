@@ -28,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -46,6 +47,9 @@ int temp=0;
 		// Called when the activity is first created
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sub_menu);
+		
+		final LinearLayout subLayout = (LinearLayout) findViewById(R.id.sub_layout);
+		subLayout.setBackgroundResource(R.drawable.wallpaper1);
 		
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
 	               "coverflow", "id", "com.comu.android"));
