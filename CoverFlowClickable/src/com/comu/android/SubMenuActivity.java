@@ -91,6 +91,7 @@ int temp=0;
                   80,
                   80));
 		  img1.setFocusable(true);
+          img1.setPressed(true);
 		  final ImageView img2 = new ImageView(this);
 		  img2.setLayoutParams(new LayoutParams(
                   80,
@@ -656,21 +657,5 @@ int temp=0;
 		startActivity(MainScreen);
 
 	}
-
-
-	}
-
-//	@Override
-//	public void onBackPressed() {
-//		temp++;
-//		GridView g= (GridView) findViewById(com.comu.android.R.id.gridView);
-//		g.setVisibility(View.INVISIBLE);
-//		//setContentView(R.layout.main);
-//		if(temp>=2) {
-//		Intent MainScreen= new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
-//		startActivity(MainScreen);
-//		temp=0;
-//		}
-//	
-//	}
 	
+}

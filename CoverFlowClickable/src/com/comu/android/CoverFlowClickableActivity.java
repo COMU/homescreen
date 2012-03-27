@@ -1,5 +1,6 @@
 package com.comu.android;
 
+import android.app.WallpaperManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -42,7 +43,13 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		
+		Intent intent = new Intent();
+//		intent.setAction(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER);
+//		startActivity(intent);
+
+//		Bitmap myImg = BitmapFactory.decodeResource(getResources(), R.drawable.wallpaper1);
+//		this.drawBitmap(myImg, 0, 0, null);
+
       
 		imagepath = new VeriTabani(this);
 		
