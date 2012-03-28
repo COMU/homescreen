@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView.ScaleType;
 import android.widget.Toast;
@@ -40,7 +41,9 @@ public class GameSubMenu extends BetterActivity implements OnItemClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-      
+		final LinearLayout mainLayout = (LinearLayout) findViewById(R.id.main_layout);
+		mainLayout.setBackgroundResource(R.drawable.wallpaper_blue_abstract);
+		
 		imagepath = new VeriTabani(this);
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
 	               "coverflow", "id", "com.comu.android"));

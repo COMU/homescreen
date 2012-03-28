@@ -20,8 +20,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.FocusFinder;
 import android.view.Gravity;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -52,7 +54,7 @@ int temp=0;
 //		startActivity(wallPaperIntent);
 		
 		final LinearLayout subLayout = (LinearLayout) findViewById(R.id.sub_layout);
-		subLayout.setBackgroundResource(R.drawable.wallpaper_blue);
+		subLayout.setBackgroundResource(R.drawable.wallpaper_blue_abstract);
 		
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
 	               "coverflow", "id", "com.comu.android"));
@@ -98,17 +100,20 @@ int temp=0;
                   80,
                   80));
 		  img1.setFocusable(true);
-          img1.setPressed(true);
+	//	  img1.setAlpha(460);
+	//	  img1.hasFocusable();
 		  final ImageView img2 = new ImageView(this);
 		  img2.setLayoutParams(new LayoutParams(
                   80,
                   80));
 		  img2.setFocusable(true);
+	//	  img2.setAlpha(460);
 		  final ImageView img3 = new ImageView(this);
 		  img3.setLayoutParams(new LayoutParams(
                   80,
                   80));
 		  img3.setFocusable(true);
+   //	  img3.setAlpha(460);
 		  TextView it1 = new TextView(this);
 		  it1.setLayoutParams(new LayoutParams(
                   80,
@@ -224,8 +229,38 @@ int temp=0;
 				table.addView(tr2);
 				table.addView(tr3);
 				table.addView(tr4);
+			}	         
 			}
-			}
+            img1.setOnFocusChangeListener(new OnFocusChangeListener(){
+            	
+				public void onFocusChange(View v, boolean hasFocus) {
+					// TODO Auto-generated method stub
+					if(img1.hasFocus())
+			  			img1.setAlpha(900);
+			  	    else 
+			  	    	img1.setAlpha(1000);					
+				}	
+            });
+            img2.setOnFocusChangeListener(new OnFocusChangeListener(){
+            	
+				public void onFocusChange(View v, boolean hasFocus) {
+					// TODO Auto-generated method stub
+					if(img2.hasFocus())
+			  			img2.setAlpha(900);
+			  	    else 
+			  	    	img2.setAlpha(1000);					
+				}	
+            });
+            img3.setOnFocusChangeListener(new OnFocusChangeListener(){
+            	
+				public void onFocusChange(View v, boolean hasFocus) {
+					// TODO Auto-generated method stub
+					if(img3.hasFocus())
+			  			img3.setAlpha(900);
+			  	    else 
+			  	    	img3.setAlpha(1000);					
+				}	
+            });	           	
 			img1.setOnClickListener(new OnClickListener(){
 		        public void onClick(View arg){
 		        	
@@ -267,8 +302,21 @@ int temp=0;
 		        	}	            
 		        }
 		    });  
-	}
 	
+//	public void  setSubMenuFocus(){
+//		 
+//		if(img1.hasFocusable())
+//	  			img1.setAlpha(460);
+//	  	 else img1.setAlpha(600);
+//		 if(img2.hasFocusable())
+//	  			img2.setAlpha(460);
+//	  	 else img2.setAlpha(600);
+//		 if(img3.hasFocusable())
+//	  			img3.setAlpha(460);		  	
+//		 else img3.setAlpha(600);
+//	
+//	};
+}	
 	private Integer[] getEggGallery() {
 		// Auto-generated method stub
 		Integer[] dizi = new Integer[3];

@@ -48,7 +48,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 //		startActivity(wallPaperIntent);
 		
 		final LinearLayout mainLayout = (LinearLayout) findViewById(R.id.main_layout);
-		mainLayout.setBackgroundResource(R.drawable.wallpaper_blue);
+		mainLayout.setBackgroundResource(R.drawable.wallpaper_blue_abstract);
 
 		imagepath = new VeriTabani(this);
 		
