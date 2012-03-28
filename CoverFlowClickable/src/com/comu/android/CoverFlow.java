@@ -121,12 +121,14 @@ public class CoverFlow extends Gallery{
 
 		if (childCenter == mCoveflowCenter) {
 			transformImageBitmap((ImageView) child, t, 0);
+			child.setFocusable(false);
 		} else {
 			rotationAngle = (int) (((float) (mCoveflowCenter - childCenter) / childWidth) * mMaxRotationAngle);
 			if (Math.abs(rotationAngle) > mMaxRotationAngle) {
 				rotationAngle = (rotationAngle < 0) ? -mMaxRotationAngle
 						: mMaxRotationAngle;
-			}child.setFocusable(true);
+			}
+			child.setFocusable(true);
 			transformImageBitmap((ImageView) child, t, rotationAngle);
 		}
 
