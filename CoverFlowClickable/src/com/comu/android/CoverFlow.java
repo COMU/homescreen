@@ -126,7 +126,7 @@ public class CoverFlow extends Gallery{
 			if (Math.abs(rotationAngle) > mMaxRotationAngle) {
 				rotationAngle = (rotationAngle < 0) ? -mMaxRotationAngle
 						: mMaxRotationAngle;
-			}
+			}child.setFocusable(true);
 			transformImageBitmap((ImageView) child, t, rotationAngle);
 		}
 
@@ -177,7 +177,7 @@ public class CoverFlow extends Gallery{
 			else child.setAlpha(510);
 
 		mCamera.translate(0.0f, 0.0f, 100.0f);
-		child.setFocusable(true);
+//		child.setFocusable(true);
 		// As the angle of the view gets less, zoom in
 		if (rotation < mMaxRotationAngle) {
 			float zoomAmount = (float) (mMaxZoom + (rotation * 1.5));
