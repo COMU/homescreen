@@ -1,9 +1,11 @@
 package com.comu.android;
 
 
+import android.app.Activity;
+import android.os.Bundle;
 import com.google.gdata.client.youtube.YouTubeService;
 
-public class Authentication {
+public class Authentication extends Activity{
 	
 	public static String developer_key = "AI39si7MFNYSPPiZucLMHuRPA_gx9eFN6SYBQfPuC7lDaBXzUI0uDcF_JSwfHfo9sJ3Pcz2C5WBN8IS6cbqvK_daEuLvPnLD8Q";
 	public static String clientId = "321041055608.apps.googleusercontent.com";
@@ -13,6 +15,11 @@ public class Authentication {
 	public static String userName="";
 	public static String password="";
 	
-	YouTubeService service = new YouTubeService(clientId, developer_key);
-	
+	 /** Called when the activity is first created. */	
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+   //     setContentView(R.layout.main);      
+//	YouTubeService service = new YouTubeService(clientId, developer_key);
+    }	
 }

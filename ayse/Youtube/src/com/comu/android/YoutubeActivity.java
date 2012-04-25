@@ -1,12 +1,11 @@
 package com.comu.android;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,19 +17,26 @@ public class YoutubeActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-//        TextView login = (TextView) findViewById();
-//        login.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				
-//			
-//			}	
-//			});
-          
-
+        
+        ImageButton search = (ImageButton) findViewById(R.id.search);
+        TextView login = (TextView) findViewById(R.id.login);
+        login.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub	
+				Intent viewIntent = new Intent(getApplicationContext(), Authentication.class);				
+				startActivity(viewIntent);
+			}	
+			});
+        search.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+         
     }
    
-        
- 
 }
