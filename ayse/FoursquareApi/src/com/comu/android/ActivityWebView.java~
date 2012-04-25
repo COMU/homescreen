@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class ActivityWebView extends Activity {
 
     private static final String TAG = "ActivityWebView";
-    public static final String CALLBACK_URL = "http://127.0.0.1:8000";
+    public static final String CALLBACK_URL = "http://127.0.0.1:8000/callback";
     public static final String CLIENT_ID = "DJFVLETH5C2YJTKLZ0TLINS2GBYEXJGWW4BWPCGHPNSJPDWI";
     public static final String CLIENT_SECRET= "QP1KQNXD3B1EZ2WTRB3BQJSIBXGE1CG3RJ1QZ13V4UWV2B32";
 
