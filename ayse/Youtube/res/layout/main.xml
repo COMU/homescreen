@@ -4,16 +4,18 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:background="@android:color/darker_gray" >  
+
     <TableLayout
-    	android:id="@+id/tablelayout"
-    	android:layout_width="match_parent"
-    	android:layout_height="100dp" >
+        android:id="@+id/tablelayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" >
 
         <TableRow
            android:layout_width="match_parent"
-           android:layout_height="70dp"
+           android:layout_height="50dp"
            android:gravity="left" >
            <ImageView 
+               android:id="@+id/youtube"
                android:contentDescription="@string/youtubeicon"
                android:src="@drawable/youtube"
                android:layout_width="60dp"
@@ -34,8 +36,35 @@
                android:layout_height="40dp"
                android:id="@+id/login"
                android:text="Sign In"
-               android:textColor="@android:color/black" />                   
+               android:textColor="@android:color/black"
+               android:focusable="true" />                   
        </TableRow>      
-    </TableLayout> 
+    </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="434dp" >
+        
+            <ListView
+            android:id="@+id/listView1"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content" >
+        </ListView>
+
+        <GridView
+            android:id="@+id/gridView1"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:numColumns="3" >
+        </GridView>
+
+        <ListView
+            android:id="@+id/listView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </ListView>
+        
+    </LinearLayout>
 
 </LinearLayout>
