@@ -42,7 +42,7 @@ public class GameSubMenu extends BetterActivity implements OnItemClickListener{
 		setContentView(R.layout.main);
 		
 		final LinearLayout mainLayout = (LinearLayout) findViewById(R.id.main_layout);
-		mainLayout.setBackgroundResource(R.drawable.wallpaper_blue_abstract);
+		mainLayout.setBackgroundResource(WallPaper.wallPapers[WallPaper.selectedWallpaperId]);
 		
 		imagepath = new VeriTabani(this);
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(

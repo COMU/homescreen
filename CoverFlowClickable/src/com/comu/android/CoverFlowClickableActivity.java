@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -33,6 +34,7 @@ import android.widget.Toast;
 
 
 public class CoverFlowClickableActivity extends BetterActivity implements OnItemClickListener{
+	
 	private VeriTabani imagepath;
 	
 //	SharedPreferences mySharedPrefs;
@@ -43,12 +45,10 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		
-//		Intent wallPaperIntent = new Intent(getApplicationContext(), WallPaper.class);				
-//		startActivity(wallPaperIntent);
+	
 		
 		final LinearLayout mainLayout = (LinearLayout) findViewById(R.id.main_layout);
-		mainLayout.setBackgroundResource(R.drawable.wallpaper_blue_abstract);
+		mainLayout.setBackgroundResource(WallPaper.wallPapers[WallPaper.selectedWallpaperId]);
 
 		imagepath = new VeriTabani(this);
 		
@@ -426,15 +426,13 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 		}
 	
 	}
-
-//	public static int gelenposition;
+ 
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
 		String[] dizi={"Tarayıcı", "Sosyal Aglar","Youtube","Gmail","Galeri","Oyunlar", "Wikipedia", "indirilenler","Ayarlar"};
 		Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
 	
 		position++;
-//		gelenposition = position;
 		
 			switch (position){
 			
@@ -481,8 +479,13 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
                 
 			}
 	}
-
-
-
+//	public static void OnFocusChangeListener(ImageAdapter adapter){
+//		
+//	
+//		
+//		
+//		
+//		
+//	}
 
 }

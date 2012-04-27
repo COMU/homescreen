@@ -39,9 +39,8 @@ import android.widget.ImageView.ScaleType;
 import android.widget.TableRow.LayoutParams;
 
 public class SubMenuActivity extends Activity implements OnItemClickListener {
-int temp=0;
+	int temp=0;
 	
-//	public static int alinanposition=CoverFlowClickableActivity.gelenposition;
 	public static int currentPosition = 5;
 	VeriTabani imagepath = new VeriTabani(this);
 	@Override
@@ -49,12 +48,9 @@ int temp=0;
 		// Called when the activity is first created
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sub_menu);
-		
-//		Intent wallPaperIntent = new Intent(getApplicationContext(), WallPaper.class);				
-//		startActivity(wallPaperIntent);
-		
+				
 		final LinearLayout subLayout = (LinearLayout) findViewById(R.id.sub_layout);
-		subLayout.setBackgroundResource(R.drawable.wallpaper_blue_abstract);
+		subLayout.setBackgroundResource(WallPaper.wallPapers[WallPaper.selectedWallpaperId]);
 		
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
 	               "coverflow", "id", "com.comu.android"));
@@ -100,20 +96,16 @@ int temp=0;
                   80,
                   80));
 		  img1.setFocusable(true);
-	//	  img1.setAlpha(460);
-	//	  img1.hasFocusable();
 		  final ImageView img2 = new ImageView(this);
 		  img2.setLayoutParams(new LayoutParams(
                   80,
                   80));
 		  img2.setFocusable(true);
-	//	  img2.setAlpha(460);
 		  final ImageView img3 = new ImageView(this);
 		  img3.setLayoutParams(new LayoutParams(
                   80,
                   80));
 		  img3.setFocusable(true);
-   //	  img3.setAlpha(460);
 		  TextView it1 = new TextView(this);
 		  it1.setLayoutParams(new LayoutParams(
                   80,
@@ -234,7 +226,7 @@ int temp=0;
             img1.setOnFocusChangeListener(new OnFocusChangeListener(){
             	
 				public void onFocusChange(View v, boolean hasFocus) {
-					// TODO Auto-generated method stub
+					// when img1 was focused,its brightness will low
 					if(img1.hasFocus())
 			  			img1.setAlpha(900);
 			  	    else 
@@ -244,7 +236,7 @@ int temp=0;
             img2.setOnFocusChangeListener(new OnFocusChangeListener(){
             	
 				public void onFocusChange(View v, boolean hasFocus) {
-					// TODO Auto-generated method stub
+					// when img2 was focused,its brightness will low
 					if(img2.hasFocus())
 			  			img2.setAlpha(900);
 			  	    else 
@@ -254,7 +246,7 @@ int temp=0;
             img3.setOnFocusChangeListener(new OnFocusChangeListener(){
             	
 				public void onFocusChange(View v, boolean hasFocus) {
-					// TODO Auto-generated method stub
+					// when img3 was focused,its brightness will low
 					if(img3.hasFocus())
 			  			img3.setAlpha(900);
 			  	    else 
@@ -303,19 +295,6 @@ int temp=0;
 		        }
 		    });  
 	
-//	public void  setSubMenuFocus(){
-//		 
-//		if(img1.hasFocusable())
-//	  			img1.setAlpha(460);
-//	  	 else img1.setAlpha(600);
-//		 if(img2.hasFocusable())
-//	  			img2.setAlpha(460);
-//	  	 else img2.setAlpha(600);
-//		 if(img3.hasFocusable())
-//	  			img3.setAlpha(460);		  	
-//		 else img3.setAlpha(600);
-//	
-//	};
 }	
 	private Integer[] getEggGallery() {
 		// Auto-generated method stub
@@ -653,7 +632,7 @@ int temp=0;
 		String[] dizi={"Tarayıcı", "Sosyal Aglar","Youtube","Gmail","Galeri","Oyunlar", "Wikipedia", "İndirilenler","Ayarlar"};
 		Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
 
-	position++;
+	    position++;
 
 
 			switch (position){

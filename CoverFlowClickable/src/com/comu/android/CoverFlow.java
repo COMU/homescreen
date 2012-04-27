@@ -5,6 +5,7 @@ import android.graphics.Camera;
 import android.graphics.Matrix;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.view.animation.Transformation;
 import android.widget.Gallery;
 import android.widget.ImageView;
@@ -129,10 +130,12 @@ public class CoverFlow extends Gallery{
 						: mMaxRotationAngle;
 			}
 			child.setFocusable(true);
+			
 			transformImageBitmap((ImageView) child, t, rotationAngle);
 		}
 
 		return true;
+		
 	}
 
 	/**
@@ -173,13 +176,12 @@ public class CoverFlow extends Gallery{
 		;
 		final int imageWidth = child.getLayoutParams().width;
 		final int rotation = Math.abs(rotationAngle);
-
+		
 		if(child.hasFocusable())
 			child.setAlpha(460);
 			else child.setAlpha(510);
 
 		mCamera.translate(0.0f, 0.0f, 100.0f);
-//		child.setFocusable(true);
 		// As the angle of the view gets less, zoom in
 		if (rotation < mMaxRotationAngle) {
 			float zoomAmount = (float) (mMaxZoom + (rotation * 1.5));
@@ -193,8 +195,4 @@ public class CoverFlow extends Gallery{
 		mCamera.restore();
 	}
 
-
-	
-	
-	
 }
