@@ -36,7 +36,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.comu.android.*;
+import com.comu.android.R;
 import com.facebook.android.Facebook.DialogListener;
 
 public class FbDialog extends Dialog {
@@ -98,12 +98,13 @@ public class FbDialog extends Dialog {
         mCrossImage = new ImageView(getContext());
         // Dismiss the dialog when user click on the 'x'
         mCrossImage.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 mListener.onCancel();
                 FbDialog.this.dismiss();
             }
         });
-        Drawable crossDrawable = getContext().getResources().getDrawable(R.drawable.ic_launcher);
+        Drawable crossDrawable = getContext().getResources().getDrawable(R.drawable.close);
         mCrossImage.setImageDrawable(crossDrawable);
         /* 'x' should not be visible while webview is loading
          * make it visible only after webview has fully loaded
@@ -131,7 +132,7 @@ public class FbDialog extends Dialog {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            Log.d("Facebook-WebView", "Redirect URL: " + url);
+            Util.logd("Facebook-WebView", "Redirect URL: " + url);
             if (url.startsWith(Facebook.REDIRECT_URI)) {
                 Bundle values = Util.parseUrl(url);
 
@@ -175,7 +176,7 @@ public class FbDialog extends Dialog {
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            Log.d("Facebook-WebView", "Webview loading URL: " + url);
+            Util.logd("Facebook-WebView", "Webview loading URL: " + url);
             super.onPageStarted(view, url, favicon);
             mSpinner.show();
         }

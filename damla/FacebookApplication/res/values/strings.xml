@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Facebook Application</string>
     <string name="request">Request!</string>
     <string name="hello"> </string>
     <string name="upload">Upload Photo</string><string name="post">Wall Post!</string>
     <string name="delete">Delete Post</string>
-
-
+	<string name="can_post_on_wall">Friends list fetched. You can post on friend\'s wall by clicking on the item.</string>
+	<string name="post_on_wall_title">Post on Wall?</string>
+	<string name="post_on_wall">Would you like to post on %1$s\'s wall</string>
+	<string name="yes">Yes</string>
+	<string name="app_desc">Checkout out Facebook for Android to learn how you can make your android apps social using Facebook Platform.</string>
+    <string name="app_action">I am using the Facebook for Android</string>
+	<string name="no">No</string>
+	<string name="fql_button">FQL Query</string>
+	<string name="graph_button">Graph API</string>
+	<string name="Graph_FQL_title">Graph API or FQL Query?</string>
+    <string name="Graph_FQL_msg">Get friends using Graph or FQL Query?\n\nWith FQL query you can sort the list by names, whereas with Graph list will be ordered by UID and can\'t be changed.</string>
+	<string name="please_wait">Please wait...</string>
+	<string name="view_photo">View Photo</string>
+    <string name="hide_photo">Hide Photo</string>
+    <string name="photo_tip">Photos are by default uploaded to the app\'s album. Specify album_id to upload to specific album. E.g. https://graph.facebook.com/{album_id}/photos.\n\nMore Info: https://developers.facebook.com/docs/reference/api/photo</string>
+	<string name="exception">Exception: </string>
+	<string name="facebook_error">Facebook Error: </string>
+	<string name="api_response">Api Response:</string>
+	<string name="tip_label">Tip:</string>
+	<string name="tag_photo">Tag Photo</string>
+	
 </resources>
