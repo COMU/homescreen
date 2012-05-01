@@ -3,25 +3,24 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@android:color/darker_gray" >  
+    android:background="@android:color/darker_gray"
+    android:gravity="center" >
 
-    <TableLayout
-        android:id="@+id/tablelayout"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="50dp" >
-
-        <TableRow
-           android:layout_width="match_parent"
-           android:layout_height="50dp"
-           android:gravity="left" >
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+         >
+   
            <ImageView 
                android:id="@+id/youtube"
                android:contentDescription="@string/youtubeicon"
                android:src="@drawable/youtube"
-               android:layout_width="60dp"
+               android:layout_width="70dp"
                android:layout_height="40dp" />
            <EditText
-               android:layout_width="180dp"
+               android:layout_width="240dp"
                android:layout_height="40dp"
                android:id="@+id/searched" />
            <ImageButton
@@ -30,38 +29,55 @@
                android:src="@drawable/icon_search" 
                android:layout_width="40dp"
                android:layout_height="40dp"                            
-               />        
+               /> 
            <TextView
-               android:layout_width="70dp"
+               android:layout_width="60dp"
+               android:layout_height="40dp"
+               android:id="@+id/upload"
+               android:textColor="@android:color/black"
+               android:focusable="true"
+               android:gravity="center" /> 
+           <TextView
+               android:layout_width="60dp"
+               android:layout_height="40dp"
+               android:id="@+id/createAccount"
+               android:textColor="@android:color/black"
+               android:focusable="true"
+               android:gravity="center" />        
+           <TextView
+               android:layout_width="60dp"
                android:layout_height="40dp"
                android:id="@+id/login"
-               android:text="Sign In"
                android:textColor="@android:color/black"
-               android:focusable="true" />                   
-       </TableRow>      
-    </TableLayout>
+               android:focusable="true"
+               android:gravity="center" />                   
 
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="434dp" >
+        android:layout_height="match_parent"
+        android:layout_gravity="center" >
         
-            <ListView
+        <ListView
             android:id="@+id/listView1"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content" >
+            android:entries="@android:style/TextAppearance.Small"           
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+             >
+                         
         </ListView>
 
         <GridView
             android:id="@+id/gridView1"
-            android:layout_width="180dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:numColumns="3" >
         </GridView>
 
         <ListView
             android:id="@+id/listView2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         </ListView>
         

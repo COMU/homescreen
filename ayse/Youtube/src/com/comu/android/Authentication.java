@@ -20,13 +20,11 @@ public class Authentication extends Activity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-   //     setContentView(R.layout.main);      
+        setContentView(R.layout.login);      
 //	YouTubeService service = new YouTubeService(clientId, developer_key);
-//	try {
-//		service.setUserCredentials(userName, password);
-//	} catch (AuthenticationException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	}
+
+        
+        
+        
     }	
 }
