@@ -47,6 +47,7 @@ public class TwitterApplication extends Activity {
 	private Twitter mTwitter;
 	private RequestToken mReqToken;
 	private ListView l;
+	private ListView l2;
 
 
 	private Button mLoginButton;
@@ -77,7 +78,7 @@ public class TwitterApplication extends Activity {
 		spec3.setIndicator("Tweet");
 		spec3.setContent(org.comu.homescreen.R.id.tab3);
 
-
+		
 		
 		tabHost.addTab(spec1);
 		tabHost.addTab(spec2);
@@ -95,6 +96,7 @@ public class TwitterApplication extends Activity {
 		mTwitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
 		Log.i(TAG, "Inflated Twitter4j");
 		l = (ListView) findViewById(org.comu.homescreen.R.id.liste_tab1);
+		l2=(ListView)findViewById(org.comu.homescreen.R.id.liste_tab2);
 	
 		mTweetButton = (Button) findViewById(org.comu.homescreen.R.id.tweet_button);
 		tweet = (EditText) findViewById(org.comu.homescreen.R.id.tweetText);
@@ -115,8 +117,9 @@ public class TwitterApplication extends Activity {
 				try {
 
 					List<Status> st = mTwitter.getHomeTimeline();
-
+					List<Status> st1= mTwitter.getMentions();
 					String dizi[] = new String[st.size()];
+					String dizi1[] = new String[st1.size()];
 					int i = 0;
 					for (Status s : st) {
 
@@ -127,8 +130,13 @@ public class TwitterApplication extends Activity {
 
 					l.setAdapter(new ArrayAdapter<String>(l.getContext(),
 							android.R.layout.simple_list_item_1, dizi));
+					int j = 0;
+					for(Status s:st1){
+						dizi1[j]=s.getUser().getName() +" : " + s.getText();
+						j++;
+					}
 					
-					
+					l2.setAdapter(new ArrayAdapter<String>(l2.getContext(),android.R.layout.simple_list_item_1,dizi1));
 				
 
 				} catch (TwitterException e) {
