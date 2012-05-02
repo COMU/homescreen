@@ -10,6 +10,7 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
+import android.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,10 +26,13 @@ import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.TabHost.TabSpec;
 
 public class TwitterApplication extends Activity {
 
@@ -38,12 +42,11 @@ public class TwitterApplication extends Activity {
 	private static final String PREF_ACCESS_TOKEN_SECRET = "accessTokenSecret";
 	private static final String CONSUMER_KEY = "Eb1Z7HpRThDW55MO0g0D0g";
 	private static final String CONSUMER_SECRET = "mb2d14uDt5weTlRhp5il5r8lPIWc37XhNJKGEEiQ";
-	private static final String CALLBACK_URL = "tweet-to-twitter-blundell-01-android:///";
+	private static final String CALLBACK_URL = "tweetApplication:///";
 	private SharedPreferences mPrefs;
 	private Twitter mTwitter;
 	private RequestToken mReqToken;
 	private ListView l;
-	private ListView l2;
 
 
 	private Button mLoginButton;
@@ -56,8 +59,33 @@ public class TwitterApplication extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.i(TAG, "Loading TweetToTwitterActivity");
-		setContentView(R.layout.main);
+		setContentView(org.comu.homescreen.R.layout.main);
 
+		
+		TabHost tabHost=(TabHost)findViewById(org.comu.homescreen.R.id.tabHost);
+		tabHost.setup();
+
+		TabSpec spec1=tabHost.newTabSpec("Tab 1");
+		spec1.setContent(org.comu.homescreen.R.id.tab1);
+		spec1.setIndicator("HomeTimeLine");
+
+		TabSpec spec2=tabHost.newTabSpec("Tab 2");
+		spec2.setIndicator("Mentions");
+		spec2.setContent(org.comu.homescreen.R.id.tab2);
+
+		TabSpec spec3=tabHost.newTabSpec("Tab 3");
+		spec3.setIndicator("Tweet");
+		spec3.setContent(org.comu.homescreen.R.id.tab3);
+
+
+		
+		tabHost.addTab(spec1);
+		tabHost.addTab(spec2);
+		tabHost.addTab(spec3);
+		
+		
+		
+		
 		mPrefs = getSharedPreferences("twitterPrefs", MODE_PRIVATE);
 		Log.i(TAG, "Got Preferences");
 
@@ -66,17 +94,24 @@ public class TwitterApplication extends Activity {
 
 		mTwitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
 		Log.i(TAG, "Inflated Twitter4j");
-		l = (ListView) findViewById(R.id.liste);
-		l2= (ListView) findViewById(R.id.listeMentions);
+		l = (ListView) findViewById(org.comu.homescreen.R.id.liste_tab1);
+	
+		mTweetButton = (Button) findViewById(org.comu.homescreen.R.id.tweet_button);
+		tweet = (EditText) findViewById(org.comu.homescreen.R.id.tweetText);
+		
+		
 
-		mTweetButton = (Button) findViewById(R.id.tweet_button);
-		tweet = (EditText) findViewById(R.id.tweetText);
-		show_twet = (Button) findViewById(R.id.show_twet);
-		show_twet.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
+		if (mPrefs.contains(PREF_ACCESS_TOKEN)) {
+			Log.i(TAG, "Repeat User");
+			loginAuthorisedUser();
+		} else {
+			Log.i(TAG, "New User");
+			loginNewUser();
+		}
+		
+		
+		
+		
 				try {
 
 					List<Status> st = mTwitter.getHomeTimeline();
@@ -93,7 +128,6 @@ public class TwitterApplication extends Activity {
 					l.setAdapter(new ArrayAdapter<String>(l.getContext(),
 							android.R.layout.simple_list_item_1, dizi));
 					
-					l2.setAdapter(new ArrayAdapter<String>(l2.getContext(),android.R.layout.simple_list_item_1, dizi));
 					
 				
 
@@ -102,16 +136,8 @@ public class TwitterApplication extends Activity {
 					e.printStackTrace();
 				}
 
-			}
-		});
+			
 
-		if (mPrefs.contains(PREF_ACCESS_TOKEN)) {
-			Log.i(TAG, "Repeat User");
-			loginAuthorisedUser();
-		} else {
-			Log.i(TAG, "New User");
-			loginNewUser();
-		}
 
 	}
 
@@ -182,7 +208,7 @@ public class TwitterApplication extends Activity {
 
 			saveAccessToken(at);
 
-			setContentView(R.layout.main);
+			setContentView(org.comu.homescreen.R.layout.main);
 
 			enableTweetButton();
 		} catch (TwitterException e) {
