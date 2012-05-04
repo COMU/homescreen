@@ -16,15 +16,18 @@ public final class R {
         public static final int header=0x7f020002;
         public static final int ic_launcher=0x7f020003;
         public static final int tweet=0x7f020004;
+        public static final int twitterhead=0x7f020005;
     }
     public static final class id {
         public static final int grup=0x7f050000;
-        public static final int liste=0x7f050004;
-        public static final int listeFavorite=0x7f050006;
-        public static final int listeMentions=0x7f050005;
-        public static final int show_twet=0x7f050003;
-        public static final int tweetText=0x7f050001;
-        public static final int tweet_button=0x7f050002;
+        public static final int liste_tab1=0x7f050003;
+        public static final int liste_tab2=0x7f050005;
+        public static final int tab1=0x7f050002;
+        public static final int tab2=0x7f050004;
+        public static final int tab3=0x7f050006;
+        public static final int tabHost=0x7f050001;
+        public static final int tweetText=0x7f050007;
+        public static final int tweet_button=0x7f050008;
     }
     public static final class layout {
         public static final int main=0x7f030000;

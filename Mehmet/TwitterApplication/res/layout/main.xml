@@ -1,70 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/background"
-    android:orientation="vertical" >
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:background="@drawable/background" android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/grup"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
 
-        <EditText
-            android:id="@+id/tweetText"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/grup"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+	<LinearLayout android:id="@+id/grup" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="vertical">
 
-        <Button
-            android:id="@+id/tweet_button"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:onClick="buttonTweet"
-            android:text="Tweet" />
-
-        <Button
-            android:id="@+id/show_twet"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="ShowTweets" />
-    </LinearLayout>
-<LinearLayout
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
+<ImageView
+android:src="@drawable/twitterhead"
+android:layout_width="100dp"
+android:layout_height="50dp"
 >
-<ListView
-android:id="@+id/liste"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-        android:background="@drawable/tweet" >
+</ImageView>	
 
->
-</ListView>
-<ListView
-android:id="@+id/listeMentions"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-        android:background="@drawable/tweet" >
+		<TabHost android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:id="@+id/tabHost"
+			xmlns:android="http://schemas.android.com/apk/res/android">
+			<TabWidget android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:id="@android:id/tabs" />
+			<FrameLayout android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:id="@android:id/tabcontent">
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:id="@+id/tab1"
+					android:orientation="vertical" android:paddingTop="100px">
+					<ListView android:id="@+id/liste_tab1"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:background="@drawable/tweet" />
 
->
-</ListView>
-<ListView
-android:id="@+id/listeFavorite"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-        android:background="@drawable/tweet" >
+				</LinearLayout>
 
->
-</ListView>
-</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="fill_parent" android:id="@+id/tab2"
+					android:orientation="vertical" android:paddingTop="100px">
+							<ListView android:id="@+id/liste_tab2"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:background="@drawable/tweet" />
+						
+				</LinearLayout>
+			
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="fill_parent" android:id="@+id/tab3"
+					android:orientation="vertical" android:paddingTop="100px">
 
 
+					<EditText android:id="@+id/tweetText"
+						android:layout_width="fill_parent" android:layout_height="50dp" />
+					<Button android:id="@+id/tweet_button" android:layout_width="75dp"
+						android:layout_height="wrap_content" android:onClick="buttonTweet"
+						android:text="Tweet" />
+
+
+				</LinearLayout>
+			
+			
+			
+			</FrameLayout>
+
+		</TabHost>
+
+
+
+	</LinearLayout>
 </LinearLayout>
