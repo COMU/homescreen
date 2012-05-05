@@ -1,16 +1,11 @@
 package com.comu.android;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import com.google.api.client.googleapis.auth.clientlogin.ClientLogin;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -63,6 +58,6 @@ public class Authentication extends Activity{
 					
 					
 				}
-		         });
+		 });
     }	
 }

@@ -1,33 +1,22 @@
 package com.comu.android;
 
 import java.io.IOException;
-import java.net.ResponseCache;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
-
 import com.google.api.client.googleapis.GoogleHeaders;
 import com.google.api.client.googleapis.json.JsonCParser;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestFactory;
+import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson.JacksonFactory;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
@@ -36,7 +25,6 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -62,10 +50,9 @@ public class YouTubeActivity extends Activity {
         listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+			public void onItemClick(AdapterView<?> view, View arg1, int arg2,
 					long arg3) {
-				
-				
+
 			}
         });
 
@@ -77,13 +64,12 @@ public class YouTubeActivity extends Activity {
         final GridView gridview = (GridView) findViewById(R.id.gridView1);
         gridview.setAdapter(new ImageAdapter(this));
         
-        gridview.setOnClickListener(new OnClickListener() {
-			
+        gridview.setOnItemClickListener(new OnItemClickListener() {
+
 			@Override
-			public void onClick(View v) {
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
 				// TODO Auto-generated method stub
-				
-				
 				
 			}
 		});
@@ -162,8 +148,49 @@ public class YouTubeActivity extends Activity {
 				
 			}
 		});
+       
+        String feedUrl = "http://gdata.youtube.com/feeds/api/videos?"
+            +"q=skateboarding+dog"
+            +"&orderby=published"
+            +"&start-index=21"
+            +"&max-results=10"
+            +"&v=2";
+        HttpTransport transport = new NetHttpTransport();
+        final JsonFactory jsonFactory = new JacksonFactory();
+        HttpRequestFactory factory = transport.createRequestFactory(new HttpRequestInitializer() {
+        	
+			@Override
+			public void initialize(HttpRequest request) throws IOException {
+				//  set the parser
+				JsonCParser parser = new JsonCParser(jsonFactory);
+		        request.addParser(parser);
+		        // set up the Google headers
+		        GoogleHeaders headers = new GoogleHeaders();
+		        headers.setApplicationName("YouTube");
+		        headers.gdataVersion = "2";
+		        request.setHeaders(headers);
+			}
+		});
         
-          
-    }
+        YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/videos");
+        url.author = "searchstories";
+        url.maxResults = 2;
+        // build the HTTP GET request
+        HttpRequest request = null;
+		try {
+			request = factory.buildGetRequest(url);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        // execute the request and the parse video feed
+        try {
+			VideoFeed feed = request.execute().parseAs(VideoFeed.class);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
    
+    }
+ 
 }
