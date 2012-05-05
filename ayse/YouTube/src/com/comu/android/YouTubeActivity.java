@@ -33,6 +33,7 @@ import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
@@ -73,6 +74,8 @@ public class YouTubeActivity extends Activity {
         final TextView upload = (TextView) findViewById(R.id.upload);
         final TextView createAcc = (TextView) findViewById(R.id.createAccount);
         ImageView youtube = (ImageView) findViewById(R.id.youtube);
+        final GridView gridview = (GridView) findViewById(R.id.gridView1);
+        gridview.setAdapter(new ImageAdapter(this));
         
         login.setText("Sign In");
         login.setTextSize(TypedValue.DENSITY_DEFAULT, 15);
