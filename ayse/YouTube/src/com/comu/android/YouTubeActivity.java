@@ -77,6 +77,17 @@ public class YouTubeActivity extends Activity {
         final GridView gridview = (GridView) findViewById(R.id.gridView1);
         gridview.setAdapter(new ImageAdapter(this));
         
+        gridview.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				
+				
+			}
+		});
+        
         login.setText("Sign In");
         login.setTextSize(TypedValue.DENSITY_DEFAULT, 15);
         upload.setText("Upload");
