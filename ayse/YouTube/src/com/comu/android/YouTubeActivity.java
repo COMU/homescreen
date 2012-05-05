@@ -45,10 +45,6 @@ public class YouTubeActivity extends Activity {
 	
 	public static String developerKey = "AI39si5Ok3qgtySpXtuBZeQnK2fK1iSb08e1RMeTVlH6q_N5_4msavgPkaNsAtejFKt-fzzpBa7iSda66nXX2rPgxZYFzrMNIw";
 	public static String clientId = "321041055608-poq8q9m16811aj397op9rcknp77fgk33.apps.googleusercontent.com";
-	public static String userName="aysegovdeli@gmail.com";
-	public static String password="";
-	private static final String YOUTUBE_URL = "http://gdata.youtube.com/feeds/api/videos";
-	private static final String YOUTUBE_EMBEDDED_URL = "http://www.youtube.com/v/";
 
 	
     /** Called when the activity is first created. */	
@@ -153,31 +149,6 @@ public class YouTubeActivity extends Activity {
 			}
 		});
         
-        final JsonFactory jsonFactory = new JacksonFactory();
-        final HttpTransport transport = new NetHttpTransport();
-        final HttpRequestFactory requestFactory;
-        JsonCParser parser = new JsonCParser(jsonFactory);
-        HttpRequest request = null;
-        GoogleHeaders headers = new GoogleHeaders();       
-        headers.setApplicationName("YouTube");        
-        request.setHeaders(headers);
-        request.addParser(parser);
-        
-
-        
-//        HttpContext localContext = new BasicHttpContext();
-//        String feedUrl = "http://gdata.youtube.com/feeds/api/standardfeeds/most_viewed";
-//        HttpClient httpclient = new DefaultHttpClient();
-//        HttpGet httpget = new HttpGet(feedUrl);
-//        try {
-//			HttpResponse response = httpclient.execute(httpget, localContext);
-//		} catch (ClientProtocolException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
           
     }
    
