@@ -40,7 +40,8 @@ public class Dispatcher {
 
     // Contains the webView object
     LinearLayout layout;
-
+//  LinearLayout mainlayout;
+    
     // Has the webView been rendered?
     boolean isWebViewShown;
 
@@ -51,12 +52,18 @@ public class Dispatcher {
     public Dispatcher(Activity activity) {
         this.activity = activity;
         handlers = new HashMap<String, Class>();
+//      mainlayout = new LinearLayout(activity);
         layout = new LinearLayout(activity);
         activity.addContentView(
                 layout, new LayoutParams(
                         LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
         isWebViewShown = false;
         showWebView();
+    }
+    
+    public int convertToDp(int input){
+    	final float scale = layout.getResources().getDisplayMetrics().density;
+    	return (int) (input*scale+0.5f);
     }
 
     /**
