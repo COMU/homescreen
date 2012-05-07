@@ -34,13 +34,19 @@ public class YouTubeActivity extends Activity {
 	
 	public static String developerKey = "AI39si5Ok3qgtySpXtuBZeQnK2fK1iSb08e1RMeTVlH6q_N5_4msavgPkaNsAtejFKt-fzzpBa7iSda66nXX2rPgxZYFzrMNIw";
 	public static String clientId = "321041055608-poq8q9m16811aj397op9rcknp77fgk33.apps.googleusercontent.com";
-
+    public static String videoInf[] = new String[20];
 	
     /** Called when the activity is first created. */	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        try {
+			Connection();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         final String[]  listVideo ={"From YouTube","Trending","Popular","Music","Entertainment","Sports",
     			"Film & Animation","News & Politics","Comedy","People & Blogs","Science & Technology",
     			"Gaming","Howto & Style","Education","Pets & Animals","Autos & Vehicles","Travel & Events","Nonprofits & Activism"};
@@ -155,10 +161,13 @@ public class YouTubeActivity extends Activity {
             +"&start-index=21"
             +"&max-results=10"
             +"&v=2";
+    }   
+    public static void Connection() throws IOException {
         HttpTransport transport = new NetHttpTransport();
         final JsonFactory jsonFactory = new JacksonFactory();
         HttpRequestFactory factory = transport.createRequestFactory(new HttpRequestInitializer() {
         	
+			@SuppressWarnings("deprecation")
 			@Override
 			public void initialize(HttpRequest request) throws IOException {
 				//  set the parser
@@ -172,9 +181,10 @@ public class YouTubeActivity extends Activity {
 			}
 		});
         
+        
         YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/videos");
         url.author = "searchstories";
-        url.maxResults = 2;
+        url.maxResults = 1;
         // build the HTTP GET request
         HttpRequest request = null;
 		try {
@@ -184,13 +194,20 @@ public class YouTubeActivity extends Activity {
 			e.printStackTrace();
 		}
         // execute the request and the parse video feed
+		
+		VideoFeed feed = null;
         try {
-			VideoFeed feed = request.execute().parseAs(VideoFeed.class);
+			feed = request.execute().parseAs(VideoFeed.class);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-   
-    }
- 
+        int i=0;
+        for (Video video : feed.items) {
+        	videoInf[i]=video.title;
+        	i=i+1;
+        }
+
+   }
+
 }
