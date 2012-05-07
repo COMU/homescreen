@@ -20,7 +20,7 @@
                android:layout_width="70dp"
                android:layout_height="40dp" />
            <EditText
-               android:layout_width="240dp"
+               android:layout_width="300dp"
                android:layout_height="40dp"
                android:id="@+id/searched" />
            <ImageButton
@@ -62,7 +62,7 @@
         <ListView
             android:id="@+id/listView1"
             android:entries="@android:style/TextAppearance.Small"         
-            android:layout_width="100dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
              >
                          
@@ -70,7 +70,7 @@
 
         <GridView
             android:id="@+id/gridView1"
-            android:layout_width="300dp"
+            android:layout_width="450dp"
             android:layout_height="wrap_content"
             android:numColumns="3" >
         </GridView>

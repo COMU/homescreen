@@ -10,6 +10,20 @@ import android.widget.TextView;
 
 public class ImageAdapter extends BaseAdapter {
 
+	
+	public static String videoList[] = YouTubeActivity.videoInf;
+//	public static String videoList[] = {"ayse","emre"};	
+	public static int[] dizi={
+		R.drawable.ic_launcher,
+		R.drawable.icon_search,
+		R.drawable.youtube,
+		R.drawable.ic_launcher,
+		R.drawable.icon_search,
+		R.drawable.youtube,
+		R.drawable.ic_launcher,
+		R.drawable.icon_search,
+		R.drawable.youtube
+	};
 	 private Context mContext;
 
 	    public ImageAdapter(Context c) {
@@ -18,21 +32,27 @@ public class ImageAdapter extends BaseAdapter {
 
 	    public int getCount() {
 	    	
-	        return 0;//VideoGaleri.length;
+	        return dizi.length;
 	    }
 
 	 
 	    public View getView(int position, View convertView, ViewGroup parent) {
 	        ImageView imageView;
-	        TextView textView;
+	        TextView textView = null;
 	        imageView = new ImageView(mContext);
-	        textView = new TextView(mContext);
+	  //      textView = new TextView(mContext);
 	        imageView.setLayoutParams(new GridView.LayoutParams(95, 95));
-	        textView.setLayoutParams(new GridView.LayoutParams(95, 95));
+	 //        textView.setLayoutParams(new GridView.LayoutParams(95, 95));
 	        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);	     
-	  //      imageView.setImageResource();
-	        textView.setText("");
-	        return imageView;
+	        imageView.setBackgroundResource(dizi[position]);
+//	        for(int i=0;i<20;i++){
+//	        	textView = new TextView(mContext);
+//	        	textView.setText(videoList[i]);
+//	        	
+//	        }
+			//return textView;
+			return imageView;
+
 	    }
 
 
