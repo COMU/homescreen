@@ -66,7 +66,14 @@
 					android:orientation="vertical" android:paddingTop="100px">
 
 
-					
+						<ListView android:id="@+id/liste_tab3"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:dividerHeight="1dip"
+        			android:layout_marginTop="15dip"
+        			android:layout_marginBottom="10dip"
+						
+						
+						 />
 
 
 				</LinearLayout>

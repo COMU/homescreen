@@ -5,11 +5,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import twitter4j.IDs;
 import twitter4j.Paging;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
+import twitter4j.User;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import android.R;
@@ -51,6 +53,7 @@ public class TwitterApplication extends Activity {
 	private RequestToken mReqToken;
 	private ListView l;
 	private ListView l2;
+	private ListView l3;
 
 
 	private Button mLoginButton;
@@ -71,18 +74,19 @@ public class TwitterApplication extends Activity {
 
 		TabSpec spec1=tabHost.newTabSpec("Tab 1");
 		spec1.setContent(org.comu.homescreen.R.id.tab1);
-		spec1.setIndicator("HomeTimeLine");
+		spec1.setIndicator("HomeTimeLine",getResources().getDrawable(org.comu.homescreen.R.drawable.h));
+		
 
 		TabSpec spec2=tabHost.newTabSpec("Tab 2");
-		spec2.setIndicator("Mentions");
+		spec2.setIndicator("Mentions",getResources().getDrawable(org.comu.homescreen.R.drawable.s));
 		spec2.setContent(org.comu.homescreen.R.id.tab2);
 
 		TabSpec spec3=tabHost.newTabSpec("Tab 3");
-		spec3.setIndicator("Tweet");
+		spec3.setIndicator("Tweet",getResources().getDrawable(org.comu.homescreen.R.drawable.t));
 		spec3.setContent(org.comu.homescreen.R.id.tab3);
 
 		TabSpec spec4=tabHost.newTabSpec("Tab 4");
-		spec4.setIndicator("Friends");
+		spec4.setIndicator("Friends",getResources().getDrawable(org.comu.homescreen.R.drawable.f));
 		spec4.setContent(org.comu.homescreen.R.id.tab4);
 		
 		tabHost.addTab(spec1);
@@ -102,7 +106,8 @@ public class TwitterApplication extends Activity {
 		Log.i(TAG, "Inflated Twitter4j");
 		l = (ListView) findViewById(org.comu.homescreen.R.id.liste_tab1);
 		l2=(ListView)findViewById(org.comu.homescreen.R.id.liste_tab2);
-	
+		l3=(ListView)findViewById(org.comu.homescreen.R.id.liste_tab3);
+		
 		mTweetButton = (Button) findViewById(org.comu.homescreen.R.id.tweet_button);
 		tweet = (EditText) findViewById(org.comu.homescreen.R.id.tweetText);
 		
@@ -120,11 +125,8 @@ public class TwitterApplication extends Activity {
 		
 	//************	
 				try {
-
 					List<Status> st = mTwitter.getHomeTimeline();
-					List<Status> st1= mTwitter.getMentions();
 					String dizi[] = new String[st.size()];
-					String dizi1[] = new String[st1.size()];
 					int i = 0;
 					for (Status s : st) {
 
@@ -136,28 +138,73 @@ public class TwitterApplication extends Activity {
 					l.setAdapter(new ArrayAdapter<String>(l.getContext(),
 							org.comu.homescreen.R.layout.item, dizi));
 					
+
+	//*********				
+					
+					
+					List<Status> st1= mTwitter.getMentions();
+					String dizi1[] = new String[st1.size()];
+				
+					
 					int j = 0;
 					for(Status s:st1){
 						dizi1[j]=s.getUser().getName() +" : " + s.getText();
 						j++;
 					}
-					
 					l2.setAdapter(new ArrayAdapter<String>(l2.getContext(),org.comu.homescreen.R.layout.item,dizi1));
 				
+//***************
+					
+				/*	List<Status> st2 = mTwitter.getHomeTimeline();
+					String dizi2[] = new String[st2.size()];
+					int k = 0;
+					for (Status s : st2) {
 
+						dizi[k] = s.getUser().getName() + "  : " + s.getText();
+						k++;
+
+					}
+
+					l3.setAdapter(new ArrayAdapter<String>(l3.getContext(),
+							org.comu.homescreen.R.layout.item, dizi));
+					
+					*/
+
+					
+					
+					
+					
 				} catch (TwitterException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
-//***********				
-			
+	//////////////////*************************/////////////////////////////			
+				
+		        try {
+		        	User u = mTwitter.verifyCredentials();
+		            long cursor = -1;
+		            int totalFriends = 0;
+		            ArrayList f = new ArrayList();
+		            do {
+		                IDs friendIDs = mTwitter.getFriendsIDs(u.getId(),cursor);
+		                long[] friendIds = friendIDs.getIDs();
+		                for (int i = 0; i < friendIds.length; i++) {
+		                   // do something with ids here
+		                   totalFriends++;
+		                   f.add(friendIds[i]);
+		                }
+		                cursor = friendIDs.getNextCursor();
+		            }
+		            while (cursor != 0);
+		        	l3.setAdapter(new ArrayAdapter<String>(l3.getContext(),
+							org.comu.homescreen.R.layout.item, f));
+		            
+		            
+		       } catch (Exception e){ e.printStackTrace();} 
 				
 				
 				
-				
-				
-				
+	///////////////////******************///////////////////////////////			
 			
 
 
