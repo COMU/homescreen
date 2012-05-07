@@ -72,9 +72,14 @@
             android:id="@+id/gridView1"
             android:layout_width="450dp"
             android:layout_height="wrap_content"
-            android:numColumns="3" >
+            android:numColumns="3"
+            android:padding="10dp"
+            android:verticalSpacing="15dp"
+            android:horizontalSpacing="15dp"
+            android:gravity="center"
+            android:background="@android:color/white"
+             >
         </GridView>
-
         <ListView
             android:id="@+id/listView2"
             android:layout_width="match_parent"

@@ -12,16 +12,20 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson.JacksonFactory;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -184,7 +188,7 @@ public class YouTubeActivity extends Activity {
         
         YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/videos");
         url.author = "searchstories";
-        url.maxResults = 1;
+        url.maxResults = 15;
         // build the HTTP GET request
         HttpRequest request = null;
 		try {
@@ -209,5 +213,42 @@ public class YouTubeActivity extends Activity {
         }
 
    }
+    public class ImageAdapter extends BaseAdapter {
+    	
+		public final String videoList[] = YouTubeActivity.videoInf;
+		private Context mContext;
+	    public ImageAdapter(Context c) {
+	        mContext = c;
+	    }
+	    public int getCount() {	    	
+	        return videoList.length;
+	    } 
+	    public View getView(int position, View convertView, ViewGroup parent) {
+	    	View v;
+	    	if(convertView == null){
+	    		LayoutInflater li = getLayoutInflater();
+	    		v = li.inflate(R.layout.grid, null);
+	    		ImageView iv = (ImageView)v.findViewById(R.id.videoImage);
+	    	//	iv.setImageResource(R.drawable.icon);
+	    		TextView tv = (TextView)v.findViewById(R.id.videoName);
+	    		tv.setText(videoList[position]);
+	    	}
+	    	else{
+	    		v = convertView;
+	    	}
+	    	return v;
+	    }
+
+		@Override
+		public Object getItem(int position) {
+			// TODO Auto-generated method stub		
+			return null;
+		}
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+}
 
 }
