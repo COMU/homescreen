@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:background="@drawable/background" android:orientation="vertical">
+	android:orientation="vertical">
 
 
 
 	<LinearLayout android:id="@+id/grup" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:orientation="vertical">
 
-<ImageView
-android:src="@drawable/twitterhead"
-android:layout_width="100dp"
-android:layout_height="50dp"
->
-</ImageView>	
+		<ImageView android:src="@drawable/twitterhead"
+			android:layout_width="100dp" android:layout_height="50dp">
+		</ImageView>
 
 		<TabHost android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:id="@+id/tabHost"
@@ -27,19 +24,29 @@ android:layout_height="50dp"
 					android:orientation="vertical" android:paddingTop="100px">
 					<ListView android:id="@+id/liste_tab1"
 						android:layout_width="wrap_content" android:layout_height="wrap_content"
-						android:background="@drawable/tweet" />
+						android:dividerHeight="1dip"
+        			android:layout_marginTop="15dip"
+        			android:layout_marginBottom="10dip"
+						
+						
+						/>
 
 				</LinearLayout>
 
 				<LinearLayout android:layout_width="fill_parent"
 					android:layout_height="fill_parent" android:id="@+id/tab2"
 					android:orientation="vertical" android:paddingTop="100px">
-							<ListView android:id="@+id/liste_tab2"
+					<ListView android:id="@+id/liste_tab2"
 						android:layout_width="wrap_content" android:layout_height="wrap_content"
-						android:background="@drawable/tweet" />
+						android:dividerHeight="1dip"
+        			android:layout_marginTop="15dip"
+        			android:layout_marginBottom="10dip"
 						
+						
+						 />
+
 				</LinearLayout>
-			
+
 				<LinearLayout android:layout_width="fill_parent"
 					android:layout_height="fill_parent" android:id="@+id/tab3"
 					android:orientation="vertical" android:paddingTop="100px">
@@ -53,9 +60,18 @@ android:layout_height="50dp"
 
 
 				</LinearLayout>
-			
-			
-			
+
+	<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="fill_parent" android:id="@+id/tab4"
+					android:orientation="vertical" android:paddingTop="100px">
+
+
+					
+
+
+				</LinearLayout>
+
+
 			</FrameLayout>
 
 		</TabHost>

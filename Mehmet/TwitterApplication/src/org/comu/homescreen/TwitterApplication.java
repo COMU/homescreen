@@ -1,6 +1,8 @@
 package org.comu.homescreen;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import twitter4j.Paging;
@@ -29,6 +31,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,12 +81,14 @@ public class TwitterApplication extends Activity {
 		spec3.setIndicator("Tweet");
 		spec3.setContent(org.comu.homescreen.R.id.tab3);
 
-		
+		TabSpec spec4=tabHost.newTabSpec("Tab 4");
+		spec4.setIndicator("Friends");
+		spec4.setContent(org.comu.homescreen.R.id.tab4);
 		
 		tabHost.addTab(spec1);
 		tabHost.addTab(spec2);
 		tabHost.addTab(spec3);
-		
+		tabHost.addTab(spec4);
 		
 		
 		
@@ -113,7 +118,7 @@ public class TwitterApplication extends Activity {
 		
 		
 		
-		
+	//************	
 				try {
 
 					List<Status> st = mTwitter.getHomeTimeline();
@@ -129,14 +134,15 @@ public class TwitterApplication extends Activity {
 					}
 
 					l.setAdapter(new ArrayAdapter<String>(l.getContext(),
-							android.R.layout.simple_list_item_1, dizi));
+							org.comu.homescreen.R.layout.item, dizi));
+					
 					int j = 0;
 					for(Status s:st1){
 						dizi1[j]=s.getUser().getName() +" : " + s.getText();
 						j++;
 					}
 					
-					l2.setAdapter(new ArrayAdapter<String>(l2.getContext(),android.R.layout.simple_list_item_1,dizi1));
+					l2.setAdapter(new ArrayAdapter<String>(l2.getContext(),org.comu.homescreen.R.layout.item,dizi1));
 				
 
 				} catch (TwitterException e) {
@@ -144,6 +150,14 @@ public class TwitterApplication extends Activity {
 					e.printStackTrace();
 				}
 
+//***********				
+			
+				
+				
+				
+				
+				
+				
 			
 
 

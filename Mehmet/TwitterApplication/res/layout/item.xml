@@ -1,0 +1,10 @@
+<TextView android:text="TextView" android:id="@+id/List_row"
+android:background="@drawable/tweet"
+android:textColor="#ffffff00"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_margin="20dp"
+android:padding="5dp"
+>
+</TextView>
