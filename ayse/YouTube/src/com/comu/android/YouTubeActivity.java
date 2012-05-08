@@ -26,6 +26,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -39,7 +40,7 @@ public class YouTubeActivity extends Activity {
 	public static String developerKey = "AI39si5Ok3qgtySpXtuBZeQnK2fK1iSb08e1RMeTVlH6q_N5_4msavgPkaNsAtejFKt-fzzpBa7iSda66nXX2rPgxZYFzrMNIw";
 	public static String clientId = "321041055608-poq8q9m16811aj397op9rcknp77fgk33.apps.googleusercontent.com";
     public static String videoInf[] = new String[20];
-	
+	public static String search = "";
     /** Called when the activity is first created. */	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,13 +61,41 @@ public class YouTubeActivity extends Activity {
         listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> view, View arg1, int arg2,
+			public void onItemClick(AdapterView<?> view, View v, int index,
 					long arg3) {
+		//		search = v.toString();
+				if(index==1){
+					search="youtube";
+					try {
+						Connection();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+				if(index==2) search="trending";
+				if(index==3) search="popular";
+				if(index==4) search="music";
+				if(index==5) search="entertainment";
+				if(index==6) search="sports";
+				if(index==7) search="film";
+				if(index==8) search="news";
+				if(index==9) search="comedy";
+				if(index==10) search="people";
+				if(index==11) search="science";
+				if(index==12) search="gadgets";
+				if(index==13) search="howto";
+				if(index==14) search="education";
+				if(index==15) search="animals";
+				if(index==16) search="vehicles";
+				if(index==17) search="travel";
+				if(index==17) search="nonprofits";
 
 			}
         });
-
-        ImageButton search = (ImageButton) findViewById(R.id.search);
+        EditText searchParameter = (EditText) findViewById(R.id.searched);
+        ImageButton searchButton = (ImageButton) findViewById(R.id.search);
         final TextView login = (TextView) findViewById(R.id.login);
         final TextView upload = (TextView) findViewById(R.id.upload);
         final TextView createAcc = (TextView) findViewById(R.id.createAccount);
@@ -151,7 +180,7 @@ public class YouTubeActivity extends Activity {
 				
 			}	
 			});
-        search.setOnClickListener(new OnClickListener() {			
+        searchButton.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -167,6 +196,7 @@ public class YouTubeActivity extends Activity {
             +"&v=2";
     }   
     public static void Connection() throws IOException {
+    	
         HttpTransport transport = new NetHttpTransport();
         final JsonFactory jsonFactory = new JacksonFactory();
         HttpRequestFactory factory = transport.createRequestFactory(new HttpRequestInitializer() {
@@ -185,10 +215,10 @@ public class YouTubeActivity extends Activity {
 			}
 		});
         
-        
         YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/videos");
-        url.author = "searchstories";
-        url.maxResults = 15;
+     //   url.author = "searchstories";
+        url.q = search;
+        url.maxResults = 20;
         // build the HTTP GET request
         HttpRequest request = null;
 		try {

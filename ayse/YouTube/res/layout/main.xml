@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
-         >
-   
+         >   
            <ImageView 
                android:id="@+id/youtube"
                android:contentDescription="@string/youtubeicon"
@@ -51,7 +50,6 @@
                android:textColor="@android:color/black"
                android:focusable="true"
                android:gravity="center" />                   
-
     </LinearLayout>
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -64,10 +62,8 @@
             android:entries="@android:style/TextAppearance.Small"         
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-             >
-                         
+             >                         
         </ListView>
-
         <GridView
             android:id="@+id/gridView1"
             android:layout_width="450dp"
@@ -84,8 +80,6 @@
             android:id="@+id/listView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
-        </ListView>
-        
+        </ListView>       
     </LinearLayout>
-
 </LinearLayout>
