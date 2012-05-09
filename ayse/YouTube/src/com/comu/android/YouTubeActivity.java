@@ -1,6 +1,10 @@
 package com.comu.android;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.ArrayList;
+
 import com.google.api.client.googleapis.GoogleHeaders;
 import com.google.api.client.googleapis.json.JsonCParser;
 import com.google.api.client.http.HttpRequest;
@@ -15,6 +19,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -22,16 +27,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.Gallery;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 
@@ -39,8 +47,10 @@ public class YouTubeActivity extends Activity {
 	
 	public static String developerKey = "AI39si5Ok3qgtySpXtuBZeQnK2fK1iSb08e1RMeTVlH6q_N5_4msavgPkaNsAtejFKt-fzzpBa7iSda66nXX2rPgxZYFzrMNIw";
 	public static String clientId = "321041055608-poq8q9m16811aj397op9rcknp77fgk33.apps.googleusercontent.com";
-    public static String videoInf[] = new String[20];
-	public static String search = "";
+    public static String videoInf[] = new String[21];
+	public static String search = "youtube";
+	public static String videoIcon_list[] = new String[21];
+
     /** Called when the activity is first created. */	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +62,16 @@ public class YouTubeActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        
+        final EditText searchParameter = (EditText) findViewById(R.id.searched);
+        final ImageButton searchButton = (ImageButton) findViewById(R.id.search);
+        final TextView login = (TextView) findViewById(R.id.login);
+        final TextView upload = (TextView) findViewById(R.id.upload);
+        final TextView createAcc = (TextView) findViewById(R.id.createAccount);
+        ImageView youtube = (ImageView) findViewById(R.id.youtube);
+        final GridView gridview = (GridView) findViewById(R.id.gridView1);
+        gridview.setAdapter(new ImageAdapter(this));
+        
         final String[]  listVideo ={"From YouTube","Trending","Popular","Music","Entertainment","Sports",
     			"Film & Animation","News & Politics","Comedy","People & Blogs","Science & Technology",
     			"Gaming","Howto & Style","Education","Pets & Animals","Autos & Vehicles","Travel & Events","Nonprofits & Activism"};
@@ -63,19 +83,35 @@ public class YouTubeActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> view, View v, int index,
 					long arg3) {
-		//		search = v.toString();
-				if(index==1){
-					search="youtube";
+				
+				if(v.toString()=="From YouTube"){
+					search="youtube";									   
 					try {
 						Connection();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-
+					gridview.setAdapter(null);
 				}
-				if(index==2) search="trending";
-				if(index==3) search="popular";
+				if(v.toString()=="Trending"){ 
+					search="trending";
+					try {
+						Connection();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}			
+				}				
+				if(index==3){
+					search="popular";
+					try {
+						Connection();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}							
+				}
 				if(index==4) search="music";
 				if(index==5) search="entertainment";
 				if(index==6) search="sports";
@@ -94,14 +130,7 @@ public class YouTubeActivity extends Activity {
 
 			}
         });
-        EditText searchParameter = (EditText) findViewById(R.id.searched);
-        ImageButton searchButton = (ImageButton) findViewById(R.id.search);
-        final TextView login = (TextView) findViewById(R.id.login);
-        final TextView upload = (TextView) findViewById(R.id.upload);
-        final TextView createAcc = (TextView) findViewById(R.id.createAccount);
-        ImageView youtube = (ImageView) findViewById(R.id.youtube);
-        final GridView gridview = (GridView) findViewById(R.id.gridView1);
-        gridview.setAdapter(new ImageAdapter(this));
+        
         
         gridview.setOnItemClickListener(new OnItemClickListener() {
 
@@ -184,8 +213,16 @@ public class YouTubeActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-			}
+				search=searchParameter.getText().toString();
+				try {
+					Connection();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+				gridview.setAdapter(new ImageAdapter(this));
+			}		
+			
 		});
        
         String feedUrl = "http://gdata.youtube.com/feeds/api/videos?"
@@ -218,7 +255,7 @@ public class YouTubeActivity extends Activity {
         YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/videos");
      //   url.author = "searchstories";
         url.q = search;
-        url.maxResults = 20;
+        url.maxResults = 21;
         // build the HTTP GET request
         HttpRequest request = null;
 		try {
@@ -239,19 +276,23 @@ public class YouTubeActivity extends Activity {
         int i=0;
         for (Video video : feed.items) {
         	videoInf[i]=video.title;
+        	videoIcon_list[i]=video.thumbnail.sqDefault;
         	i=i+1;
         }
-
+       
    }
-    public class ImageAdapter extends BaseAdapter {
-    	
-		public final String videoList[] = YouTubeActivity.videoInf;
+    public final class ImageAdapter extends BaseAdapter {
+    			
 		private Context mContext;
+		
+	    public ImageAdapter(OnClickListener onClickListener) {
+	        mContext = (Context) onClickListener;
+	    }		
 	    public ImageAdapter(Context c) {
 	        mContext = c;
 	    }
 	    public int getCount() {	    	
-	        return videoList.length;
+	        return videoIcon_list.length;
 	    } 
 	    public View getView(int position, View convertView, ViewGroup parent) {
 	    	View v;
@@ -259,16 +300,32 @@ public class YouTubeActivity extends Activity {
 	    		LayoutInflater li = getLayoutInflater();
 	    		v = li.inflate(R.layout.grid, null);
 	    		ImageView iv = (ImageView)v.findViewById(R.id.videoImage);
-	    	//	iv.setImageResource(R.drawable.icon);
+	    		iv.setImageDrawable(loadImageFromURL(videoIcon_list[position]));
+//	    		iv.setLayoutParams(new LayoutParams(
+//	                    150,
+//	                    120));
 	    		TextView tv = (TextView)v.findViewById(R.id.videoName);
-	    		tv.setText(videoList[position]);
+	    		tv.setText(videoInf[position]);
+//	    		tv.setLayoutParams(new LayoutParams(
+//	                    LayoutParams.FILL_PARENT,
+//	                    120));
 	    	}
 	    	else{
 	    		v = convertView;
 	    	}
 	    	return v;
 	    }
-
+		private Drawable loadImageFromURL(String url){					
+				        try	
+				        {		
+				        InputStream is = (InputStream) new URL(url).getContent();	
+				        Drawable d = Drawable.createFromStream(is, "src");	
+				        return d;		
+				        }catch (Exception e) {		
+				        System.out.println(e);	
+				        return null;		
+				        }		
+		}	    	
 		@Override
 		public Object getItem(int position) {
 			// TODO Auto-generated method stub		

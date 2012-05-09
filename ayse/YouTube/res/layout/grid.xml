@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:layout_y="160dp"
-    android:layout_x="200dp" >
+ >
    <ImageView 
        android:id="@+id/videoImage"
        android:layout_width="match_parent"
