@@ -301,14 +301,9 @@ public class YouTubeActivity extends Activity {
 	    		v = li.inflate(R.layout.grid, null);
 	    		ImageView iv = (ImageView)v.findViewById(R.id.videoImage);
 	    		iv.setImageDrawable(loadImageFromURL(videoIcon_list[position]));
-//	    		iv.setLayoutParams(new LayoutParams(
-//	                    150,
-//	                    120));
 	    		TextView tv = (TextView)v.findViewById(R.id.videoName);
 	    		tv.setText(videoInf[position]);
-//	    		tv.setLayoutParams(new LayoutParams(
-//	                    LayoutParams.FILL_PARENT,
-//	                    120));
+
 	    	}
 	    	else{
 	    		v = convertView;
