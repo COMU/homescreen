@@ -72,7 +72,9 @@ public class SettingsDialog extends Dialog implements  android.view.View.OnClick
         	            connection.sendPacket(presence);
         	
         	            xmppClient.setConnection(connection);
-        	
+        	            
+//        	            xmppClient.displayBuddyList(connection);
+        	            
         	        } catch (XMPPException ex) {
         	
         	            Log.e("XMPPClient", "[SettingsDialog] Failed to log in as " + username);
