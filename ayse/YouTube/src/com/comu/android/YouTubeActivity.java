@@ -302,8 +302,8 @@ public class YouTubeActivity extends Activity {
 	    		ImageView iv = (ImageView)v.findViewById(R.id.videoImage);
 	    		iv.setImageDrawable(loadImageFromURL(videoIcon_list[position]));
 	    		TextView tv = (TextView)v.findViewById(R.id.videoName);
+	    		tv.setTextSize(TypedValue.DENSITY_DEFAULT, 15);
 	    		tv.setText(videoInf[position]);
-
 	    	}
 	    	else{
 	    		v = convertView;
