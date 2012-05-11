@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/darker_gray"
-    android:gravity="center" >
-    <LinearLayout
+    android:background="@android:color/darker_gray" > 
+    
+      <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
+        android:orientation="horizontal"
          >   
 
            <ImageView
@@ -60,35 +61,32 @@
                android:textColor="@android:color/black" />
                    
     </LinearLayout>
+    
+    <TextView
+        android:id="@+id/videoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center" >
-
-        <ListView
-            android:id="@+id/listView1"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:entries="@android:style/TextAppearance.Small" >
-        </ListView>
-        <GridView
-            android:id="@+id/gridView1"
-            android:layout_width="380dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"
-            android:gravity="center"
-            android:horizontalSpacing="15dp"
-            android:numColumns="3"
-            android:padding="15dp"
-            android:verticalSpacing="15dp" >
-        </GridView>
-        <ListView
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="450dp"
+        android:layout_height="200dp" />
+    
+    <EditText 
+        android:id="@+id/comments"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"       
+        />
+    
+    <TextView 
+        android:id="@+id/commentsView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    
+      <ListView
             android:id="@+id/listView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-        </ListView>
-    </LinearLayout>
-
+     </ListView>
 </LinearLayout>
