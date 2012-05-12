@@ -68,13 +68,13 @@
         android:layout_gravity="center" >
 
         <ListView
-            android:id="@+id/listView1"
+            android:id="@+id/listPreferences"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:entries="@android:style/TextAppearance.Small" >
         </ListView>
         <GridView
-            android:id="@+id/gridView1"
+            android:id="@+id/gridView"
             android:layout_width="380dp"
             android:layout_height="match_parent"
             android:background="@android:color/white"
@@ -85,7 +85,7 @@
             android:verticalSpacing="15dp" >
         </GridView>
         <ListView
-            android:id="@+id/listView2"
+            android:id="@+id/listRecommended"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
         </ListView>

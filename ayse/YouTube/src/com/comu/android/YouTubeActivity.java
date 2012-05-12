@@ -29,6 +29,7 @@ import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -44,7 +45,8 @@ public class YouTubeActivity extends Activity {
 	
 	public static String developerKey = "AI39si5Ok3qgtySpXtuBZeQnK2fK1iSb08e1RMeTVlH6q_N5_4msavgPkaNsAtejFKt-fzzpBa7iSda66nXX2rPgxZYFzrMNIw";
 	public static String clientId = "321041055608-poq8q9m16811aj397op9rcknp77fgk33.apps.googleusercontent.com";	
-	public static String search = "youtube";
+	public static String search = "";
+	public static String category;
 	public static String videoIcon_list[];
 	public static String video_Url[];
 	public static String videoInf[];
@@ -56,6 +58,7 @@ public class YouTubeActivity extends Activity {
         YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/videos");
         url.maxResults=15;
         url.q=search;
+        url.category="YouTube";
         
         VideoFeed feed= null;
         try {
@@ -69,82 +72,105 @@ public class YouTubeActivity extends Activity {
         videoInf=VideoSet.videoInf;
         videoIcon_list=VideoSet.videoIcon_list;
         
+        String query="http://suggestqueries.google.com/complete/search?hl=en&ds=yt&json=t&jsonp=callbackfunction&q=search";
+        
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_dropdown_item_1line, COUNTRIES);
+//        AutoCompleteTextView textView = (AutoCompleteTextView)
+//                findViewById(R.id.searched);
+//        textView.setAdapter(adapter);
+        
         final EditText searchParameter = (EditText) findViewById(R.id.searched);
         final ImageButton searchButton = (ImageButton) findViewById(R.id.search);
         final TextView login = (TextView) findViewById(R.id.login);
         final TextView upload = (TextView) findViewById(R.id.upload);
         final TextView createAcc = (TextView) findViewById(R.id.createAccount);
         ImageView youtube = (ImageView) findViewById(R.id.youtube);
-        final GridView gridview = (GridView) findViewById(R.id.gridView1);
+        final GridView gridview = (GridView) findViewById(R.id.gridView);
         gridview.setAdapter(new ImageAdapter(this));
         
         final String[]  listVideo ={"From YouTube","Trending","Popular","Music","Entertainment","Sports",
     			"Film & Animation","News & Politics","Comedy","People & Blogs","Science & Technology",
     			"Gaming","Howto & Style","Education","Pets & Animals","Autos & Vehicles","Travel & Events","Nonprofits & Activism"};
-        ListView listView = (ListView) findViewById(R.id.listView1);
+        ListView listView = (ListView) findViewById(R.id.listPreferences);    
         listView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.preference_category, listVideo));
         listView.setTextFilterEnabled(true);
-        listView.setSelected(true);
         listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> view, View v, int index,
 					long arg3) {
-				
-				if(index==0){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   									
-				}if(index==1){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   									
+				gridview.invalidateViews();
+				final YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/videos");
+				 url.maxResults=15;
+			     url.q=null;				
+				if(index==0){					
+				     url.category="YouTube";					
+				}if(index==1){	
+					 url.category="Trending";			
 				}if(index==2){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   									
+					 url.category="Popular";									
 				}if(index==3){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
+					 url.category="Music";		
 				}if(index==4){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   									
+					 url.category="Entertainment";												
 				}if(index==5){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
+					url.category="Sports";					   					
 				}if(index==6){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
-				}
-				if(index==7){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
+					url.category="Film"; 									
+				}if(index==7){
+					url.category="News"; 
 				}if(index==8){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
+					url.category="Comedy";							
 				}
 				if(index==9){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
+					url.category="People";	   					
 				}if(index==10){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
+					url.category="Science";	   					
 				}
 				if(index==11){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
+					url.category="Gaming";	   					
 				}if(index==12){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
+					url.category="HowTo";	  					
 				}
 				if(index==13){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
+					url.category="Education";		   					
 				}if(index==14){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
+					url.category="Pets";		   					
 				}if(index==15){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
+					url.category="Autos";	   					
 				}if(index==16){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
+					url.category="Travel";						
 				}if(index==17){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
-				}if(index==18){
-					Toast.makeText(getApplicationContext(), "dizi yeri"+index, Toast.LENGTH_LONG).show();	   					
+					url.category="Nonprofits";		   					
 				}
+
+				
+				  VideoFeed feed= null;
+			        try {
+						feed=HttpConnection.Connection(url);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			        VideoSet.videoSetting(feed);
+			        video_Url=VideoSet.video_Url;
+			        videoInf=VideoSet.videoInf;
+			        videoIcon_list=VideoSet.videoIcon_list;	
+			        Activity ac = new Activity();
+			        ImageAdapter adapter = new ImageAdapter(ac);
+			        gridview.setAdapter(adapter);
+ 
 			}
+			     
         });
-        
-        
+               
         gridview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				// TODO Auto-generated method stub
-								
+				// TODO Auto-generated method stub								
 			}
 		});
         
@@ -232,56 +258,4 @@ public class YouTubeActivity extends Activity {
 //            +"&v=2";
     }   
   
-  
-    public final class ImageAdapter extends BaseAdapter {
-    			
-		private Context mContext;
-		
-	    public ImageAdapter(OnClickListener onClickListener) {
-	        mContext = (Context) onClickListener;
-	    }		
-	    public ImageAdapter(Context c) {
-	        mContext = c;
-	    }
-	    public int getCount() {	    	
-	        return videoIcon_list.length;
-	    } 
-	    public View getView(int position, View convertView, ViewGroup parent) {
-	    	View v;
-	    	if(convertView == null){
-	    		LayoutInflater li = getLayoutInflater();
-	    		v = li.inflate(R.layout.grid, null);
-	    		ImageView iv = (ImageView)v.findViewById(R.id.videoImage);
-	    		iv.setImageDrawable(loadImageFromURL(videoIcon_list[position]));
-	    		TextView tv = (TextView)v.findViewById(R.id.videoName);
-	    		tv.setTextSize(TypedValue.DENSITY_DEFAULT, 12);
-	    		tv.setText(videoInf[position]);
-	    	}
-	    	else{
-	    		v = convertView;
-	    	}
-	    	return v;
-	    }
-		private Drawable loadImageFromURL(String url){					
-				        try	
-				        {		
-				        InputStream is = (InputStream) new URL(url).getContent();	
-				        Drawable d = Drawable.createFromStream(is, "src");	
-				        return d;		
-				        }catch (Exception e) {		
-				        System.out.println(e);	
-				        return null;		
-				        }		
-		}	    	
-		@Override
-		public Object getItem(int position) {
-			// TODO Auto-generated method stub		
-			return null;
-		}
-		@Override
-		public long getItemId(int position) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-    }
 }

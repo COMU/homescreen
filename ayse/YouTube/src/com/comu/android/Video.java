@@ -8,7 +8,7 @@ public class Video {
     @Key String description;
     @Key Player player;
     @Key Thumbnail thumbnail;
-    @Key String id;
-    @Key String author;
+//    @Key String id;
+//    @Key String author;
 
 }
