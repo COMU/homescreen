@@ -25,7 +25,8 @@
                android:layout_width="320dp"
                android:layout_height="40dp">
 
-               <requestFocus />
+               <requestFocus
+                    />
            </AutoCompleteTextView>
 
            <ImageButton
@@ -42,6 +43,8 @@
                android:layout_height="40dp"
                android:focusable="true"
                android:gravity="center"
+               android:text="Upload"
+               android:textSize="10sp"
                android:textColor="@android:color/black" />
  
            <TextView
@@ -69,24 +72,56 @@
 
     <VideoView
         android:id="@+id/videoView"
-        android:layout_width="450dp"
-        android:layout_height="200dp" />
+        android:layout_width="500dp"
+        android:layout_height="250dp" />
+    <TableRow    
+        android:layout_width="500dp"
+        android:layout_height="35dp" >
+    <Button
+        android:id="@+id/likeButton"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:text="Like" 
+        android:textSize="8sp"         
+        />
+    <Button
+        android:id="@+id/dislikeButton"
+         android:layout_width="50dp"
+         android:layout_height="30dp"
+         android:text="Dislike"
+         android:textSize="8sp"            
+        />
+    <Button
+        android:id="@+id/shareButton"
+         android:layout_width="50dp"
+         android:layout_height="30dp"
+         android:text="Share"
+         android:textSize="8sp"            
+        />
+    </TableRow>
+    
+     <TextView
+        android:id="@+id/videoComment"
+        android:layout_width="500dp"
+        android:layout_height="30dp"
+        android:text="Comments"
+        android:textColor="@android:color/black" />
     
     <EditText 
         android:id="@+id/comments"
-        android:layout_width="fill_parent"
-        android:layout_height="150dp"       
-        />
-    
-    <TextView 
-        android:id="@+id/commentsView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+        android:layout_width="500dp"
+        android:layout_height="50dp"       
+        /> 
+     <Button 
+         android:id="@+id/comButton"
+         android:layout_width="50dp"
+         android:layout_height="40dp"
+         android:text="Save"      
+       />
     
       <ListView
-            android:id="@+id/listView2"
+            android:id="@+id/allComments"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"  >
      </ListView>
 </LinearLayout>

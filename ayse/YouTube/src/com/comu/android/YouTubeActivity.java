@@ -160,6 +160,7 @@ public class YouTubeActivity extends Activity {
 			        Activity ac = new Activity();
 			        ImageAdapter adapter = new ImageAdapter(ac);
 			        gridview.setAdapter(adapter);
+			        
  
 			}
 			     
@@ -168,9 +169,11 @@ public class YouTubeActivity extends Activity {
         gridview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+			public void onItemClick(AdapterView<?> view, View v, int index,
 					long arg3) {
-				// TODO Auto-generated method stub								
+				// TODO Auto-generated method stub	
+				Intent viewIntent = new Intent(getApplicationContext(), VideoWatch.class);				
+				startActivity(viewIntent);
 			}
 		});
         
