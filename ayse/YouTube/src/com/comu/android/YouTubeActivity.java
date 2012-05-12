@@ -50,6 +50,7 @@ public class YouTubeActivity extends Activity {
 	public static String videoIcon_list[];
 	public static String video_Url[];
 	public static String videoInf[];
+	public static int clickedVideo;
     /** Called when the activity is first created. */	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -100,7 +101,6 @@ public class YouTubeActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> view, View v, int index,
 					long arg3) {
-				gridview.invalidateViews();
 				final YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/videos");
 				 url.maxResults=15;
 			     url.q=null;				
@@ -171,7 +171,8 @@ public class YouTubeActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> view, View v, int index,
 					long arg3) {
-				// TODO Auto-generated method stub	
+				// TODO Auto-generated method stub
+				clickedVideo = index; 
 				Intent viewIntent = new Intent(getApplicationContext(), VideoWatch.class);				
 				startActivity(viewIntent);
 			}

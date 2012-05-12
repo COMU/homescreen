@@ -13,7 +13,7 @@ public class VideoSet {
       	videoInf[i]=video.title;
       	videoIcon_list[i]=video.thumbnail.sqDefault;
       	video_Url[i]=video.player.defaultUrl;
-  //    	video_Id[i]=video.id;
+      	video_Id[i]=video.id;
       	i=i+1;
       }    
 

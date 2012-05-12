@@ -68,7 +68,9 @@
     <TextView
         android:id="@+id/videoTitle"
         android:layout_width="wrap_content"
-        android:layout_height="30dp" />
+        android:layout_height="30dp"
+        android:textSize="10sp"
+        android:textColor="@android:color/black" />
 
     <VideoView
         android:id="@+id/videoView"
@@ -115,8 +117,9 @@
      <Button 
          android:id="@+id/comButton"
          android:layout_width="50dp"
-         android:layout_height="40dp"
-         android:text="Save"      
+         android:layout_height="30dp"
+         android:text="Save"
+         android:textSize="9sp"      
        />
     
       <ListView
