@@ -5,23 +5,28 @@
     android:orientation="vertical"
     android:background="@android:color/darker_gray"
     android:gravity="center" >
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
          >   
-           <ImageView 
+
+           <ImageView
                android:id="@+id/youtube"
-               android:contentDescription="@string/youtubeicon"
-               android:src="@drawable/youtube"
                android:layout_width="70dp"
-               android:layout_height="40dp" />
-           <EditText
-               android:layout_width="300dp"
                android:layout_height="40dp"
-               android:id="@+id/searched" />
+               android:contentDescription="@string/youtubeicon"
+               android:src="@drawable/youtube" />
+
+           <AutoCompleteTextView
+               android:id="@+id/searched"
+               android:layout_width="320dp"
+               android:layout_height="40dp">
+
+               <requestFocus />
+           </AutoCompleteTextView>
+
            <ImageButton
                android:id="@+id/search"
                android:contentDescription="@string/youtubesearchicon"
@@ -29,57 +34,61 @@
                android:layout_width="40dp"
                android:layout_height="40dp"                            
                /> 
+
            <TextView
-               android:layout_width="60dp"
-               android:layout_height="40dp"
                android:id="@+id/upload"
-               android:textColor="@android:color/black"
-               android:focusable="true"
-               android:gravity="center" /> 
-           <TextView
-               android:layout_width="60dp"
+               android:layout_width="80dp"
                android:layout_height="40dp"
+               android:focusable="true"
+               android:gravity="center"
+               android:textColor="@android:color/black" />
+ 
+           <TextView
                android:id="@+id/createAccount"
-               android:textColor="@android:color/black"
-               android:focusable="true"
-               android:gravity="center" />        
-           <TextView
-               android:layout_width="60dp"
+               android:layout_width="80dp"
                android:layout_height="40dp"
-               android:id="@+id/login"
-               android:textColor="@android:color/black"
                android:focusable="true"
-               android:gravity="center" />                   
+               android:gravity="center"
+               android:textColor="@android:color/black" />
+        
+           <TextView
+               android:id="@+id/login"
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:focusable="true"
+               android:gravity="center"
+               android:textColor="@android:color/black" />
+                   
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center" >
-        
+
         <ListView
-            android:id="@+id/listView1"
-            android:entries="@android:style/TextAppearance.Small"         
-            android:layout_width="110dp"
+            android:id="@+id/listPreferences"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-             >                         
+            android:entries="@android:style/TextAppearance.Small" >
         </ListView>
         <GridView
-            android:id="@+id/gridView1"
-            android:layout_width="450dp"
-            android:layout_height="wrap_content"
-            android:numColumns="3"
-            android:padding="10dp"
-            android:verticalSpacing="15dp"
-            android:horizontalSpacing="15dp"
-            android:gravity="center"
+            android:id="@+id/gridView"
+            android:layout_width="380dp"
+            android:layout_height="match_parent"
             android:background="@android:color/white"
-             >
+            android:gravity="center"
+            android:horizontalSpacing="15dp"
+            android:numColumns="3"
+            android:padding="15dp"
+            android:verticalSpacing="15dp" >
         </GridView>
         <ListView
-            android:id="@+id/listView2"
-            android:layout_width="match_parent"
+            android:id="@+id/listRecommended"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-        </ListView>       
+        </ListView>
     </LinearLayout>
+
 </LinearLayout>

@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Authentication"></activity>
+        <activity android:name=".VideoWatch"></activity>
     </application>
 
 </manifest>

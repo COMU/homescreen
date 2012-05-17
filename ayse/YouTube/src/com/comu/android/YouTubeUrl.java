@@ -20,9 +20,11 @@ import com.google.api.client.util.Key;
 public class YouTubeUrl extends GenericUrl {
 
     @Key final String alt = "jsonc";
-  //  @Key String author;
     @Key("max-results") Integer maxResults;
+    @Key("start-index") Integer index = 20;
     @Key String q;
+    @Key String category;
+
     
     YouTubeUrl(String url) {
         super(url);
