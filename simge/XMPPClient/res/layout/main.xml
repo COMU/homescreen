@@ -4,28 +4,34 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"   >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
-            android:src="@drawable/gtalk" />
+     <LinearLayout
+         android:orientation="horizontal"
+         android:id="@+id/header"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:background="@layout/header_gradient"
+         >
 
-     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content">   
-    <Button android:id="@+id/login"
-        	android:layout_marginLeft="100dp"
-        	android:visibility="visible"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login">
-    </Button>
-    <Button android:id="@+id/logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Logout"/>
-    </LinearLayout>
+         <ImageView
+             android:id="@+id/logo"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:src="@drawable/gtalk" />
+
+         <Button
+             android:id="@+id/login"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Login"
+             android:visibility="visible" />
+
+         <Button
+             android:id="@+id/logout"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Logout" />
+
+     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:orientation="horizontal"
@@ -37,27 +43,55 @@
                 android:text="Friends:"
                 android:minWidth="70dp"
            />
+
             </LinearLayout>
     <LinearLayout 
         xmlns:android="http://schemas.android.com/apk/res/android"
                   android:orientation="horizontal"
-                  android:layout_width="fill_parent"
+                  android:layout_width="wrap_content"
                   android:layout_height="wrap_content">
         
-     
-    <ListView android:id="@+id/friendList"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              >
-        
+    <ListView
+        android:id="@+id/friendList"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content" >
+      
     </ListView>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="vertical"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content">
+                  
+         <EditText
+                android:id="@+id/karsitaraf"
+                android:layout_width="274dp"
+                android:layout_height="wrap_content" />
    
-    <TextView
-        android:id="@+id/karsitaraf"
-        android:layout_width="157dp"
-        android:layout_height="wrap_content" />
+   <ListView
+       android:id="@+id/listMessage"
+       android:layout_width="432dp"
+       android:layout_height="260dp"
+       android:background="@layout/messagearea" >
 
+</ListView>
+
+   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="horizontal"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content">
+
+   <EditText
+       android:id="@+id/send"
+       android:layout_width="355dp"
+       android:layout_height="wrap_content" />
+   
+   <Button 
+       android:id = "@+id/sendButton"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Gönder"/>
+       </LinearLayout>
+       </LinearLayout>
        </LinearLayout>
 </LinearLayout>
 

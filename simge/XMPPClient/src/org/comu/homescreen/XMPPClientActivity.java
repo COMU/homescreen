@@ -3,17 +3,22 @@ package org.comu.homescreen;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.jivesoftware.smack.Chat;
+import org.jivesoftware.smack.ChatManager;
+import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.PacketListener;
 import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.RosterEntry;
 import org.jivesoftware.smack.RosterListener;
 import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.filter.MessageTypeFilter;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Packet;
 import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.util.StringUtils;
+import org.w3c.dom.Text;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -53,10 +58,10 @@ public class XMPPClientActivity extends Activity {
         setContentView(R.layout.main);
              
 //        mSendText = (EditText) this.findViewById(R.id.sendText);
-//        mList = (ListView) this.findViewById(R.id.listMessages);
+        mList = (ListView) this.findViewById(R.id.listMessage);
         mFriend = (ListView) this.findViewById(R.id.friendList);
 //        setListAdapter();
-//        setFriendAdapter();
+
         
         // Dialog for getting the xmpp settings
         mDialog = new SettingsDialog(this);
@@ -65,7 +70,7 @@ public class XMPPClientActivity extends Activity {
         final Button login = (Button) this.findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {       	
-            	login.setVisibility(View.GONE);
+//            	login.setVisibility(View.GONE);
                 mHandler.post(new Runnable() {
                     public void run() {
                         mDialog.show();
@@ -77,19 +82,22 @@ public class XMPPClientActivity extends Activity {
 
         
 //        // Set a listener to send a chat text message
-//        Button send = (Button) this.findViewById(R.id.send);
+//        Button send = (Button) this.findViewById(R.id.sendButton);
 //        send.setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View view) {
-//
-//                Log.i("XMPPClient", "Sending text [" + text + "] to [" + to + "]");
-//                Message msg = new Message(to, Message.Type.chat);
-//                msg.setBody(text);
+//            	TextView otherside = (TextView) findViewById(R.id.karsitaraf);
+//            	EditText text = (EditText)findViewById(R.id.send);
+//            	
+//                Log.i("XMPPClient", "Sending text [" + text + "] to [" + otherside + "]");
+//                Message msg = new Message(otherside.toString(), Message.Type.chat);
+//                msg.setBody(text.toString());
 //                connection.sendPacket(msg);
 //                messages.add(connection.getUser() + ":");
-//                messages.add(text);
+//                messages.add(text.toString());
 //                setListAdapter();
 //            }
 //        });
+              
     }
     
     
@@ -98,7 +106,7 @@ public class XMPPClientActivity extends Activity {
      *
      * @param connection
      */
-    public void setConnection(XMPPConnection connection) {
+    public void setConnection(final XMPPConnection connection) {
         this.connection = connection;
         if (connection != null) {
 //        	  Add a packet listener to get messages sent to us
@@ -112,7 +120,7 @@ public class XMPPClientActivity extends Activity {
                         messages.add(fromName + ":");
                         messages.add(message.getBody());
                         // Add the incoming message to the list view
-                        mHandler.post(new Runnable() {
+                        fHandler.post(new Runnable() {
                             public void run() {
                                 setListAdapter();
                             }
@@ -120,6 +128,55 @@ public class XMPPClientActivity extends Activity {
                     }
                 }
             }, filter); 	
+            
+            // send message
+            
+       
+            Button send = (Button)findViewById(R.id.sendButton);
+            send.setOnClickListener(new View.OnClickListener() {
+            	
+            	EditText side = (EditText)findViewById(R.id.karsitaraf);
+            	String to = side.getText().toString();
+            	
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub					    
+					ChatManager chatManager = connection.getChatManager();
+			
+			        Chat newChat = chatManager.createChat(side.getText().toString(), new MessageListener() {
+						
+						@Override
+						public void processMessage(Chat chat, Message message) {
+							// TODO Auto-generated method stub
+				                try {
+				                  
+				                  Log.v("DEBUG", "Got:" + message.getBody());
+				                  chat.sendMessage(message.getBody().toString());				            					              
+				                } catch (XMPPException e) {
+				                  Log.v("DEBUG", "Couldn't respond:" + e);
+				                }
+				                Log.v("DEBUG", message.toString());
+						}
+					});
+				
+			        
+			        try {
+			        	  
+			        	  EditText message = (EditText) findViewById(R.id.send);	  
+			              newChat.sendMessage(message.getText().toString());
+			              messages.add("Me: ");
+			              messages.add(message.getText().toString());
+			              mHandler.post(new Runnable() {
+	                            public void run() {
+	                                setListAdapter();
+	                            }
+	                        });
+			            } catch (XMPPException e) {
+			              Log.v("DEBUG", "couldn't send:" + e.toString());
+			            }
+		            
+				}
+			});
             
            
             final ListView l= (ListView) findViewById(org.comu.homescreen.R.id.friendList);
@@ -145,14 +202,13 @@ public class XMPPClientActivity extends Activity {
 				public void onItemClick(AdapterView<?> av, View arg1,
 						int arg2, long arg3) {
 					// TODO Auto-generated method stub
-							TextView side = (TextView) findViewById(R.id.karsitaraf);
-//							side.setText(tmpList[arg2]);
-							RosterEntry friend = (RosterEntry)l.getItemAtPosition(arg2);
-							side.setText(friend.toString() + "ile konusuluyor...");
+						//	TextView side = (TextView) findViewById(R.id.karsitaraf);
+						//	RosterEntry friend = (RosterEntry)l.getItemAtPosition(arg2);
+						//	side.setText(friend.toString());
+					
 				}
 			});
-		
-						
+					
         }
     }
     
@@ -163,5 +219,5 @@ public class XMPPClientActivity extends Activity {
                 messages);
         mList.setAdapter(adapter);
     }
-    
+ 
 		}
