@@ -15,11 +15,11 @@ import com.google.api.client.json.jackson.JacksonFactory;
 public class HttpConnection {
 	
 	
-	 public static VideoFeed Connection(YouTubeUrl url) throws IOException {
+	 
 	    	
-	        final HttpTransport transport = new NetHttpTransport();
-	        final JsonFactory jsonFactory = new JacksonFactory();
-	        final HttpRequestFactory factory = transport.createRequestFactory(new HttpRequestInitializer() {
+	  	public  final static HttpTransport transport = new NetHttpTransport();
+	  	public  final static JsonFactory jsonFactory = new JacksonFactory();
+	    public  final static HttpRequestFactory factory = transport.createRequestFactory(new HttpRequestInitializer() {
 	        	
 				@SuppressWarnings("deprecation")
 				@Override
@@ -36,6 +36,8 @@ public class HttpConnection {
 			});	 
 		 
 	//	 YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/videos");
+	 public static VideoFeed Connection(YouTubeUrl url) throws IOException {
+		 
 		 HttpRequest request = null;
 			try {
 				request = factory.buildGetRequest(url);
@@ -53,8 +55,5 @@ public class HttpConnection {
 				e.printStackTrace();
 			}
 		 return feed;
-	 }
-	 
-	 
-	 
+	 }	 
 }

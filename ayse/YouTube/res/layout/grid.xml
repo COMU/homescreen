@@ -14,7 +14,7 @@
        android:id="@+id/videoName"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:gravity="fill_vertical"
+       android:gravity="center_horizontal"
        android:textColor="@android:color/black"
        android:textStyle="normal"
        android:layout_marginBottom="15dp"    
