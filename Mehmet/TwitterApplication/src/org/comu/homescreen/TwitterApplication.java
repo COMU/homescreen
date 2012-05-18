@@ -1,5 +1,9 @@
 package org.comu.homescreen;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,13 +20,16 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import android.R;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.DataSetObserver;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -58,7 +65,6 @@ public class TwitterApplication extends Activity {
 	private ListView l2;
 	private ListView l3;
 
-
 	private Button mLoginButton;
 	private Button mTweetButton;
 	private EditText tweet;
@@ -69,43 +75,37 @@ public class TwitterApplication extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.i(TAG, "Loading TweetToTwitterActivity");
-		setContentView(org.comu.homescreen.R.layout.main);
+		setContentView(org.comu.homescreen.R.layout.twitmain);
 
-		
-		 final TabHost tabHost=(TabHost)findViewById(org.comu.homescreen.R.id.tabHost);
+		final TabHost tabHost = (TabHost) findViewById(org.comu.homescreen.R.id.tabHost);
 		tabHost.setup();
 
-		TabSpec spec1=tabHost.newTabSpec("Tab_1");
+		TabSpec spec1 = tabHost.newTabSpec("Tab_1");
 		spec1.setContent(org.comu.homescreen.R.id.tab1);
-		spec1.setIndicator("HomeTimeLine",getResources().getDrawable(org.comu.homescreen.R.drawable.h));
-		
-		
+		spec1.setIndicator("HomeTimeLine",
+				getResources().getDrawable(org.comu.homescreen.R.drawable.h));
 
-		TabSpec spec2=tabHost.newTabSpec("Tab_2");
-		spec2.setIndicator("Mentions",getResources().getDrawable(org.comu.homescreen.R.drawable.s));
+		TabSpec spec2 = tabHost.newTabSpec("Tab_2");
+		spec2.setIndicator("Mentions",
+				getResources().getDrawable(org.comu.homescreen.R.drawable.s));
 		spec2.setContent(org.comu.homescreen.R.id.tab2);
 
-		TabSpec spec3=tabHost.newTabSpec("Tab_3");
-		spec3.setIndicator("Tweet",getResources().getDrawable(org.comu.homescreen.R.drawable.t));
+		TabSpec spec3 = tabHost.newTabSpec("Tab_3");
+		spec3.setIndicator("Tweet",
+				getResources().getDrawable(org.comu.homescreen.R.drawable.t));
 		spec3.setContent(org.comu.homescreen.R.id.tab3);
 
-		TabSpec spec4=tabHost.newTabSpec("Tab_4");
-		spec4.setIndicator("Friends",getResources().getDrawable(org.comu.homescreen.R.drawable.f));
+		TabSpec spec4 = tabHost.newTabSpec("Tab_4");
+		spec4.setIndicator("Friends",
+				getResources().getDrawable(org.comu.homescreen.R.drawable.f));
 		spec4.setContent(org.comu.homescreen.R.id.tab4);
-		
-		
+
 		tabHost.addTab(spec1);
 		tabHost.addTab(spec2);
 		tabHost.addTab(spec3);
 		tabHost.addTab(spec4);
-tabHost.setCurrentTab(0);
+		tabHost.setCurrentTab(0);
 
-	   
-		    	   
-	
-		
-		
-		
 		mPrefs = getSharedPreferences("twitterPrefs", MODE_PRIVATE);
 		Log.i(TAG, "Got Preferences");
 
@@ -115,13 +115,11 @@ tabHost.setCurrentTab(0);
 		mTwitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
 		Log.i(TAG, "Inflated Twitter4j");
 		l = (ListView) findViewById(org.comu.homescreen.R.id.liste_tab1);
-		l2=(ListView)findViewById(org.comu.homescreen.R.id.liste_tab2);
-		l3=(ListView)findViewById(org.comu.homescreen.R.id.liste_tab3);
-		
+		l2 = (ListView) findViewById(org.comu.homescreen.R.id.liste_tab2);
+		l3 = (ListView) findViewById(org.comu.homescreen.R.id.liste_tab3);
+
 		mTweetButton = (Button) findViewById(org.comu.homescreen.R.id.tweet_button);
 		tweet = (EditText) findViewById(org.comu.homescreen.R.id.tweetText);
-		
-		
 
 		if (mPrefs.contains(PREF_ACCESS_TOKEN)) {
 			Log.i(TAG, "Repeat User");
@@ -131,116 +129,104 @@ tabHost.setCurrentTab(0);
 			loginNewUser();
 		}
 
-try {
-	List<Status> st = mTwitter.getHomeTimeline();
-	String dizi[] = new String[st.size()];
-	int i = 0;
-	for (Status s : st) {
+		try {
+			List<Status> st = mTwitter.getHomeTimeline();
+			ArrayList<UserRecord> users = new ArrayList<UserRecord>();
 
-		dizi[i] = s.getUser().getName() + "  : " + s.getText();
-		i++;
+			int i = 0;
+			for (Status s : st) {
+				UserRecord u = new UserRecord(s.getUser().getName(),
+						s.getText());
+				u.str = (s.getUser().getProfileImageURL()).toString();
+				users.add(u);
 
-	}
+				i++;
 
-	l.setAdapter(new ArrayAdapter<String>(l.getContext(),
-			org.comu.homescreen.R.layout.item, dizi));
-	
-	
-	
-	
-	
-} catch (Exception e2) {
-	// TODO: handle exception
-}
-		
-		
-		
-		
-		   tabHost.setOnTabChangedListener(new OnTabChangeListener() {
-		       @Override
-		      public void onTabChanged(String arg0) {
-		    	
-		    		
-		
-	//************	
+			}
+
+			l.setAdapter(new UserItemAdapter(getApplicationContext(),
+					org.comu.homescreen.R.layout.listelement,
+					(ArrayList<UserRecord>) users));
+
+			// /////////********************************************
+
+		} catch (Exception e2) {
+			// TODO: handle exception
+		}
+
+		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
+			@Override
+			public void onTabChanged(String arg0) {
+
+				// ************
 				try {
 
-					if(tabHost.getCurrentTabTag().equals("Tab_1")){
-					List<Status> st = mTwitter.getHomeTimeline();
-					String dizi[] = new String[st.size()];
-					int i = 0;
-					for (Status s : st) {
+					if (tabHost.getCurrentTabTag().equals("Tab_1")) {
+						List<Status> st = mTwitter.getHomeTimeline();
+						ArrayList<UserRecord> users = new ArrayList<UserRecord>();
 
-						dizi[i] = s.getUser().getName() + "  : " + s.getText();
-						i++;
+						int i = 0;
+						for (Status s : st) {
+							UserRecord u = new UserRecord(s.getUser().getName(),
+									s.getText());
+							u.str = (s.getUser().getProfileImageURL()).toString();
+							users.add(u);
+
+							i++;
+
+						}
+
+						l.setAdapter(new UserItemAdapter(getApplicationContext(),
+								org.comu.homescreen.R.layout.listelement,
+								(ArrayList<UserRecord>) users));
+
 
 					}
 
-					l.setAdapter(new ArrayAdapter<String>(l.getContext(),
-							org.comu.homescreen.R.layout.item, dizi));
-					
-					}
-				
-	//*********			
-					if(tabHost.getCurrentTabTag().equals("Tab_2")){
+					// *********
+					if (tabHost.getCurrentTabTag().equals("Tab_2")) {
 
-					
-					List<Status> st1= mTwitter.getMentions();
-					String dizi1[] = new String[st1.size()];
-				
-					
-					int j = 0;
-					for(Status s:st1){
-						dizi1[j]=s.getUser().getName() +" : " + s.getText();
-						j++;
+						List<Status> st1= mTwitter.getMentions();
+								ArrayList<UserRecord> users = new ArrayList<UserRecord>();
+								int j = 0;
+								for(Status s:st1){
+									UserRecord u= new UserRecord(s.getUser().getName(), s.getText());
+									u.str= (s.getUser().getProfileImageURL()).toString();
+									users.add(u);
+									j++;
+								}
+								l2.setAdapter(new UserItemAdapter(getApplicationContext(), org.comu.homescreen.R.layout.listelement, (ArrayList<UserRecord>) users));
 					}
-					l2.setAdapter(new ArrayAdapter<String>(l2.getContext(),org.comu.homescreen.R.layout.item,dizi1));
-				
-				}
-				
-				
+
 				} catch (TwitterException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	//////////////////*************************/////////////////////////////			
-	
-							       
-		       
-		       try {
-					if(tabHost.getCurrentTabTag().equals("Tab_4")){
+				// ////////////////*************************/////////////////////////////
 
-		        	User u = mTwitter.verifyCredentials();
-		            long cursor = -1;
-		            int totalFriends = 0;
-		            ArrayList f = new ArrayList();
-		            do {
-		                IDs friendIDs = mTwitter.getFriendsIDs(u.getId(),cursor);
-		                long[] friendIds = friendIDs.getIDs();
-		                for (int i = 0; i < friendIds.length; i++) {
-		                   // do something with ids here
-		                   totalFriends++;
-		                   f.add(friendIds[i]);
-		                }
-		                cursor = friendIDs.getNextCursor();
-		            }
-		            while (cursor != 0);
-		        	l3.setAdapter(new ArrayAdapter<String>(l3.getContext(),
-							org.comu.homescreen.R.layout.item, f));
-		            
+				try {
+					if (tabHost.getCurrentTabTag().equals("Tab_4")) {
+						IDs followersIds = mTwitter.getFollowersIDs(-1);
+						long [] ids = followersIds.getIDs();
+						List<UserRecord> followers = new ArrayList<UserRecord>();
+						for(int i = 0; i < 3; i++) {
+							UserRecord u= new UserRecord(mTwitter.showUser(ids[i]).getName(),mTwitter.showUser(ids[i]).getLocation());
+							u.str= mTwitter.showUser(ids[i]).getProfileBackgroundImageUrl().toString();
+							followers.add(u);
+						}
+						l3.setAdapter(new UserItemAdapter(getApplicationContext(), org.comu.homescreen.R.layout.listelement, (ArrayList<UserRecord>) followers));
+				
+					
 					}
-		       } catch (Exception e){ e.printStackTrace();} 
-				
-				
-				
-	///////////////////******************///////////////////////////////			
-				
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 
-		       
-		       }
-		       
-			});  
-		        
+				// /////////////////******************///////////////////////////////
+
+			}
+
+		});
 
 	}
 
@@ -311,7 +297,7 @@ try {
 
 			saveAccessToken(at);
 
-			setContentView(org.comu.homescreen.R.layout.main);
+			setContentView(org.comu.homescreen.R.layout.twitmain);
 
 			enableTweetButton();
 		} catch (TwitterException e) {
@@ -331,7 +317,7 @@ try {
 			String word = tweet.getText().toString();
 			tweet.setText("");
 			mTwitter.updateStatus(word);
-			
+
 			Toast.makeText(this, "Tweet Successful!", Toast.LENGTH_SHORT)
 					.show();
 		} catch (TwitterException e) {
@@ -348,4 +334,81 @@ try {
 		editor.putString(PREF_ACCESS_TOKEN_SECRET, secret);
 		editor.commit();
 	}
+
+	private Drawable createDrawableFromURL(String urlString) {
+		Drawable image = null;
+		try {
+			URL url = new URL(urlString);
+			InputStream is = (InputStream) url.getContent();
+			image = Drawable.createFromStream(is, "src");
+		} catch (MalformedURLException e) {
+			// handle URL exception
+			image = null;
+		} catch (IOException e) {
+			// handle InputStream exception
+			image = null;
+		}
+
+		return image;
+	}
+
+	public class UserItemAdapter extends ArrayAdapter<UserRecord> {
+		private ArrayList<UserRecord> users;
+
+		public UserItemAdapter(Context context, int textViewResourceId,
+				ArrayList<UserRecord> users) {
+			super(context, textViewResourceId, users);
+			this.users = users;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View v = convertView;
+			if (v == null) {
+				LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				v = vi.inflate(org.comu.homescreen.R.layout.listelement, null);
+				
+			}
+
+			UserRecord user = users.get(position);
+			if (user != null) {
+				TextView username = (TextView) v
+						.findViewById(org.comu.homescreen.R.id.Username);
+				TextView tweet = (TextView) v
+						.findViewById(org.comu.homescreen.R.id.UserText);
+				ImageView img = (ImageView) v
+						.findViewById(org.comu.homescreen.R.id.avatar);
+
+				if (username != null) {
+					username.setText(user.username);
+				}
+
+				if (tweet != null) {
+					tweet.setText(" " + user.usertext);
+				}
+
+				if (img != null) {
+					img.setImageDrawable(createDrawableFromURL(user.str));
+
+				}
+			}
+			return v;
+		}
+	}
+
+	// imageView.setImageDrawable(createDrawableFromURL("http://savagelook.com/misc/sl_drop2.png"));
+
+	public class UserRecord {
+		public String username;
+		public String usertext;
+		public String str;
+		public ImageView draw;
+
+		public UserRecord(String username, String usertext) {
+			this.username = username;
+			this.usertext = usertext;
+
+		}
+	}
+
 }
