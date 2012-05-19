@@ -12,39 +12,36 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
 	public final class ImageAdapter extends BaseAdapter {
 		
-		public static String videoIcon_list[]=VideoSet.videoIcon_list;
-		public static String video_Url[]=VideoSet.video_Url;
-		public static String videoInf[]=VideoSet.videoInf;
+		public static String videoIcon_list[] = VideoSet.videoIcon_list;
+		public static String video_Url[] = VideoSet.video_Url;
+		public static String videoInf[] = VideoSet.videoInf;
 		  
 		    private final Activity context;
 			
 			public ImageAdapter(Activity c) {
 			        context = c;
-			    }
+			}
 
 			public int getCount() {	    	
 		        return videoIcon_list.length;
 		    } 
 		    public View getView(int position, View convertView, ViewGroup parent) {
-		    	View v;
-		    	if(convertView == null){
-		    		LayoutInflater li = context.getLayoutInflater();
-		    		v = li.inflate(R.layout.grid, null);
+		    	View v;		    	
+		    	//	LayoutInflater li =  context.getLayoutInflater();
+		    		v = context.getLayoutInflater().inflate(R.layout.grid, null);
 		    		ImageView iv = (ImageView)v.findViewById(R.id.videoImage);
-		    		iv.setImageDrawable(loadImageFromURL(videoIcon_list[position]));
+		    		iv.setImageDrawable(loadImageFromURL(VideoSet.videoIcon_list[position]));
 		    		TextView tv = (TextView)v.findViewById(R.id.videoName);
 		    		tv.setTextSize(TypedValue.DENSITY_DEFAULT, 12);
-		    		tv.setText(videoInf[position]);
-		    	}
-		    	else{
-		    		v = convertView;
-		    	}
+		    		tv.setText(VideoSet.videoInf[position]);
 		    	return v;
 		    }
 			private Drawable loadImageFromURL(String url){					

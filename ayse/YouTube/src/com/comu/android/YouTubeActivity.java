@@ -3,6 +3,10 @@ package com.comu.android;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.HttpPost;
 
 import com.google.api.client.googleapis.GoogleHeaders;
 import com.google.api.client.googleapis.json.JsonCParser;
@@ -45,21 +49,18 @@ public class YouTubeActivity extends Activity {
 	
 	public static String developerKey = "AI39si5Ok3qgtySpXtuBZeQnK2fK1iSb08e1RMeTVlH6q_N5_4msavgPkaNsAtejFKt-fzzpBa7iSda66nXX2rPgxZYFzrMNIw";
 	public static String clientId = "321041055608-poq8q9m16811aj397op9rcknp77fgk33.apps.googleusercontent.com";	
-	public static String search = "";
-	public static String category;
-	public static String videoIcon_list[];
-	public static String video_Url[];
-	public static String videoInf[];
+	public static String search;
 	public static int clickedVideo;
+	public static ArrayList<String> autoComp;
     /** Called when the activity is first created. */	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main); 
         YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/videos");
-        url.maxResults=15;
+        url.maxResults=20;
         url.q=search;
-        url.category="YouTube";
+        url.category="Music";
         
         VideoFeed feed= null;
         try {
@@ -69,19 +70,18 @@ public class YouTubeActivity extends Activity {
 			e.printStackTrace();
 		}
         VideoSet.videoSetting(feed);
-        video_Url=VideoSet.video_Url;
-        videoInf=VideoSet.videoInf;
-        videoIcon_list=VideoSet.videoIcon_list;
         
         String query="http://suggestqueries.google.com/complete/search?hl=en&ds=yt&json=t&jsonp=callbackfunction&q=search";
-        
+     //   AutoComplete();
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_dropdown_item_1line, COUNTRIES);
+//                android.R.layout.simple_dropdown_item_1line, autoComp );
 //        AutoCompleteTextView textView = (AutoCompleteTextView)
 //                findViewById(R.id.searched);
 //        textView.setAdapter(adapter);
-        
+  //      final AutoCompleteTextView searchParameter = (AutoCompleteTextView) findViewById(R.id.searched);
+  //      searchParameter.setAdapter(adapter);
         final EditText searchParameter = (EditText) findViewById(R.id.searched);
+        
         final ImageButton searchButton = (ImageButton) findViewById(R.id.search);
         final TextView login = (TextView) findViewById(R.id.login);
         final TextView upload = (TextView) findViewById(R.id.upload);
@@ -92,18 +92,19 @@ public class YouTubeActivity extends Activity {
         
         final String[]  listVideo ={"From YouTube","Trending","Popular","Music","Entertainment","Sports",
     			"Film & Animation","News & Politics","Comedy","People & Blogs","Science & Technology",
-    			"Gaming","Howto & Style","Education","Pets & Animals","Autos & Vehicles","Travel & Events","Nonprofits & Activism"};
+    			"Gaming","Howto & Style","Education"};
         ListView listView = (ListView) findViewById(R.id.listPreferences);    
         listView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.preference_category, listVideo));
         listView.setTextFilterEnabled(true);
+      //  listView.setItemChecked(0, true);
         listView.setOnItemClickListener(new OnItemClickListener() {
-
+          
 			@Override
 			public void onItemClick(AdapterView<?> view, View v, int index,
 					long arg3) {
+				view.getChildAt(index).setSelected(true);
 				final YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/videos");
-				 url.maxResults=15;
-			     url.q=null;				
+				 url.maxResults=15;						
 				if(index==0){					
 				     url.category="YouTube";					
 				}if(index==1){	
@@ -121,31 +122,26 @@ public class YouTubeActivity extends Activity {
 				}if(index==7){
 					url.category="News"; 
 				}if(index==8){
-					url.category="Comedy";							
-				}
-				if(index==9){
+					url.category="Comedy";											
+				}if(index==9){
 					url.category="People";	   					
 				}if(index==10){
-					url.category="Science";	   					
-				}
-				if(index==11){
+					url.category="Science";	   									
+				}if(index==11){
 					url.category="Gaming";	   					
 				}if(index==12){
-					url.category="HowTo";	  					
-				}
-				if(index==13){
+					url.category="HowTo";	  								
+				}if(index==13){
 					url.category="Education";		   					
-				}if(index==14){
-					url.category="Pets";		   					
-				}if(index==15){
-					url.category="Autos";	   					
-				}if(index==16){
-					url.category="Travel";						
-				}if(index==17){
-					url.category="Nonprofits";		   					
-				}
-
-				
+				}//if(index==14){
+//					url.category="Pets";		   					
+//				}if(index==15){
+//					url.category="Autos";	   					
+//				}if(index==16){
+//					url.category="Travel";						
+//				}if(index==17){
+//					url.category="Nonprofits";		   					
+//				}				
 				  VideoFeed feed= null;
 			        try {
 						feed=HttpConnection.Connection(url);
@@ -154,25 +150,21 @@ public class YouTubeActivity extends Activity {
 						e.printStackTrace();
 					}
 			        VideoSet.videoSetting(feed);
-			        video_Url=VideoSet.video_Url;
-			        videoInf=VideoSet.videoInf;
-			        videoIcon_list=VideoSet.videoIcon_list;	
-			        Activity ac = new Activity();
-			        ImageAdapter adapter = new ImageAdapter(ac);
-			        gridview.setAdapter(adapter);
+			   //     ((BaseAdapter) ((GridView)findViewById(R.id.gridView)).getAdapter()).notifyDataSetChanged();
+			        ((BaseAdapter)gridview.getAdapter()).notifyDataSetChanged();
+			        gridview.refreshDrawableState();
 			        
- 
-			}
-			     
+
+			}	    		     
         });
-               
+        
         gridview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> view, View v, int index,
 					long arg3) {
 				// TODO Auto-generated method stub
-				clickedVideo = index; 
+				clickedVideo = index;
 				Intent viewIntent = new Intent(getApplicationContext(), VideoWatch.class);				
 				startActivity(viewIntent);
 			}
@@ -249,17 +241,32 @@ public class YouTubeActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				search=searchParameter.getText().toString();			
+				search=searchParameter.getText().toString();
+				YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/videos");
+		        url.maxResults=20;
+		        url.q=search;
+		        url.category=null;
+		        VideoFeed feed= null;
+		        try {
+					feed=HttpConnection.Connection(url);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		        VideoSet.videoSetting(feed);
+		        ((BaseAdapter)gridview.getAdapter()).notifyDataSetChanged();
+				
 			}		
 			
 		});
       
-//        String feedUrl = "http://gdata.youtube.com/feeds/api/videos?"
-//            +"q=skateboarding+dog"
-//            +"&orderby=published"
-//            +"&start-index=21"
-//            +"&max-results=10"
-//            +"&v=2";
-    }   
+    } 
+    
+    public static void AutoComplete(){
+  	  
+  	  HttpPost request = new HttpPost("http://suggestqueries.google.com/complete/search?hl=en&ds=yt&json=t&jsonp=callbackfunction&q=search");
+  	  request.setEntity((HttpEntity) new ArrayList<String>());
+ 
+    }
   
 }
