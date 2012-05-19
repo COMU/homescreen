@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.comu.android"
+      android:versionCode="1"
+      android:versionName="1.0"
+      android:noHistory="true">
+    <uses-feature android:glEsVersion="0x00020000"> </uses-feature>
+    <uses-sdk android:minSdkVersion="8" />
+
+    <application android:label="@string/app_name">
+        <activity android:name="com.comu.android.CoverFlowClickableActivity"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+		<activity android:name="com.comu.android.SubMenuActivity"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.SUBMENU" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ThemeActivity">
+        </activity>
+        <activity android:name=".XMPPClientActivity">
+            </activity>
+        <activity android:name=".GameSubMenu">
+        </activity>
+        <activity android:name=".WallPaper">
+        </activity>
+		
+         </application>
+          <uses-permission android:name="android.permission.INTERNET" />
+</manifest>
