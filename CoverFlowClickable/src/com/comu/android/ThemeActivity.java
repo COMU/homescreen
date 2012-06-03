@@ -46,7 +46,7 @@ public class ThemeActivity extends Activity{
 			
 		}
 		
-		public static int mTemaId = 1;
+		public static int mTemaId;
 		public static int mSubThemeId = 4;
 		
 		protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +56,25 @@ public class ThemeActivity extends Activity{
 	
 		
 		
-		TextView text = (TextView)findViewById(R.id.text1);
-		text.setText("Default Grey Theme");
+		TextView theme1 = (TextView)findViewById(R.id.text1);
+		theme1.setText("Grey Theme");
 		
-		TextView text2 = (TextView)findViewById(R.id.text2);
-		text2.setText("Blue Theme");
+		TextView theme2 = (TextView)findViewById(R.id.text2);
+		theme2.setText("Blue Theme");
 		
-		CheckBox changeTheme = (CheckBox)findViewById(R.id.buton1);
+		final CheckBox changeTheme = (CheckBox)findViewById(R.id.buton1);
+		final CheckBox changeTheme2 = (CheckBox)findViewById(R.id.buton2);
+		
+		
+		if(mTemaId==2){
+			changeTheme.setChecked(false);
+			changeTheme2.setChecked(true);
+		}
+		else{
+			changeTheme.setChecked(true);
+			changeTheme2.setChecked(false);
+		}
+		
 		
 		changeTheme.setOnClickListener(new OnClickListener() {
 			
@@ -70,6 +82,7 @@ public class ThemeActivity extends Activity{
 				// Auto-generated method stub	
 				mTemaId = 1;
 				mSubThemeId = 4;
+				changeTheme2.setChecked(false);
 				Log.v("DEBUG","mtemaId:" + mTemaId);
 				updateTemaId(mTemaId);
 				updateSubThemeId(mSubThemeId);
@@ -79,13 +92,14 @@ public class ThemeActivity extends Activity{
 			}
 		});
 	
-		CheckBox changeTheme2 = (CheckBox)findViewById(R.id.buton2);
+		
 		changeTheme2.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
 				// Auto-generated method stub	
 				mTemaId = 2;
 				mSubThemeId = 5;
+				changeTheme.setChecked(false);
 				updateTemaId(mTemaId);
 				updateSubThemeId(mSubThemeId);
 				Log.v("DEBUG","mtemaId:" + mTemaId);

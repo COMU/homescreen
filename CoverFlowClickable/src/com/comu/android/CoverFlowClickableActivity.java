@@ -1,5 +1,7 @@
 package com.comu.android;
 
+import java.io.File;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +21,7 @@ import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -444,8 +447,11 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 				SubMenuActivity.currentPosition=position-1;
 				startActivity(viewIntent2);break;
 				
-				case 3:Intent viewIntent3 = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));				
-				startActivity(viewIntent3);
+//				case 3:Intent viewIntent3 = new Intent("android.intent.action.VIEW", Uri.parse("http://www.youtube.com"));				
+//				startActivity(viewIntent3);
+				case 3:Intent intent3 = new Intent(Intent.ACTION_VIEW);
+				intent3.setDataAndType(Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/APPS/" + "YouTube")), "application/vnd.android.package-archive");
+				startActivity(intent3);  
 				SubMenuActivity.currentPosition=position-1;
 				break;
 				
@@ -479,13 +485,5 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
                 
 			}
 	}
-//	public static void OnFocusChangeListener(ImageAdapter adapter){
-//		
-//	
-//		
-//		
-//		
-//		
-//	}
 
 }
