@@ -42,7 +42,7 @@ public class HttpConnection {
 			try {
 				request = factory.buildGetRequest(url);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 	        // execute the request and the parse video feed
@@ -51,7 +51,7 @@ public class HttpConnection {
 	        try {
 				feed = request.execute().parseAs(VideoFeed.class);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+		
 				e.printStackTrace();
 			}
 		 return feed;

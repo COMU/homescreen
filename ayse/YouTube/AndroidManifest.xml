@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
@@ -23,6 +24,13 @@
         </activity>
         <activity android:name=".Authentication"></activity>
         <activity android:name=".VideoWatch"></activity>
+        <activity 
+                android:name=".OpenYouTubePlayerActivity"  
+                android:screenOrientation="landscape"
+                android:configChanges="orientation"
+                android:theme="@android:style/Theme.Black"
+                android:label="@string/app_name">  
+        </activity> 
     </application>
 
 </manifest>

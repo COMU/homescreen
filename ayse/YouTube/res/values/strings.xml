@@ -2,9 +2,9 @@
 <resources>
 
     <string name="hello">Hello World, YoutubeActivity!</string>
-    <string name="app_name">Youtube</string>
+    <string name="app_name">YouTube</string>
     <string name="app_name1">Authentication</string>
-    <string name="youtubeicon">Yumtube </string>
+    <string name="youtubeicon">Youtube </string>
     <string name="youtubesearchicon">Search</string>
 
 </resources>

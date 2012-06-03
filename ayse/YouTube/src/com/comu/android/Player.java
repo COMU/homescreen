@@ -18,5 +18,5 @@ import com.google.api.client.util.Key;
 
 public class Player {
   // "default" is a Java keyword, so need to specify the JSON key manually
-  @Key("default") String defaultUrl;
+  @Key("mobile") String defaultUrl;
 }

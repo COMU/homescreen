@@ -5,13 +5,12 @@
     android:orientation="vertical"
     android:background="@android:color/darker_gray" > 
     
-      <LinearLayout
-        android:id="@+id/linearLayout2"
+     <TableRow 
+        android:id="@+id/tableRow"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:orientation="horizontal"
-         >   
+        >   
 
            <ImageView
                android:id="@+id/youtube"
@@ -61,10 +60,16 @@
                android:layout_height="40dp"
                android:focusable="true"
                android:gravity="center"
-               android:textColor="@android:color/black" />
-                   
-    </LinearLayout>
-    
+               android:textColor="@android:color/black" />                  
+    </TableRow>
+  <LinearLayout 
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent"
+     android:orientation="vertical"
+     android:numColumns="2" >
+  <TableLayout 
+     android:layout_width="500dp"
+     android:layout_height="wrap_content">
     <TextView
         android:id="@+id/videoTitle"
         android:layout_width="wrap_content"
@@ -108,24 +113,37 @@
         android:layout_width="500dp"
         android:layout_height="30dp"
         android:text="Comments"
-        android:textColor="@android:color/black" />
-    
+        android:textSize="12sp"
+        android:textColor="@android:color/black" />   
     <EditText 
         android:id="@+id/comments"
         android:layout_width="500dp"
-        android:layout_height="50dp"       
+        android:layout_height="40dp"       
         /> 
      <Button 
          android:id="@+id/comButton"
-         android:layout_width="50dp"
+         android:layout_width="40dp"
          android:layout_height="30dp"
          android:text="Save"
          android:textSize="9sp"      
-       />
-    
-      <ListView
+       />   
+     <ListView
             android:id="@+id/allComments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"  >
      </ListView>
+   </TableLayout>
+   <TextView 
+     android:layout_width="120dp"
+     android:layout_height="30dp"
+     android:text="RelatedVideos"
+     android:textSize="12sp"
+     android:textColor="@android:color/black"  
+       /> 
+   <ListView
+            android:id="@+id/relatedVideo"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"  >
+   </ListView>             
+  </LinearLayout>     
 </LinearLayout>
