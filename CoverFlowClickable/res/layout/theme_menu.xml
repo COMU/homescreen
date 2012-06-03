@@ -10,24 +10,25 @@
             android:layout_height="wrap_content"
             android:width ="300px"
             />
-		<Button 
-		    android:id = "@+id/buton1"
+        <CheckBox
+            android:id = "@+id/buton1"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:text="Change Theme"
-		    />        
+		     />
+     
     </TableRow>
     <TableRow>
+        
         <TextView 
             android:id="@+id/text2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:width ="300px"
-            />   
-        <Button
+            />
+        <CheckBox
             android:id = "@+id/buton2"
 		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="Change Theme" />
+		    android:layout_height="wrap_content" />  
+       
     </TableRow>
 </TableLayout>

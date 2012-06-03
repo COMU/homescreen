@@ -30,6 +30,8 @@
         </activity>
         <activity android:name=".WallPaper">
         </activity>
+         <activity android:name=".SettingsActivity">
+        </activity>
 		
          </application>
 </manifest>

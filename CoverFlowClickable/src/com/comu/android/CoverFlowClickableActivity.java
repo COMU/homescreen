@@ -471,7 +471,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 				SubMenuActivity.currentPosition=position-1;
 				break;
 				
-				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), ThemeActivity.class);				
+				case 9:Intent viewIntent9 = new Intent(getApplicationContext(), SettingsActivity.class);				
 				startActivity(viewIntent9);
 				SubMenuActivity.currentPosition=position-1;
 				break;

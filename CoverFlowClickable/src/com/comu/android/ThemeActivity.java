@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 public class ThemeActivity extends Activity{
@@ -61,7 +62,8 @@ public class ThemeActivity extends Activity{
 		TextView text2 = (TextView)findViewById(R.id.text2);
 		text2.setText("Blue Theme");
 		
-		Button changeTheme = (Button)findViewById(R.id.buton1);
+		CheckBox changeTheme = (CheckBox)findViewById(R.id.buton1);
+		
 		changeTheme.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
@@ -77,7 +79,7 @@ public class ThemeActivity extends Activity{
 			}
 		});
 	
-		Button changeTheme2 = (Button)findViewById(R.id.buton2);
+		CheckBox changeTheme2 = (CheckBox)findViewById(R.id.buton2);
 		changeTheme2.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
