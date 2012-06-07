@@ -276,6 +276,8 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		        		
 		        	}
 		        	else if(img2.getTag().toString()=="resim"){
+		        		Intent viewIntent = new Intent(getApplicationContext(), SDCardImagesActivity.class);				
+		        		startActivity(viewIntent);
 		        		Toast toast = Toast.makeText(getApplicationContext(),"resim", Toast.LENGTH_SHORT);
 			            toast.show();		        			        		
 		        	}	            

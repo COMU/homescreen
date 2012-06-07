@@ -35,17 +35,7 @@
         </activity>
          <activity android:name=".SettingsActivity">
         </activity>
-        <activity
-            android:name=".YouTubeActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Authentication"></activity>
-        <activity android:name=".VideoWatch"></activity>
+        <activity android:name=".SDCardImagesActivity"></activity>
 		
          </application>
 </manifest>
