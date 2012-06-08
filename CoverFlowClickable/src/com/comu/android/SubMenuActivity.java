@@ -262,6 +262,8 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		        		
 		        	}
 		        	else if(img1.getTag().toString()=="muzik"){
+		        		Intent viewIntent = new Intent(getApplicationContext(), SDCardMusicsActivity.class);				
+		        		startActivity(viewIntent);
 		        		Toast toast = Toast.makeText(getApplicationContext(),"müzik", Toast.LENGTH_SHORT);
 			             toast.show();		        				        		
 		        	}

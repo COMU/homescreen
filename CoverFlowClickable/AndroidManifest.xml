@@ -35,7 +35,9 @@
         </activity>
          <activity android:name=".SettingsActivity">
         </activity>
-        <activity android:name=".SDCardImagesActivity"></activity>
-		
+        <activity android:name=".SDCardImagesActivity">
+        </activity>
+		<activity android:name=".SDCardMusicsActivity">
+        </activity>
          </application>
 </manifest>
