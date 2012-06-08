@@ -43,6 +43,8 @@
                         <category android:name="android.intent.category.DEFAULT" />
                   </intent-filter>
             </activity>
+        <activity android:name=".ViewMusic"> 
+        </activity>
 		<activity android:name=".SDCardMusicsActivity">
         </activity>
         <activity android:name=".SDCardVideosActivity" android:label="@string/app_name">

@@ -1,8 +1,11 @@
 package com.comu.android;
 
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,7 +23,7 @@ public class SDCardMusicsActivity extends Activity {
       int music_column_index;
       int count;
       MediaPlayer mMediaPlayer;
-
+      
       /** Called when the activity is first created. */
       @Override
       public void onCreate(Bundle savedInstanceState) {
@@ -53,17 +56,21 @@ long id) {
 .getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
                   musiccursor.moveToPosition(position);
                   String filename = musiccursor.getString(music_column_index);
-
-                  try {
-                        if (mMediaPlayer.isPlaying()) {
-                              mMediaPlayer.reset();
-                        }
-                        mMediaPlayer.setDataSource(filename);
-                        mMediaPlayer.prepare();
-                        mMediaPlayer.start();
-                  } catch (Exception e) {
-
-                  }
+                  //arkaplanda müzikleri çalma
+//                  try {
+//                        if (mMediaPlayer.isPlaying()) {
+//                              mMediaPlayer.reset();
+//                        }
+//                        mMediaPlayer.setDataSource(filename);
+//                        mMediaPlayer.prepare();
+//                        mMediaPlayer.start();
+//                  } catch (Exception e) {
+//
+//                  }
+                  
+                  Intent intent = new Intent(SDCardMusicsActivity.this, ViewMusic.class);
+                  intent.putExtra("videofilename", filename);
+                  startActivity(intent);
             }
       };
 
