@@ -51,6 +51,9 @@ long id) {
 .getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
                   videocursor.moveToPosition(position);
                   String filename = videocursor.getString(video_column_index);
+                  Intent intent = new Intent(SDCardVideosActivity.this, ViewVideo.class);
+                  intent.putExtra("videofilename", filename);
+                  startActivity(intent);
             }
       };
 
