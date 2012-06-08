@@ -293,6 +293,8 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 			            toast.show();        		
 		        	}
 		        	else if(img3.getTag().toString()=="video"){
+		        		Intent viewIntent = new Intent(getApplicationContext(), SDCardVideosActivity.class);				
+		        		startActivity(viewIntent);
 		        		Toast toast = Toast.makeText(getApplicationContext(),"video", Toast.LENGTH_SHORT);
 			            toast.show();		        				        		
 		        	}	            
