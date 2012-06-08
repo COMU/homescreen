@@ -35,8 +35,14 @@
         </activity>
          <activity android:name=".SettingsActivity">
         </activity>
-        <activity android:name=".SDCardImagesActivity">
+        <activity android:name=".SDCardImagesActivity"> 
         </activity>
+        <activity android:name=".ViewImage">
+                  <intent-filter>
+                        <action android:name="android.intent.action.VIEW" />
+                        <category android:name="android.intent.category.DEFAULT" />
+                  </intent-filter>
+            </activity>
 		<activity android:name=".SDCardMusicsActivity">
         </activity>
         <activity android:name=".SDCardVideosActivity" android:label="@string/app_name">
