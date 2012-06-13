@@ -18,7 +18,7 @@ public class ViewMusic extends Activity  {
           VideoView vv = new VideoView(getApplicationContext());
           setContentView(vv);
           vv.setVideoPath(filename);
-          vv.setBackgroundDrawable(getWallpaper());
+          vv.setBackgroundResource(R.drawable.music12);
           vv.setMediaController(new MediaController(this));
           vv.requestFocus();
           vv.start();
