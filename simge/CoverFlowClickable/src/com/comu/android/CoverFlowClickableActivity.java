@@ -1,8 +1,12 @@
 package com.comu.android;
 
+import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -37,6 +41,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 	
 	private VeriTabani imagepath;
 	
+	
 //	SharedPreferences mySharedPrefs;
 //	SharedPreferences.Editor sEditor;
 
@@ -46,9 +51,11 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 	
+
+		final LinearLayout mainLayout = (LinearLayout) findViewById(R.id.main_layout);	
+		mainLayout.setBackgroundResource(R.drawable.wallpaper_blue);
 		
-		final LinearLayout mainLayout = (LinearLayout) findViewById(R.id.main_layout);
-		mainLayout.setBackgroundResource(WallPaper.wallPapers[WallPaper.selectedWallpaperId]);
+		
 
 		imagepath = new VeriTabani(this);
 		
@@ -135,6 +142,11 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 				InsertData("pastelisIconTable", PastelisIcon[1].toString(), "Resimler");
 				InsertData("pastelisIconTable", PastelisIcon[2].toString(), "Video");
 				
+				Integer[] WallpaperList = { R.drawable.wallpaper_grey, R.drawable.wallpaper_blue};
+				
+				InsertData("Wallpaper", WallpaperList[0].toString(), "Grey");
+				InsertData("WallpaperBlue", WallpaperList[1].toString(), "Blue");
+						
 				
 				InsertTableName("greyTheme");
 				InsertTableName("blueTheme");
@@ -142,9 +154,12 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 				InsertTableName("socialIconTable");
 				InsertTableName("galleryIconTable");
 				InsertTableName("pastelisIconTable");
+				InsertTableName("Wallpaper");
+				InsertTableName("WallpaperBlue");
 				
 				InsertID("IDTable", 1);
 				InsertID("subIDTable", 4);
+				InsertID("WallIDTable",7);
 				
 			} finally {
 				imagepath.close();
@@ -156,6 +171,8 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 		setupCoverFlow(coverFlow);
 	
 	}
+	
+	
 	
 	private void InsertID(String table, int id){
 		// insert table name to database
@@ -260,6 +277,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 		private Context mContext;
 
 		Integer[] mImageIds = upgradeImageIds();
+
 		
 		private ImageView[] mImages;
 		
@@ -277,11 +295,13 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 				int i=0;
 				int themeID = theme.getInt(theme.getColumnIndex("guncelID"));
 				arrayID[i] = themeID;
-				Log.v("DEBUG", "hangi tema:" + themeID);
+				Log.v("DEBUG", "which theme:" + themeID);
 				break;
 			}
 			return arrayID;
 		}
+		
+		
 		
 		//*******************************************
 		private Integer[] upgradeImageIds() {
@@ -289,7 +309,7 @@ public class CoverFlowClickableActivity extends BetterActivity implements OnItem
 			Integer[] dizi= new Integer[9];
 //			int themeID = updateId();
 			Integer[] themeID  = theme();
-			Log.v("DEBUG", "theme durumu :" + themeID[0]);
+			Log.v("DEBUG", "theme state :" + themeID[0]);
 			if(themeID[0] == 1){
 				Cursor cursor = GetData("greyTheme");
 				try {

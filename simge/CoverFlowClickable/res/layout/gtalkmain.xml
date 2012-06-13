@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent"   >
+              android:layout_height="fill_parent"
+              android:background="#C0C0C0"   >
 
      <LinearLayout
          android:orientation="horizontal"
@@ -41,6 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Friends:"
+                android:textColor="#000000"
                 android:minWidth="70dp"
            />
 
@@ -49,12 +51,16 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
                   android:orientation="horizontal"
                   android:layout_width="wrap_content"
-                  android:layout_height="wrap_content">
+                  android:layout_height="wrap_content" 
+                  >
         
     <ListView
+        style="@style/CodeFont"
         android:id="@+id/friendList"
         android:layout_width="280dp"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        
+        >
       
     </ListView>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -62,12 +68,14 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content">
                   
-         <EditText
+         <TextView
                 android:id="@+id/karsitaraf"
                 android:layout_width="274dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#000000" />
    
    <ListView
+     
        android:id="@+id/listMessage"
        android:layout_width="432dp"
        android:layout_height="260dp"

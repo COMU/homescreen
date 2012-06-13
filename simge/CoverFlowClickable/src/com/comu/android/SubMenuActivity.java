@@ -1,8 +1,13 @@
 package com.comu.android;
 
+import java.util.List;
+
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -40,6 +45,7 @@ import android.widget.TableRow.LayoutParams;
 
 public class SubMenuActivity extends Activity implements OnItemClickListener {
 	int temp=0;
+	private Integer[] wallPapers;
 	
 	public static int currentPosition = 5;
 	VeriTabani imagepath = new VeriTabani(this);
@@ -50,7 +56,7 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		setContentView(R.layout.sub_menu);
 				
 		final LinearLayout subLayout = (LinearLayout) findViewById(R.id.sub_layout);
-		subLayout.setBackgroundResource(WallPaper.wallPapers[WallPaper.selectedWallpaperId]);
+		subLayout.setBackgroundResource(R.drawable.wallpaper_blue);
 		
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
 	               "coverflow", "id", "com.comu.android"));
@@ -272,8 +278,8 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		        	
 		        	if(img2.getTag().toString()=="twitter"){
 			        	
-						startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://www.twitter.com")).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
-		        		
+						//startActivity(new Intent("android.intent.action.VIEW", Uri.parse("file:///org.comu.homescreen-2.apk")).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
+		        		launchApp("org.comu.homescreen-2.apk");
 		        	}
 		        	else if(img2.getTag().toString()=="resim"){
 		        		Toast toast = Toast.makeText(getApplicationContext(),"resim", Toast.LENGTH_SHORT);
@@ -296,6 +302,27 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 		    });  
 	
 }	
+	/***
+	 * 
+	 * @param packageName
+	 */
+	
+	
+	protected void launchApp(String packageName) {
+		
+		        Intent mIntent = getPackageManager().getLaunchIntentForPackage(packageName);
+		        if (mIntent != null) {
+		            try {
+		                startActivity(mIntent);		
+		            } catch (ActivityNotFoundException err) {		
+		                Toast t = Toast.makeText(getApplicationContext(), "app not found", Toast.LENGTH_SHORT);
+		                	t.show();
+		            }
+		        }
+		    }
+
+
+	
 	private Integer[] getEggGallery() {
 		// Auto-generated method stub
 		Integer[] dizi = new Integer[3];
@@ -402,6 +429,66 @@ public class SubMenuActivity extends Activity implements OnItemClickListener {
 			  // handle exception
 			  }
 		
+		return dizi;
+	}
+	
+	/**
+	 * WallID 
+	 */
+	public int selected = 0;
+	
+	private  int whichWallpapers(){
+		 int selected = 0;
+		  Cursor cursor = GetDataID("WallIDTable");
+		  try{
+		  while(cursor.moveToFirst()){
+			  int id = cursor.getInt(cursor.getColumnIndex("guncelID"));
+			  selected = id ;
+			  break;		 
+		  	}
+		  } catch (Exception e) {
+			// handle exception
+		}
+		  return selected;
+	}
+	
+	/**
+	 * WhichWallPaper
+	 */
+	
+	public Integer[] createList(){
+		Integer[] dizi = new Integer[1];
+		Integer selected = whichWallpapers();
+		if(selected == 7){
+			Cursor cursor = GetData("Wallpaper");
+			try {
+				int i=0;
+				while(cursor.moveToNext()){
+					String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+					Integer yol = Integer.parseInt(yol_adi);
+					dizi[i]=yol;
+					Log.v("DEBUG", "dizi: " + Integer.toString(dizi[i]));
+					i++;
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		else if (selected == 8) {
+			Cursor cursor = GetData("WallpaperBlue");
+			try {
+				int i=0;
+				while(cursor.moveToNext()){
+					String  yol_adi = cursor.getString(cursor.getColumnIndex("imagepath"));
+					Integer yol = Integer.parseInt(yol_adi);
+					dizi[i]=yol;
+					Log.v("DEBUG", "dizi: " + Integer.toString(dizi[i]));
+					i++;
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
 		return dizi;
 	}
 

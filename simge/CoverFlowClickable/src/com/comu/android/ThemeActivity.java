@@ -45,8 +45,18 @@ public class ThemeActivity extends Activity{
 			
 		}
 		
+		private void updateSubWallpaper(int id) {
+			// TODO Auto-generated method stub
+			SQLiteDatabase db = imagepath.getWritableDatabase();
+			ContentValues veriler = new ContentValues();
+			veriler.put("guncelID", id);
+			
+			db.update("WallIDTable", veriler, "id=1" , null);
+		}
+		
 		public static int mTemaId = 1;
 		public static int mSubThemeId = 4;
+		public static int mWallpaper = 7;
 		
 		protected void onCreate(Bundle savedInstanceState) {
 		// Called when the activity is first created
@@ -68,13 +78,17 @@ public class ThemeActivity extends Activity{
 				// Auto-generated method stub	
 				mTemaId = 1;
 				mSubThemeId = 4;
+				mWallpaper = 7;
 				Log.v("DEBUG","mtemaId:" + mTemaId);
 				updateTemaId(mTemaId);
 				updateSubThemeId(mSubThemeId);
+				updateSubWallpaper(mWallpaper);
 				Intent intent = new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
 				startActivity(intent);
 				
 			}
+
+			
 		});
 	
 		Button changeTheme2 = (Button)findViewById(R.id.buton2);
@@ -84,8 +98,10 @@ public class ThemeActivity extends Activity{
 				// Auto-generated method stub	
 				mTemaId = 2;
 				mSubThemeId = 5;
+				mWallpaper = 8;
 				updateTemaId(mTemaId);
 				updateSubThemeId(mSubThemeId);
+				updateSubWallpaper(mWallpaper);
 				Log.v("DEBUG","mtemaId:" + mTemaId);
 				Intent intent = new Intent(getApplicationContext(),CoverFlowClickableActivity.class);
 				startActivity(intent);

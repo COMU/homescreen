@@ -15,6 +15,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.HOME"/>
                 <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.ALTERNATIVE"/>
             </intent-filter>
         </activity>
 		<activity android:name="com.comu.android.SubMenuActivity"
@@ -29,9 +30,7 @@
         <activity android:name=".XMPPClientActivity">
             </activity>
         <activity android:name=".GameSubMenu">
-        </activity>
-        <activity android:name=".WallPaper">
-        </activity>
+            </activity>
 		
          </application>
           <uses-permission android:name="android.permission.INTERNET" />

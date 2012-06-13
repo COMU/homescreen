@@ -127,7 +127,7 @@ public class XMPPClientActivity extends Activity {
             Button send = (Button)findViewById(R.id.sendButton);
             send.setOnClickListener(new View.OnClickListener() {
             	
-            	EditText side = (EditText)findViewById(R.id.karsitaraf);
+            	TextView side = (TextView)findViewById(R.id.karsitaraf);
             	String to = side.getText().toString();
             	
 				public void onClick(View v) {
@@ -186,12 +186,13 @@ public class XMPPClientActivity extends Activity {
 			
 			l.setAdapter(new ArrayAdapter<RosterEntry>(l.getContext(), android.R.layout.simple_list_item_1, listFriend));
 			
+			
 			l.setOnItemClickListener(new OnItemClickListener() {
 
 				public void onItemClick(AdapterView<?> av, View arg1,
 						int arg2, long arg3) {
 					// TODO Auto-generated method stub
-							EditText kisi = (EditText) findViewById(R.id.karsitaraf);
+							TextView kisi = (TextView) findViewById(R.id.karsitaraf);
 							RosterEntry friend = (RosterEntry)l.getItemAtPosition(arg2);
 							kisi.setText(friend.getUser().toString());
 					

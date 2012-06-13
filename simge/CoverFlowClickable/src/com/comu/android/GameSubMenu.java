@@ -2,7 +2,14 @@ package com.comu.android;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.LauncherActivity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -16,6 +23,7 @@ import android.graphics.Bitmap.Config;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,15 +50,26 @@ public class GameSubMenu extends BetterActivity implements OnItemClickListener{
 		setContentView(R.layout.main);
 		
 		final LinearLayout mainLayout = (LinearLayout) findViewById(R.id.main_layout);
-		mainLayout.setBackgroundResource(WallPaper.wallPapers[WallPaper.selectedWallpaperId]);
+//		mainLayout.setBackgroundResource(WallPaper.wallPapers[WallPaper.selectedWallpaperId]);
 		
 		imagepath = new VeriTabani(this);
 		final CoverFlow coverFlow = (CoverFlow) findViewById(this.getResources().getIdentifier(
 	               "coverflow", "id", "com.comu.android"));
 			setupCoverFlow(coverFlow);
+			
+			final PackageManager pm = getPackageManager();
+			List<ApplicationInfo> pList = pm.getInstalledApplications(PackageManager.GET_META_DATA);
+			for(ApplicationInfo packageList : pList){
+				Log.v("Paket Adi: ", packageList.packageName);
+			}
 		
 	}
-
+	
+	private void LaunchApp(String packagename){
+		Intent mIntent = new Intent(Intent.ACTION_MANAGE_PACKAGE_STORAGE);
+		startActivity(mIntent);	
+	}
+		
 	private void setupCoverFlow(CoverFlow coverFlow) {
 		// TODO Auto-generated method stub
 		coverFlow.setAdapter(new ImageAdapter(this));
@@ -213,12 +232,18 @@ public class GameSubMenu extends BetterActivity implements OnItemClickListener{
 	
 	}
 	
+		
 	public static int gelenposition;
 	public void onItemClick(AdapterView<?> Gallery, View arg1, int position, long arg3) {
 		// Icons in the menu is clicked
 		String[] dizi={"Frozen Bubble", "Unlock Me","Backgammon","Snake","Solitaire","Tetris", "Sudoku", "Puzzle"};
 		Toast.makeText(getApplicationContext(), ""+dizi[position], Toast.LENGTH_LONG).show();
-		    
-			
+		    if(gelenposition == 0){
+//		    	 Intent intent = new Intent(Intent.ACTION_VIEW);
+//                 intent.setDataAndType(Uri.parse("file:///data/app/org.jfedor.frozenbubble-1.apk"), "application/vnd.android.package-archive");
+//                 startActivity(intent);
+		    	LaunchApp("/data/app/org.jfedor.frozenbubble-1.apk");
+		    	}	
 	}
+	
 }

@@ -27,6 +27,9 @@ public class VeriTabani extends SQLiteOpenHelper {
 		db.execSQL("CREATE TABLE galleryIconTable(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
 		db.execSQL("CREATE TABLE pastelisIconTable(id INTEGER PRIMARY KEY AUTOINCREMENT,imagepath TEXT,etiket TEXT)");
 		db.execSQL("CREATE TABLE subIDTable(id INTEGER PRIMARY KEY AUTOINCREMENT, guncelID INTEGER)");
+		db.execSQL("CREATE TABLE WallpaperBlue(id INTEGER PRIMARY KEY AUTOINCREMENT, imagepath TEXT, etiket TEXT)");
+		db.execSQL("CREATE TABLE WallIDTable(id INTEGER PRIMARY KEY AUTOINCREMENT, guncelID INTEGER)");
+		db.execSQL("CREATE TABLE Wallpaper(id INTEGER PRIMARY KEY AUTOINCREMENT, imagepath TEXT, etiket TEXT)");
 
 
 	}
@@ -44,6 +47,9 @@ public class VeriTabani extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXIST pastelisIconTable");
 		db.execSQL("DROP TABLE IF EXIST subIDTable");
 		db.execSQL("DROP TABLE IF EXIST eggsocialIconTable");
+		db.execSQL("DROP TABLE IF EXIST Wallpaper");
+		db.execSQL("DROP TABLE IF EXIST WallpaperBlue");
+		db.execSQL("DROP TABLE IF EXIST WallIDTable");
 
 
 		onCreate(db);
