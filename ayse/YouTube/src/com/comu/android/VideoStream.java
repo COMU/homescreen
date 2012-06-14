@@ -3,10 +3,6 @@ package com.comu.android;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Represents a video stream
- *
- */
 public class VideoStream {
 	
 	protected String mUrl;

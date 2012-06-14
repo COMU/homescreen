@@ -14,8 +14,7 @@ import com.google.api.client.json.jackson.JacksonFactory;
 
 public class HttpConnection {
 	
-	
-	 
+		 
 	    	
 	  	public  final static HttpTransport transport = new NetHttpTransport();
 	  	public  final static JsonFactory jsonFactory = new JacksonFactory();

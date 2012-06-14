@@ -9,6 +9,6 @@ public class Video {
     @Key Player player;
     @Key Thumbnail thumbnail;
     @Key String id;
-//    @Key String author;
+    @Key String author;
 
 }

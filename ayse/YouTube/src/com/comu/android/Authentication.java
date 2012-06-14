@@ -1,12 +1,10 @@
 package com.comu.android;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Reader;
-import java.io.Writer;
+
 
 import com.google.api.client.googleapis.auth.clientlogin.ClientLogin;
+import com.google.api.client.googleapis.auth.clientlogin.ClientLoginResponseException;
 import com.google.api.client.googleapis.json.GoogleJsonRpcHttpTransport;
 import com.google.api.client.googleapis.json.JsonCParser;
 import com.google.api.client.http.HttpRequest;
@@ -25,11 +23,12 @@ import com.google.api.client.googleapis.auth.clientlogin.*;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.json.*;
 import com.google.api.client.http.*;
-import java.io.*;
+
 
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.accounts.AccountManagerCallback;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
@@ -46,19 +45,20 @@ public class Authentication extends Activity{
 	public static String clientSecret = "RsKIrbSuGORkIEvqclvDDEZ8";
 	public static String redirectUri = "urn:ietf:wg:oauth:2.0:oob";
 	public static String scope = "https://gdata.youtube.com";
-	public static String formingUrl = "https://accounts.google.com/o/oauth2/auth";
+//	public static String formingUrl = "https://accounts.google.com/o/oauth2/auth";
 
 	 /** Called when the activity is first created. */	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-     //   GoogleCredential credential = new GoogleCredential();
-        
-      	final HttpTransport transport = new NetHttpTransport();
+ //       GoogleCredential credential = new GoogleCredential();
+        AccountManager accountManager = AccountManager.get(this);
+        Account[] accounts = accountManager.getAccountsByType("com.google");
+  //    	final HttpTransport transport = new NetHttpTransport();
 	  	final JsonFactory jsonFactory = new JacksonFactory();
 	  	JsonCParser parser = new JsonCParser(jsonFactory);
-        
+	  	final HttpTransport transport ;
         final EditText username = (EditText) findViewById(R.id.userName);
         final EditText password = (EditText) findViewById(R.id.password);
         final GenericUrl url = new GenericUrl("https://accounts.google.com/o/oauth2/auth");
@@ -66,10 +66,9 @@ public class Authentication extends Activity{
         final  Button login = (Button) findViewById(R.id.login1);
         password.setTransformationMethod(PasswordTransformationMethod.getInstance());
      
-        final JsonRpcRequest request = new JsonRpcRequest();
-         
-        
-		
+//        final JsonRpcRequest jrequest = new JsonRpcRequest();
+//        final HttpRequest request = null;
+        		
 		login.setOnClickListener(new OnClickListener() {			
 
 				@Override
@@ -78,18 +77,23 @@ public class Authentication extends Activity{
 					ClientLogin authenticator = new ClientLogin(); 
 					authenticator.username = username.getText().toString();
 			        authenticator.password = password.getText().toString();
-	         
-
-				                
+	        			                
 	                // authenticate with ClientLogin
-	                  authenticator.transport = transport;	                  
-	                  // make query request
-//	                  HttpRequest requesT = transport.buildPostRequest(request);
-//	                  ((HttpRequest) requesT).setUrl(url);
-//	                  ((HttpRequest) requesT).getUrl().put(
-//	                      "access token ", "select count(*) from [bigquery/samples/shakespeare];");
-		
-				}
+	   //             authenticator.transport = transport;
+	                authenticator.serverUrl =url; 
+	                try {
+						authenticator.authenticate();
+					} catch (ClientLoginResponseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	                //   make query request
+	                
+				}     
+	              
 		 });
     }	
 }

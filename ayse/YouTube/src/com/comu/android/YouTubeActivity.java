@@ -29,7 +29,6 @@ import android.widget.TextView;
 
 
 
-
 public class YouTubeActivity extends Activity {
 	
 	public static String developerKey = "AI39si5Ok3qgtySpXtuBZeQnK2fK1iSb08e1RMeTVlH6q_N5_4msavgPkaNsAtejFKt-fzzpBa7iSda66nXX2rPgxZYFzrMNIw";
@@ -41,11 +40,12 @@ public class YouTubeActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.youtubemain); 
-        YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/videos");
+        setContentView(R.layout.main); 
+        YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/standardfeeds/most_viewed");
+    //    YouTubeUrl url = new YouTubeUrl("https://gdata.youtube.com/feeds/api/videos");
         url.maxResults=20;
-        url.q=search;
-        url.category="YouTube";
+    //    url.q=search;
+   //     url.category="YouTube";
         
         VideoFeed feed= null;
         try {
@@ -74,6 +74,7 @@ public class YouTubeActivity extends Activity {
         youtubeIcon.setFocusable(true);
         final GridView gridview = (GridView) findViewById(R.id.gridView);
         gridview.setAdapter(new ImageAdapter(this));
+        
         
         final String[]  listVideo ={"From YouTube","Trending","Popular","Music","Entertainment","Sports",
     			"Film & Animation","News & Politics","Comedy","People & Blogs","Science & Technology",
@@ -142,11 +143,7 @@ public class YouTubeActivity extends Activity {
 				// TODO Auto-generated method stub
 				clickedVideo = index;
 				String videoId = VideoSet.video_Id[index];
-//				Intent viewIntent = new Intent(getApplicationContext(), VideoWatch.class);				
-//				startActivity(viewIntent);
-//				Intent lVideoIntent = new Intent(null, Uri.parse("ytv://"+videoId),YouTubeActivity.this, VideoWatch.class);
-//		        startActivity(lVideoIntent);
-		        Intent lVideoIntent = new Intent(null, Uri.parse("ytv://"+videoId), YouTubeActivity.this,OpenYouTubePlayerActivity.class);
+		        Intent lVideoIntent = new Intent(null, Uri.parse("ytv://"+videoId), YouTubeActivity.this,YouTubePlayerActivity.class);
 		        startActivity(lVideoIntent);
 		        
 			}

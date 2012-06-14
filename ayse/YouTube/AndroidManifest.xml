@@ -25,7 +25,7 @@
         <activity android:name=".Authentication"></activity>
         <activity android:name=".VideoWatch"></activity>
         <activity 
-                android:name=".OpenYouTubePlayerActivity"  
+                android:name=".YouTubePlayerActivity"  
                 android:screenOrientation="landscape"
                 android:configChanges="orientation"
                 android:theme="@android:style/Theme.Black"

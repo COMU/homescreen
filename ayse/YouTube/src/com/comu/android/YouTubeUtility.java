@@ -46,7 +46,7 @@ public class YouTubeUtility {
 
 		HttpClient lClient = new DefaultHttpClient();
 		
-		HttpGet lGetMethod = new HttpGet(OpenYouTubePlayerActivity.YOUTUBE_PLAYLIST_ATOM_FEED_URL + 
+		HttpGet lGetMethod = new HttpGet(YouTubePlayerActivity.YOUTUBE_PLAYLIST_ATOM_FEED_URL + 
 										 pPlaylistId.getId()+"?v=2&max-results=50&alt=json");
 		
 		HttpResponse lResp = null;
@@ -87,7 +87,7 @@ public class YouTubeUtility {
 		return lVideoId;
 	}
 
-	
+		
 	/**
 	 * Calculate the YouTube URL to load the video.  Includes retrieving a token that YouTube
 	 * requires to play the video.
@@ -107,7 +107,7 @@ public class YouTubeUtility {
 		String lUriStr = null;
 		HttpClient lClient = new DefaultHttpClient();
 		
-		HttpGet lGetMethod = new HttpGet(OpenYouTubePlayerActivity.YOUTUBE_VIDEO_INFORMATION_URL + 
+		HttpGet lGetMethod = new HttpGet(YouTubePlayerActivity.YOUTUBE_VIDEO_INFORMATION_URL + 
 										 pYouTubeVideoId);
 		
 		HttpResponse lResp = null;
